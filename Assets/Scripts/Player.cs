@@ -18,28 +18,56 @@ public class Player : MonoBehaviour
     float unPressSpaceTime;
     float duration;
 
+    bool isGrounded;
+    public Transform groundCheck1;
+    public Transform groundCheck2;
+    public float checkRadius;
+    public LayerMask whatIsGround;
+
+    bool isJumping;
+
     void Start()
     {
         player = this;
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         playerPosition = rb.transform.position;
 
+        isGrounded = (Physics2D.OverlapCircle(groundCheck1.position, checkRadius, whatIsGround) || Physics2D.OverlapCircle(groundCheck2.position, checkRadius, whatIsGround));
+
+        if (rb.velocity.y <= 0) {
+            isJumping = false;
+        } else {
+            isJumping = true;
+        }
+
         if (Input.GetKeyDown("space")) {
-            print("space was pressed");
             pressSpaceTime = Time.time;
         }
 
         if (Input.GetKeyUp("space")) {
-            print("space was released");
             unPressSpaceTime = Time.time;
             duration = unPressSpaceTime - pressSpaceTime;
-            rb.AddForce(transform.right * horizontalSpeed * duration);
-            rb.AddForce(transform.up * verticalSpeed * duration);
+
+            print(duration);
+            if(duration > 0.8f) {
+                duration = 0.8f;
+            }
+            print(duration);
+
+            if (isGrounded) {
+                rb.AddForce(transform.right * horizontalSpeed * duration);
+                rb.AddForce(transform.up * verticalSpeed * duration);
+            }
+        }
+
+        if (isGrounded && !isJumping) {
+            rb.velocity = Vector2.zero;
         }
     }
+
+    
 }
