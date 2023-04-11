@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Player : MonoBehaviour
     Rigidbody2D rb;
 
     public Vector2 playerPosition;
+
+    private GameMaster gm;
 
     public float verticalSpeed;
     public float horizontalSpeed;
@@ -30,6 +33,9 @@ public class Player : MonoBehaviour
     {
         player = this;
         rb = GetComponent<Rigidbody2D>();
+        gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+        Vector2 spawnOffset = new Vector2(-1.40f, 0.3f);
+        transform.position = gm.lastCheckPointPosition + spawnOffset;
     }
 
     void FixedUpdate() 
@@ -40,7 +46,8 @@ public class Player : MonoBehaviour
     }
 
     void Update() {
-        DetectInput();
+        DetectSpaceInput();
+        DetectShiftInput();
     }
 
     private void LocatePlayer() 
@@ -54,7 +61,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void DetectInput() 
+    private void DetectSpaceInput() 
     {
         if (Input.GetKeyDown("space")) {
             spacePressed = true;
@@ -63,6 +70,13 @@ public class Player : MonoBehaviour
         if (Input.GetKeyUp("space")) {
             spacePressed = false;
             Jump();
+        }
+    }
+
+    private void DetectShiftInput() 
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
@@ -75,10 +89,14 @@ public class Player : MonoBehaviour
     private void Jump()
     {
         print(pressSpaceTime);
-        if(pressSpaceTime > 0.8f) {
+        if (pressSpaceTime > 0.8f) {
             pressSpaceTime = 0.8f;
         }
+        if (pressSpaceTime < 0.15f) {
+            pressSpaceTime = 0.15f;
+        }
         print(pressSpaceTime);
+
 
         if (isGrounded) {
             rb.AddForce(transform.right * horizontalSpeed * pressSpaceTime);
