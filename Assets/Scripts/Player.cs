@@ -14,9 +14,7 @@ public class Player : MonoBehaviour
     public float verticalSpeed;
     public float horizontalSpeed;
 
-    float pressSpaceTime;
-    float unPressSpaceTime;
-    float duration;
+    float pressSpaceTime = 0f;
 
     bool isGrounded;
     public Transform groundCheck1;
@@ -26,48 +24,73 @@ public class Player : MonoBehaviour
 
     bool isJumping;
 
+    bool spacePressed;
+
     void Start()
     {
         player = this;
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    void FixedUpdate() 
+    {
+        LocatePlayer();
+        AddJumpTime();
+        StopJump();
+    }
+
+    void Update() {
+        DetectInput();
+    }
+
+    private void LocatePlayer() 
     {
         playerPosition = rb.transform.position;
-
         isGrounded = (Physics2D.OverlapCircle(groundCheck1.position, checkRadius, whatIsGround) || Physics2D.OverlapCircle(groundCheck2.position, checkRadius, whatIsGround));
-
         if (rb.velocity.y <= 0) {
             isJumping = false;
         } else {
             isJumping = true;
         }
+    }
 
+    private void DetectInput() 
+    {
         if (Input.GetKeyDown("space")) {
-            pressSpaceTime = Time.time;
+            spacePressed = true;
         }
 
         if (Input.GetKeyUp("space")) {
-            unPressSpaceTime = Time.time;
-            duration = unPressSpaceTime - pressSpaceTime;
-
-            print(duration);
-            if(duration > 0.8f) {
-                duration = 0.8f;
-            }
-            print(duration);
-
-            if (isGrounded) {
-                rb.AddForce(transform.right * horizontalSpeed * duration);
-                rb.AddForce(transform.up * verticalSpeed * duration);
-            }
-        }
-
-        if (isGrounded && !isJumping) {
-            rb.velocity = Vector2.zero;
+            spacePressed = false;
+            Jump();
         }
     }
 
-    
+    private void AddJumpTime() {
+        if (spacePressed) {
+            pressSpaceTime += Time.deltaTime;
+        }
+    }
+
+    private void Jump()
+    {
+        print(pressSpaceTime);
+        if(pressSpaceTime > 0.8f) {
+            pressSpaceTime = 0.8f;
+        }
+        print(pressSpaceTime);
+
+        if (isGrounded) {
+            rb.AddForce(transform.right * horizontalSpeed * pressSpaceTime);
+            rb.AddForce(transform.up * verticalSpeed * pressSpaceTime);
+        }
+
+        pressSpaceTime = 0f;
+    }
+
+    private void StopJump() {
+        if (isGrounded && !isJumping) {
+            rb.velocity = Vector2.zero;
+        }
+    }    
 }
