@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         Vector2 spawnOffset = new Vector2(-1.60f, 1.9f);
-        transform.position = gm.lastCheckPointPosition + spawnOffset;
+        transform.position = gm.GetTopCheckPoint() + spawnOffset;
     }
 
     void FixedUpdate() 
@@ -88,14 +88,14 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        print(pressSpaceTime);
+        // print(pressSpaceTime);
         if (pressSpaceTime > 0.8f) {
             pressSpaceTime = 0.8f;
         }
         if (pressSpaceTime < 0.15f) {
             pressSpaceTime = 0.15f;
         }
-        print(pressSpaceTime);
+        // print(pressSpaceTime);
 
 
         if (isGrounded) {

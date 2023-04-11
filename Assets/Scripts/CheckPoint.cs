@@ -13,7 +13,7 @@ public class CheckPoint : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player")) {
-            gm.lastCheckPointPosition = transform.position;
+            gm.AddCheckPoint(transform.position);
         }
     }
 }
