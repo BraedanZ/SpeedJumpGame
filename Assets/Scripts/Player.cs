@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
         player = this;
         rb = GetComponent<Rigidbody2D>();
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
-        Vector2 spawnOffset = new Vector2(-1.40f, 0.3f);
+        Vector2 spawnOffset = new Vector2(-1.60f, 1.9f);
         transform.position = gm.lastCheckPointPosition + spawnOffset;
     }
 
