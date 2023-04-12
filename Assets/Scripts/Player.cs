@@ -51,12 +51,12 @@ public class Player : MonoBehaviour
 
     void Update() {
         DetectSpaceInput();
-        DetectShiftInput();
+        DetectRInput();
     }
 
     private void LocatePlayer() 
     {
-        playerPosition = rb.transform.position;
+        playerPosition = rb.transform.position; 
         isGrounded = (Physics2D.OverlapCircle(groundCheck1.position, checkRadius, whatIsGround) || Physics2D.OverlapCircle(groundCheck2.position, checkRadius, whatIsGround));
         if (rb.velocity.y <= 0) {
             isJumping = false;
@@ -77,9 +77,10 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void DetectShiftInput() 
+    private void DetectRInput() 
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) {
+        if (Input.GetKeyDown("r") || Input.GetKeyDown("r")) {
+            gm.Restart();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }

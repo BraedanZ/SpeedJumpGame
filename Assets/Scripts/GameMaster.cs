@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour
 {
     private static GameMaster instance;
 
-    public Vector2 lastCheckPointPosition;
+    public Vector2 startPosiiton;
     int fallsInARow = 0;
     private Stack<Vector2> reachedCheckPoints;
 
@@ -23,13 +24,13 @@ public class GameMaster : MonoBehaviour
 
     void Start() {
         reachedCheckPoints = new Stack<Vector2>();
-        reachedCheckPoints.Push(lastCheckPointPosition);
+        reachedCheckPoints.Push(startPosiiton);
     }
 
     public Vector2 GetTopCheckPoint() {
         fallsInARow++;
         if (reachedCheckPoints.Count == 0 ) {
-            return lastCheckPointPosition;
+            return startPosiiton;
         }
         if (reachedCheckPoints.Count == 1 ) {
             return reachedCheckPoints.Pop();
@@ -47,5 +48,10 @@ public class GameMaster : MonoBehaviour
         
         reachedCheckPoints.Push(checkPointPosition);
         fallsInARow = 0;
+    }
+
+    public void Restart() {
+        Start();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
