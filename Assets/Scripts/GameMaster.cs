@@ -40,7 +40,6 @@ public class GameMaster : MonoBehaviour
 
     public void AddCheckPoint(Vector2 checkPointPosition) {
         if (reachedCheckPoints.Count != 0) {
-            print("last point:" + reachedCheckPoints.Peek() + "this point:" + checkPointPosition);
                 if (reachedCheckPoints.Peek() == checkPointPosition) {
                     return;
             }
