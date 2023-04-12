@@ -25,13 +25,13 @@ public class GameMaster : MonoBehaviour
     public bool gamePlaying { get; private set; }
 
     void Awake() {
-        
-        if (instance == null) {
-            instance = this;
-            DontDestroyOnLoad(instance);
-        } else {
-            Destroy(gameObject);
-        }
+        instance = this;
+        // if (instance == null) {
+        //     instance = this;
+        //     DontDestroyOnLoad(instance);
+        // } else {
+        //     Destroy(gameObject);
+        // }
     }
 
     void Start() {
@@ -75,6 +75,7 @@ public class GameMaster : MonoBehaviour
     public void Restart() {
         Start();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        // LoadDemoScene();
     }
 
     private void UpdateTimer() {

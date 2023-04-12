@@ -81,7 +81,6 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown("r") || Input.GetKeyDown("r")) {
             gm.Restart();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
