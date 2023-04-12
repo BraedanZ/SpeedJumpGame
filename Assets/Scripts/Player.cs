@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
 
     private GameMaster gm;
 
-    private CameraFollow camera;
+    private new CameraFollow camera;
 
     public float verticalSpeed;
     public float horizontalSpeed;
@@ -92,22 +92,26 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        // print(pressSpaceTime);
+        LimitJump();
+        CheckGrounded();
+        pressSpaceTime = 0f;
+    }
+
+    private void LimitJump() {
         if (pressSpaceTime > 0.8f) {
             pressSpaceTime = 0.8f;
         }
+
         if (pressSpaceTime < 0.15f) {
             pressSpaceTime = 0.15f;
         }
-        // print(pressSpaceTime);
+    }
 
-
+    private void CheckGrounded() {
         if (isGrounded) {
             rb.AddForce(transform.right * horizontalSpeed * pressSpaceTime);
             rb.AddForce(transform.up * verticalSpeed * pressSpaceTime);
         }
-
-        pressSpaceTime = 0f;
     }
 
     private void StopJump() {
