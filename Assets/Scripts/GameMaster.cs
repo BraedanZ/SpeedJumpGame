@@ -28,9 +28,13 @@ public class GameMaster : MonoBehaviour
 
     public Vector2 GetTopCheckPoint() {
         fallsInARow++;
-        if (reachedCheckPoints.Count == 0) {
+        if (reachedCheckPoints.Count == 0 ) {
             return lastCheckPointPosition;
         }
+        if (reachedCheckPoints.Count == 1 ) {
+            return reachedCheckPoints.Pop();
+        }
+        reachedCheckPoints.Pop();
         return reachedCheckPoints.Pop();
     }
 
