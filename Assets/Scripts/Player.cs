@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
 
     private GameMaster gm;
 
+    private CameraFollow camera;
+
     public float verticalSpeed;
     public float horizontalSpeed;
 
@@ -34,8 +36,10 @@ public class Player : MonoBehaviour
         player = this;
         rb = GetComponent<Rigidbody2D>();
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+        camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
         Vector2 spawnOffset = new Vector2(-1.60f, 1.9f);
         transform.position = gm.GetTopCheckPoint() + spawnOffset;
+        camera.SnapCamera();
     }
 
     void FixedUpdate() 
