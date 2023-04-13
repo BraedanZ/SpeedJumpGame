@@ -31,13 +31,15 @@ public class Player : MonoBehaviour
 
     bool spacePressed;
 
+    Vector2 spawnOffset;
+
     void Start()
     {
         player = this;
         rb = GetComponent<Rigidbody2D>();
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
-        Vector2 spawnOffset = new Vector2(-1.60f, 1.9f);
+        spawnOffset = new Vector2(-1.60f, 1.9f);
         transform.position = gm.GetTopCheckPoint() + spawnOffset;
         camera.SnapCamera();
     }
@@ -118,5 +120,10 @@ public class Player : MonoBehaviour
         if (isGrounded && !isJumping) {
             rb.velocity = Vector2.zero;
         }
-    }    
+    } 
+
+    public void Die() {
+        transform.position = gm.GetTopCheckPoint() + spawnOffset;
+        camera.SnapCamera();
+    }
 }
