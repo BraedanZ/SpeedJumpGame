@@ -24,6 +24,10 @@ public class GameMaster : MonoBehaviour
 
     public bool gamePlaying { get; private set; }
 
+    public float timeToSpawn;
+
+    private float timeSinceSpawn;
+
     void Awake() {
         instance = this;
         // if (instance == null) {
@@ -43,6 +47,9 @@ public class GameMaster : MonoBehaviour
 
     void Update() {
         UpdateTimer();
+        if (timeToSpawn > 0) {
+            timeSinceSpawn -= Time.deltaTime;
+        }
     }
 
     public void LoadDemoScene() {
@@ -57,19 +64,30 @@ public class GameMaster : MonoBehaviour
         if (reachedCheckPoints.Count == 1 ) {
             return reachedCheckPoints.Pop();
         }
-        reachedCheckPoints.Pop();
+        double punishment = Math.Pow(2, fallsInARow - 1);
+        print("from Get top check point: " + fallsInARow);
+        print("Punishment: " + punishment);
+        for (int i = 0; i < punishment; i++) {
+            if (reachedCheckPoints.Count > 1) {
+                reachedCheckPoints.Pop();
+            }
+        }
+        timeSinceSpawn = timeToSpawn;
         return reachedCheckPoints.Pop();
     }
 
     public void AddCheckPoint(Vector2 checkPointPosition) {
         if (reachedCheckPoints.Count != 0) {
-                if (reachedCheckPoints.Peek() == checkPointPosition) {
-                    return;
+            if (reachedCheckPoints.Peek() == checkPointPosition) {
+                return;
             }
         }
-        
+        if (timeSinceSpawn < 0) {
+            fallsInARow = 0;
+            print("from add check point: " + fallsInARow);
+        }
+            
         reachedCheckPoints.Push(checkPointPosition);
-        fallsInARow = 0;
     }
 
     public void Restart() {
