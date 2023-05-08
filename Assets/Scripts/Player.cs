@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
 
     private GameMaster gm;
 
+    private AnimatePlayer animatePlayer;
+
     private new CameraFollow camera;
 
     public float verticalSpeed;
@@ -38,6 +40,7 @@ public class Player : MonoBehaviour
         player = this;
         rb = GetComponent<Rigidbody2D>();
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+        animatePlayer = GameObject.FindGameObjectWithTag("Skin").GetComponent<AnimatePlayer>();
         camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
         spawnOffset = new Vector2(-1.60f, 1.9f);
         transform.position = gm.GetTopCheckPoint() + spawnOffset;
@@ -54,6 +57,7 @@ public class Player : MonoBehaviour
     void Update() {
         DetectSpaceInput();
         DetectRInput();
+        SetAnimation();
     }
 
     private void LocatePlayer() 
@@ -121,6 +125,16 @@ public class Player : MonoBehaviour
             rb.velocity = Vector2.zero;
         }
     } 
+
+    private void SetAnimation() {
+        if (isGrounded && !spacePressed) {
+            animatePlayer.SetBaseSprite();
+        } else if (isGrounded && spacePressed) {
+            animatePlayer.SetSquishSprite();
+        } else {
+            animatePlayer.SetJumpSprite();
+        }
+    }
 
     public void Die() {
         transform.position = gm.GetTopCheckPoint() + spawnOffset;
