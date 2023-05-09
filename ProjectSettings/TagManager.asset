@@ -7,6 +7,7 @@ TagManager:
   - GM
   - Platform
   - CPM
+  - Skin
   layers:
   - Default
   - TransparentFX
