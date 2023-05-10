@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
 
     public Vector2 playerPosition;
 
+    private BoxCollider2D playerCollider;
+
     private GameMaster gm;
 
     private AnimatePlayer animatePlayer;
@@ -24,9 +26,6 @@ public class Player : MonoBehaviour
     float pressSpaceTime = 0f;
 
     bool isGrounded;
-    public Transform groundCheck1;
-    public Transform groundCheck2;
-    public float checkRadius;
     public LayerMask whatIsGround;
 
     bool isJumping;
@@ -39,6 +38,7 @@ public class Player : MonoBehaviour
     {
         player = this;
         rb = GetComponent<Rigidbody2D>();
+        playerCollider = GetComponent<BoxCollider2D>();
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         animatePlayer = GameObject.FindGameObjectWithTag("Skin").GetComponent<AnimatePlayer>();
         camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
     private void LocatePlayer() 
     {
         playerPosition = rb.transform.position; 
-        isGrounded = (Physics2D.OverlapCircle(groundCheck1.position, checkRadius, whatIsGround) || Physics2D.OverlapCircle(groundCheck2.position, checkRadius, whatIsGround));
+        GroundCheck();
         if (rb.velocity.y <= 0) {
             isJumping = false;
         } else {
@@ -99,7 +99,7 @@ public class Player : MonoBehaviour
     private void Jump()
     {
         LimitJump();
-        CheckGrounded();
+        CheckGroundedToJump();
         pressSpaceTime = 0f;
     }
 
@@ -113,7 +113,15 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void CheckGrounded() {
+    private void GroundCheck() {
+        if (Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0, -transform.up, 0.1f, whatIsGround)) {
+            isGrounded = true;
+        } else {
+            isGrounded = false;
+        }
+    }
+
+    private void CheckGroundedToJump() {
         if (isGrounded) {
             rb.AddForce(transform.right * horizontalSpeed * pressSpaceTime);
             rb.AddForce(transform.up * verticalSpeed * pressSpaceTime);

@@ -65,8 +65,6 @@ public class GameMaster : MonoBehaviour
             return reachedCheckPoints.Pop();
         }
         double punishment = Math.Pow(2, fallsInARow - 1);
-        print("from Get top check point: " + fallsInARow);
-        print("Punishment: " + punishment);
         for (int i = 0; i < punishment; i++) {
             if (reachedCheckPoints.Count > 1) {
                 reachedCheckPoints.Pop();
@@ -84,7 +82,6 @@ public class GameMaster : MonoBehaviour
         }
         if (timeSinceSpawn < 0) {
             fallsInARow = 0;
-            print("from add check point: " + fallsInARow);
         }
             
         reachedCheckPoints.Push(checkPointPosition);
