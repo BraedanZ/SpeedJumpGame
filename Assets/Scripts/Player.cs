@@ -145,6 +145,7 @@ public class Player : MonoBehaviour
 
     public void Die() {
         transform.position = gm.GetTopCheckPoint() + spawnOffset;
+        rb.velocity = Vector2.zero;
         camera.SnapCamera();
     }
 }
