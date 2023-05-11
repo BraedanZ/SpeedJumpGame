@@ -31,6 +31,9 @@ public class GameMaster : MonoBehaviour
     private int deathCount;
     public Text writtenDeathCount;
 
+    private int jumpCount;
+    public Text writtenJumpCount;
+
     void Awake() {
         instance = this;
         // if (instance == null) {
@@ -125,5 +128,10 @@ public class GameMaster : MonoBehaviour
 
     public int GetDeathCount() {
         return deathCount;
+    }
+
+    public void IncramentJumps() {
+        jumpCount++;
+        writtenJumpCount.text = "Jumps: " + jumpCount;
     }
 }
