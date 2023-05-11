@@ -93,7 +93,9 @@ public class GameMaster : MonoBehaviour
             }
         }
         if (timeSinceSpawn < 0) {
-            fallsInARow = 0;
+            if (fallsInARow > 0) {
+                fallsInARow--;
+            }
         }
             
         reachedCheckPoints.Push(checkPointPosition);
