@@ -10,8 +10,29 @@ public class CameraFollow : MonoBehaviour
     public float smoothSpeed = 0.125f;
     public Vector3 offset;
 
+    public Color color1 = Color.red;
+    public Color color2 = Color.blue;
+
+    public Camera cam;
+
+    public float colourModifierFromX;
+
     void Start () {
+        cam = GetComponent<Camera>();
+        cam.clearFlags = CameraClearFlags.SolidColor;
+
         SnapCamera();
+    }
+
+    void Update () {
+        if (transform.position.x < 0) {
+            colourModifierFromX = 0;
+        } else if (0 < transform.position.x && transform.position.x < 200) {
+            colourModifierFromX = transform.position.x / 200;
+        } else {
+            colourModifierFromX = 1;
+        }
+        cam.backgroundColor = Color.Lerp(color1, color2, colourModifierFromX);
     }
 
     void LateUpdate () {
