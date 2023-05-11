@@ -17,6 +17,7 @@ public class GameMaster : MonoBehaviour
 
     private float startTime, elapsedTime;
     TimeSpan timePlaying;
+    private string timePlayingStr;
 
     public GameObject winPanel;
 
@@ -29,10 +30,13 @@ public class GameMaster : MonoBehaviour
     private float timeSinceSpawn;
 
     private int deathCount;
-    public Text writtenDeathCount;
+    private string writtenDeathCount;
+    public Text deathCountText;
 
     private int jumpCount;
-    public Text writtenJumpCount;
+    private string writtenJumpCount;
+    public Text jumpCountText;
+
 
     void Awake() {
         instance = this;
@@ -49,6 +53,8 @@ public class GameMaster : MonoBehaviour
         reachedCheckPoints.Push(startPosiiton);
         gamePlaying = true;
         startTime = Time.time;
+        writtenJumpCount = "Jumps: 0";
+        writtenDeathCount = "Deaths: 0";
     }
 
     void Update() {
@@ -104,7 +110,7 @@ public class GameMaster : MonoBehaviour
             elapsedTime = Time.time - startTime;
             timePlaying = TimeSpan.FromSeconds(elapsedTime);
 
-            string timePlayingStr = timePlaying.ToString("mm':'ss'.'ff");
+            timePlayingStr = timePlaying.ToString("mm':'ss'.'ff");
             timeCounter.text = timePlayingStr;
         }
     }
@@ -115,15 +121,19 @@ public class GameMaster : MonoBehaviour
 
     public void ShowGameOverScreen() {
         GameMaster.instance.StopTimer();
-        string timePlayingStr = timePlaying.ToString("mm':'ss'.'ff");
         winPanel.transform.Find("FinalTime").GetComponent<Text>().text = timePlayingStr;
+        winPanel.transform.Find("FinalJumps").GetComponent<Text>().text = writtenJumpCount;
+        winPanel.transform.Find("FinalDeaths").GetComponent<Text>().text = writtenDeathCount;
         winPanel.SetActive(true);
         gameOverlay.SetActive(false);
+
+
     }
 
     public void IncramentDeath() {
         deathCount++;
-        writtenDeathCount.text = "Deaths: " + deathCount;
+        writtenDeathCount = "Deaths: " + deathCount;
+        deathCountText.text = writtenDeathCount;
     }
 
     public int GetDeathCount() {
@@ -132,7 +142,8 @@ public class GameMaster : MonoBehaviour
 
     public void IncramentJumps() {
         jumpCount++;
-        writtenJumpCount.text = "Jumps: " + jumpCount;
+        writtenJumpCount = "Jumps: " + jumpCount;
+        jumpCountText.text = writtenJumpCount;
     }
 
     public int GetJumpCount() {
