@@ -671,6 +671,10 @@ MonoBehaviour:
   target: {fileID: 1734380419}
   smoothSpeed: 0.125
   offset: {x: 14, y: 0.5, z: -10}
+  color1: {r: 1, g: 0, b: 0, a: 1}
+  color2: {r: 0, g: 0, b: 1, a: 1}
+  cam: {fileID: 0}
+  colourModifierFromX: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1914,6 +1918,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
+  spawnOffset: {x: -1.6, y: 2.1}
 --- !u!1001 &1759777252
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2538,8 +2543,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1499736929
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 88cfeda08b232184cbb6c18c71fafca7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
 
     bool spacePressed;
 
-    Vector2 spawnOffset;
+    public Vector2 spawnOffset;
 
     void Start()
     {
@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         animatePlayer = GameObject.FindGameObjectWithTag("Skin").GetComponent<AnimatePlayer>();
         camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
-        spawnOffset = new Vector2(-1.60f, 1.9f);
+        // spawnOffset = new Vector2(-1.60f, 1.9f);
         transform.position = gm.GetTopCheckPoint() + spawnOffset;
         camera.SnapCamera();
     }
@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
 
     private void LocatePlayer() 
     {
-        playerPosition = rb.transform.position; 
+        playerPosition = rb.transform.position;
         GroundCheck();
         if (rb.velocity.y <= 0) {
             isJumping = false;
@@ -132,7 +132,7 @@ public class Player : MonoBehaviour
         if (isGrounded && !isJumping) {
             rb.velocity = Vector2.zero;
         }
-    } 
+    }    
 
     private void SetAnimation() {
         if (isGrounded && !spacePressed) {
