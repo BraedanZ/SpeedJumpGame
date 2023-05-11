@@ -70,6 +70,7 @@ public class GameMaster : MonoBehaviour
 
     public Vector2 GetTopCheckPoint() {
         fallsInARow++;
+        print("on Respawn " + fallsInARow);
         if (reachedCheckPoints.Count == 0 ) {
             return startPosiiton;
         }
@@ -93,10 +94,15 @@ public class GameMaster : MonoBehaviour
             }
         }
         if (timeSinceSpawn < 0) {
-            fallsInARow = 0;
+            // fallsInARow = 0;
+            if (fallsInARow > 0) {
+                fallsInARow--;
+            }
+            print("on add checkpoint " + fallsInARow);
         }
             
         reachedCheckPoints.Push(checkPointPosition);
+        // fallsInARow--;
     }
 
     public void Restart() {
