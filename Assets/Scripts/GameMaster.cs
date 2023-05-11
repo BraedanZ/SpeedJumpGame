@@ -28,6 +28,9 @@ public class GameMaster : MonoBehaviour
 
     private float timeSinceSpawn;
 
+    private int deathCount;
+    public Text writtenDeathCount;
+
     void Awake() {
         instance = this;
         // if (instance == null) {
@@ -113,5 +116,14 @@ public class GameMaster : MonoBehaviour
         winPanel.transform.Find("FinalTime").GetComponent<Text>().text = timePlayingStr;
         winPanel.SetActive(true);
         gameOverlay.SetActive(false);
+    }
+
+    public void IncramentDeath() {
+        deathCount++;
+        writtenDeathCount.text = "Deaths: " + deathCount;
+    }
+
+    public int GetDeathCount() {
+        return deathCount;
     }
 }
