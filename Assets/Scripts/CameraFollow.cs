@@ -10,8 +10,8 @@ public class CameraFollow : MonoBehaviour
     public float smoothSpeed = 0.125f;
     public Vector3 offset;
 
-    public Color color1 = Color.red;
-    public Color color2 = Color.blue;
+    private Color color1 = Color.blue;
+    private Color color2 = Color.cyan;
 
     public Camera cam;
 
