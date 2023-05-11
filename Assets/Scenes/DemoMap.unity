@@ -671,8 +671,6 @@ MonoBehaviour:
   target: {fileID: 1734380419}
   smoothSpeed: 0.125
   offset: {x: 14, y: 0.5, z: -10}
-  color1: {r: 1, g: 0, b: 0, a: 1}
-  color2: {r: 0, g: 0, b: 1, a: 1}
   cam: {fileID: 0}
   colourModifierFromX: 0
 --- !u!20 &519420031
@@ -1918,7 +1916,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
-  spawnOffset: {x: -1.6, y: 2.1}
+  spawnOffset: {x: -1.6, y: 1.9}
 --- !u!1001 &1759777252
 PrefabInstance:
   m_ObjectHideFlags: 0
