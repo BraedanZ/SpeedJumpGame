@@ -134,4 +134,8 @@ public class GameMaster : MonoBehaviour
         jumpCount++;
         writtenJumpCount.text = "Jumps: " + jumpCount;
     }
+
+    public int GetJumpCount() {
+        return jumpCount;
+    }
 }
