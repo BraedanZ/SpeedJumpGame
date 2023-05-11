@@ -124,6 +124,7 @@ public class Player : MonoBehaviour
         if (isGrounded) {
             rb.AddForce(transform.right * horizontalSpeed * pressSpaceTime);
             rb.AddForce(transform.up * verticalSpeed * pressSpaceTime);
+            gm.IncramentJumps();
         }
     }
 
