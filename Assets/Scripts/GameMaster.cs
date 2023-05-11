@@ -9,8 +9,11 @@ public class GameMaster : MonoBehaviour
 {
     public static GameMaster instance;
 
-    public Vector2 startPosiiton;
+    public Vector2 startPosition;
     int fallsInARow = 0;
+    public Text punishmentForNextFallText;
+    private string writtenPunishment;
+
     private Stack<Vector2> reachedCheckPoints;
 
     public Text timeCounter;
@@ -50,7 +53,7 @@ public class GameMaster : MonoBehaviour
 
     void Start() {
         reachedCheckPoints = new Stack<Vector2>();
-        reachedCheckPoints.Push(startPosiiton);
+        reachedCheckPoints.Push(startPosition);
         gamePlaying = true;
         startTime = Time.time;
         writtenJumpCount = "Jumps: 0";
@@ -71,9 +74,13 @@ public class GameMaster : MonoBehaviour
     public Vector2 GetTopCheckPoint() {
         fallsInARow++;
         if (reachedCheckPoints.Count == 0 ) {
-            return startPosiiton;
+            fallsInARow = 0;
+            UpdatePunishmentText();
+            return startPosition;
         }
         if (reachedCheckPoints.Count == 1 ) {
+            fallsInARow = 0;
+            UpdatePunishmentText();
             return reachedCheckPoints.Pop();
         }
         double punishment = Math.Pow(2, fallsInARow - 1);
@@ -83,6 +90,10 @@ public class GameMaster : MonoBehaviour
             }
         }
         timeSinceSpawn = timeToSpawn;
+        if (reachedCheckPoints.Count == 1) {
+            fallsInARow = 0;
+        }
+        UpdatePunishmentText();
         return reachedCheckPoints.Pop();
     }
 
@@ -95,6 +106,7 @@ public class GameMaster : MonoBehaviour
         if (timeSinceSpawn < 0) {
             if (fallsInARow > 0) {
                 fallsInARow--;
+                UpdatePunishmentText();
             }
         }
             
@@ -117,6 +129,11 @@ public class GameMaster : MonoBehaviour
         }
     }
 
+    private void UpdatePunishmentText() {
+        writtenPunishment = "Punishment for next fall: " + Math.Pow(2, fallsInARow);
+        punishmentForNextFallText.text = writtenPunishment;
+    }
+
     public void StopTimer() {
         gamePlaying = false;
     }
@@ -128,8 +145,6 @@ public class GameMaster : MonoBehaviour
         winPanel.transform.Find("FinalDeaths").GetComponent<Text>().text = writtenDeathCount;
         winPanel.SetActive(true);
         gameOverlay.SetActive(false);
-
-
     }
 
     public void IncramentDeath() {
