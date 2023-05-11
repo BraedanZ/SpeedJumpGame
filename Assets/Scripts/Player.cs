@@ -42,7 +42,6 @@ public class Player : MonoBehaviour
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         animatePlayer = GameObject.FindGameObjectWithTag("Skin").GetComponent<AnimatePlayer>();
         camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
-        // spawnOffset = new Vector2(-1.60f, 1.9f);
         transform.position = gm.GetTopCheckPoint() + spawnOffset;
         camera.SnapCamera();
     }
