@@ -19,7 +19,7 @@ public class AudioController : MonoBehaviour
         jumpStartSound.Play();
     }
 
-    public void PlayJumpEndSount() {
+    public void PlayJumpEndSound() {
         jumpEndSound.Play();
     }
 

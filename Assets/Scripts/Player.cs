@@ -34,6 +34,8 @@ public class Player : MonoBehaviour
 
     public Vector2 spawnOffset;
 
+    private AudioController audioController;
+
     void Start()
     {
         player = this;
@@ -42,6 +44,7 @@ public class Player : MonoBehaviour
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         animatePlayer = GameObject.FindGameObjectWithTag("Skin").GetComponent<AnimatePlayer>();
         camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
+        audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
         transform.position = gm.GetRespawnPoint() + spawnOffset;
         camera.SnapCamera();
     }
@@ -74,6 +77,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown("space")) {
             spacePressed = true;
+            audioController.PlayJumpStartSound();
         }
 
         if (Input.GetKeyUp("space")) {
@@ -124,6 +128,7 @@ public class Player : MonoBehaviour
         if (isGrounded) {
             rb.AddForce(transform.right * horizontalSpeed * pressSpaceTime);
             rb.AddForce(transform.up * verticalSpeed * pressSpaceTime);
+            audioController.PlayJumpEndSound();
             gm.IncramentJumps();
         }
     }
@@ -146,6 +151,7 @@ public class Player : MonoBehaviour
 
     public void Die() {
         gm.IncramentDeath();
+        audioController.PlayDieSound();
         transform.position = gm.GetRespawnPoint() + spawnOffset;
         rb.velocity = Vector2.zero;
         camera.SnapCamera();
