@@ -25,6 +25,18 @@ public class CameraFollow : MonoBehaviour
     }
 
     void Update () {
+        GradientBackground();
+    }
+
+    void LateUpdate () {
+        SmoothCameraFollow();
+    }
+
+    public void SnapCamera () {
+        transform.position = target.position + offset;
+    }
+
+    private void GradientBackground() {
         if (transform.position.x < 0) {
             colourModifierFromX = 0;
         } else if (0 < transform.position.x && transform.position.x < 200) {
@@ -35,13 +47,9 @@ public class CameraFollow : MonoBehaviour
         cam.backgroundColor = Color.Lerp(color1, color2, colourModifierFromX);
     }
 
-    void LateUpdate () {
+    private void SmoothCameraFollow() {
         Vector3 desiredPosition = target.position + offset;
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
         transform.position = smoothedPosition;
-    }
-
-    public void SnapCamera () {
-        transform.position = target.position + offset;
     }
 }

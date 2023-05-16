@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         animatePlayer = GameObject.FindGameObjectWithTag("Skin").GetComponent<AnimatePlayer>();
         camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
-        transform.position = gm.GetTopCheckPoint() + spawnOffset;
+        transform.position = gm.GetRespawnPoint() + spawnOffset;
         camera.SnapCamera();
     }
 
@@ -146,7 +146,7 @@ public class Player : MonoBehaviour
 
     public void Die() {
         gm.IncramentDeath();
-        transform.position = gm.GetTopCheckPoint() + spawnOffset;
+        transform.position = gm.GetRespawnPoint() + spawnOffset;
         rb.velocity = Vector2.zero;
         camera.SnapCamera();
     }
