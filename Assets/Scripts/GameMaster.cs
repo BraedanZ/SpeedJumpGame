@@ -71,7 +71,7 @@ public class GameMaster : MonoBehaviour
         SceneManager.LoadScene("DemoMap");
     }
 
-    public Vector2 GetTopCheckPoint() {
+    public Vector2 GetRespawnPoint() {
         fallsInARow++;
         if (reachedCheckPoints.Count == 0 ) {
             fallsInARow = 0;
