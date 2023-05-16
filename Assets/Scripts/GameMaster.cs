@@ -73,6 +73,18 @@ public class GameMaster : MonoBehaviour
 
     public Vector2 GetRespawnPoint() {
         fallsInARow++;
+
+        if (reachedCheckPoints.Count == 0 ) {
+            fallsInARow = 0;
+            UpdatePunishmentText();
+            return startPosition;
+        }
+        if (reachedCheckPoints.Count == 1 ) {
+            fallsInARow = 0;
+            UpdatePunishmentText();
+            return reachedCheckPoints.Pop();
+        }
+
         double punishment = Math.Pow(2, fallsInARow - 1);
         PopStackUntilRespawnPoint(punishment);
         timeSinceSpawn = timeToSpawn;
