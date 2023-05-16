@@ -8,6 +8,9 @@ TagManager:
   - Platform
   - CPM
   - Skin
+  - JumpEndSound
+  - JumpStartSound
+  - DieSound
   layers:
   - Default
   - TransparentFX
