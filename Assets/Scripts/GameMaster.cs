@@ -74,11 +74,7 @@ public class GameMaster : MonoBehaviour
     public Vector2 GetRespawnPoint() {
         fallsInARow++;
         double punishment = Math.Pow(2, fallsInARow - 1);
-        for (int i = 0; i < punishment; i++) {
-            if (reachedCheckPoints.Count > 1) {
-                reachedCheckPoints.Pop();
-            }
-        }
+        PopStackUntilRespawnPoint(punishment);
         timeSinceSpawn = timeToSpawn;
         if (reachedCheckPoints.Count == 1) {
             fallsInARow = 0;
@@ -87,20 +83,38 @@ public class GameMaster : MonoBehaviour
         return reachedCheckPoints.Pop();
     }
 
-    public void AddCheckPoint(Vector2 checkPointPosition) {
-        if (reachedCheckPoints.Count != 0) {
-            if (reachedCheckPoints.Peek() == checkPointPosition) {
-                return;
+    private void PopStackUntilRespawnPoint(double punishment) {
+        for (int i = 0; i < punishment; i++) {
+            if (reachedCheckPoints.Count > 1) {
+                reachedCheckPoints.Pop();
             }
         }
+    }
+
+    public void AddCheckPoint(Vector2 checkPointPosition) {
+        if (CheckIfAddingRepeatedCheckpoint(checkPointPosition)) {
+            return;
+        }
+        DecrementFallsInARow();
+        reachedCheckPoints.Push(checkPointPosition);
+    }
+
+    private bool CheckIfAddingRepeatedCheckpoint(Vector2 checkPointPosition) {
+        if (reachedCheckPoints.Count != 0) {
+            if (reachedCheckPoints.Peek() == checkPointPosition) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void DecrementFallsInARow() {
         if (timeSinceSpawn < 0) {
             if (fallsInARow > 0) {
                 fallsInARow--;
                 UpdatePunishmentText();
             }
         }
-            
-        reachedCheckPoints.Push(checkPointPosition);
     }
 
     public void Restart() {
