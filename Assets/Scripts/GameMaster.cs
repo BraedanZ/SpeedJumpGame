@@ -58,6 +58,7 @@ public class GameMaster : MonoBehaviour
         startTime = Time.time;
         writtenJumpCount = "Jumps: 0";
         writtenDeathCount = "Deaths: 0";
+        StaticClass.SetDifficulty(2);
     }
 
     void Update() {
@@ -72,6 +73,20 @@ public class GameMaster : MonoBehaviour
     }
 
     public Vector2 GetRespawnPoint() {
+        if (StaticClass.GetDifficulty() == 2) {
+            return IntendedRespawnPoint();
+        } 
+        
+        else if (StaticClass.GetDifficulty() == 1) {
+            return EasyRespawnPoint();
+        }
+
+        else {
+            return reachedCheckPoints.Peek();
+        }
+    }
+
+    private Vector2 IntendedRespawnPoint() {
         fallsInARow++;
 
         if (reachedCheckPoints.Count == 0 ) {
@@ -93,6 +108,19 @@ public class GameMaster : MonoBehaviour
         }
         UpdatePunishmentText();
         return reachedCheckPoints.Pop();
+    }
+
+    private Vector2 EasyRespawnPoint() {
+        if (reachedCheckPoints.Count == 0 ) {
+            return startPosition;
+        }
+        else if (reachedCheckPoints.Count == 1 ) {
+            return reachedCheckPoints.Pop();
+        }
+        else {
+            reachedCheckPoints.Pop();
+            return reachedCheckPoints.Pop();
+        }
     }
 
     private void PopStackUntilRespawnPoint(double punishment) {
