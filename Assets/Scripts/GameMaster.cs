@@ -26,6 +26,10 @@ public class GameMaster : MonoBehaviour
 
     public GameObject gameOverlay;
 
+    public GameObject pausePanel;
+
+    private bool isPaused;
+
     public bool gamePlaying { get; private set; }
 
     public float timeToSpawn;
@@ -55,6 +59,7 @@ public class GameMaster : MonoBehaviour
         reachedCheckPoints = new Stack<Vector2>();
         reachedCheckPoints.Push(startPosition);
         gamePlaying = true;
+        isPaused = false;
         startTime = Time.time;
         writtenJumpCount = "Jumps: 0";
         writtenDeathCount = "Deaths: 0";
@@ -183,6 +188,20 @@ public class GameMaster : MonoBehaviour
 
     public void StopTimer() {
         gamePlaying = false;
+    }
+
+    public void PauseGame() {
+        pausePanel.SetActive(true);
+        isPaused = true;
+    }
+
+    public void UnpauseGame() {
+        pausePanel.SetActive(false);
+        isPaused = false;
+    }
+
+    public bool IsPaused() {
+        return isPaused;
     }
 
     public void ShowGameOverScreen() {
