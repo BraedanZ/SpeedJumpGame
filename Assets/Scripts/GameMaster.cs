@@ -44,6 +44,11 @@ public class GameMaster : MonoBehaviour
     private string writtenJumpCount;
     public Text jumpCountText;
 
+    private bool showingTimer;
+    private bool showingDeaths;
+    private bool showingJumps;
+    private bool showingPunishment;
+
 
     void Awake() {
         instance = this;
@@ -60,6 +65,10 @@ public class GameMaster : MonoBehaviour
         reachedCheckPoints.Push(startPosition);
         gamePlaying = true;
         isPaused = false;
+        showingTimer = true;
+        showingDeaths = true;
+        showingJumps = true;
+        showingPunishment = true;
         startTime = Time.time;
         writtenJumpCount = "Jumps: 0";
         writtenDeathCount = "Deaths: 0";
@@ -255,4 +264,44 @@ public class GameMaster : MonoBehaviour
     // private void SetupCasualDifficulty() {
     //     StaticClass.SetDifficulty(0);
     // }
+
+    public void ShowTimer() {
+        if (showingTimer == true) {
+            timeCounter.gameObject.SetActive(false);
+            showingTimer = false;
+        } else {
+            timeCounter.gameObject.SetActive(true);
+            showingTimer = true;
+        }
+    }
+
+    public void ShowDeaths() {
+        if (showingDeaths == true) {
+            deathCountText.gameObject.SetActive(false);
+            showingDeaths = false;
+        } else {
+            deathCountText.gameObject.SetActive(true);
+            showingDeaths = true;
+        }
+    }
+
+    public void ShowJumps() {
+        if (showingJumps == true) {
+            jumpCountText.gameObject.SetActive(false);
+            showingJumps = false;
+        } else {
+            jumpCountText.gameObject.SetActive(true);
+            showingJumps = true;
+        }
+    }
+
+    public void ShowPunishment() {
+        if (showingPunishment == true) {
+            punishmentForNextFallText.gameObject.SetActive(false);
+            showingPunishment = false;
+        } else {
+            punishmentForNextFallText.gameObject.SetActive(true);
+            showingPunishment = true;
+        }
+    }
 }
