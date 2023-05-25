@@ -200,11 +200,13 @@ public class GameMaster : MonoBehaviour
     }
 
     public void PauseGame() {
+        Time.timeScale = 0;
         pausePanel.SetActive(true);
         isPaused = true;
     }
 
     public void UnpauseGame() {
+        Time.timeScale = 1;
         pausePanel.SetActive(false);
         isPaused = false;
     }
