@@ -58,6 +58,7 @@ public class Player : MonoBehaviour
 
     void Update() {
         DetectSpaceInput();
+        Pause();
         DetectRInput();
         SetAnimation();
     }
@@ -83,6 +84,16 @@ public class Player : MonoBehaviour
         if (Input.GetKeyUp("space")) {
             spacePressed = false;
             Jump();
+        }
+    }
+
+    private void Pause() {
+        if (Input.GetKeyDown("p") || Input.GetKeyDown("escape")) {
+            if (gm.IsPaused()) {
+                gm.UnpauseGame();
+            } else {
+                gm.PauseGame();
+            }
         }
     }
 
