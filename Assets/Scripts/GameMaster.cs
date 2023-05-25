@@ -48,6 +48,7 @@ public class GameMaster : MonoBehaviour
     private bool showingDeaths;
     private bool showingJumps;
     private bool showingPunishment;
+    private bool muted;
 
 
     void Awake() {
@@ -69,6 +70,7 @@ public class GameMaster : MonoBehaviour
         showingDeaths = true;
         showingJumps = true;
         showingPunishment = true;
+        muted = false;
         startTime = Time.time;
         writtenJumpCount = "Jumps: 0";
         writtenDeathCount = "Deaths: 0";
@@ -304,6 +306,16 @@ public class GameMaster : MonoBehaviour
         } else {
             punishmentForNextFallText.gameObject.SetActive(true);
             showingPunishment = true;
+        }
+    }
+
+    public void Mute() {
+        if (muted == true) {
+            AudioListener.pause = false;
+            muted = false;
+        } else {
+            AudioListener.pause = true;
+            muted = true;
         }
     }
 }
