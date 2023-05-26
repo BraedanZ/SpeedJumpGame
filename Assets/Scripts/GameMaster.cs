@@ -318,4 +318,5 @@ public class GameMaster : MonoBehaviour
             muted = true;
         }
     }
+
 }

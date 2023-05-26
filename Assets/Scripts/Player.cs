@@ -152,11 +152,11 @@ public class Player : MonoBehaviour
 
     private void SetAnimation() {
         if (isGrounded && !spacePressed) {
-            animatePlayer.SetBaseSprite();
+            animatePlayer.AnimateBase();
         } else if (isGrounded && spacePressed) {
-            animatePlayer.SetSquishSprite();
+            animatePlayer.AnimateSquish();
         } else {
-            animatePlayer.SetJumpSprite();
+            animatePlayer.AnimateJump();
         }
     }
 
