@@ -318,4 +318,8 @@ public class GameMaster : MonoBehaviour
             muted = true;
         }
     }
+
+    public int GetFallsInARow() {
+        return fallsInARow;
+    }
 }
