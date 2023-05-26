@@ -7,22 +7,22 @@ public class AnimatePlayer : MonoBehaviour
 
     private Sprite skin;
 
-    public Sprite CloudBase;
-    public Sprite CloudSquish;
-    public Sprite CloudJump;
+    public Sprite Cloud;
+    public Sprite Squish;
+    public Sprite Jump;
 
     void Start () {
     }
 
     public void SetBaseSprite() {
-        this.gameObject.GetComponent<SpriteRenderer>().sprite = CloudBase;
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = Cloud;
     }
 
     public void SetSquishSprite() {
-        this.gameObject.GetComponent<SpriteRenderer>().sprite = CloudSquish;
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = Squish;
     }
 
     public void SetJumpSprite() {
-        this.gameObject.GetComponent<SpriteRenderer>().sprite = CloudJump;
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = Jump;
     }
 }
