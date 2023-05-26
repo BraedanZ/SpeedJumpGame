@@ -7,6 +7,8 @@ public class AnimatePlayer : MonoBehaviour
 
     private Sprite skin;
 
+    private GameMaster gm;
+
     public Sprite Cloud;
     public Sprite Squish;
     public Sprite Jump;
@@ -32,9 +34,41 @@ public class AnimatePlayer : MonoBehaviour
     public Sprite HappyJump4;
 
     void Start () {
+        gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
     }
     public void AnimateBase() {
-        SetBase();
+        int fallsInARow = gm.GetFallsInARow();
+        switch(fallsInARow) {
+            case 0:
+                SetHappy4();
+                break;
+            case 1:
+                SetHappy3();
+                break;
+            case 2:
+                SetHappy2();
+                break;
+            case 3:
+                SetHappy1();
+                break;
+            case 4:
+                SetBase();
+                break;
+            case 5:
+                SetAngry1();
+                break;
+            case 6:
+                SetAngry2();
+                break;
+            case 7:
+                SetAngry3();
+                break;
+            default:
+                SetAngry4();
+                break;
+        }
+
+        // SetBase();
     }
 
     public void AnimateSquish() {
@@ -42,7 +76,38 @@ public class AnimatePlayer : MonoBehaviour
     }
 
     public void AnimateJump() {
-        SetJump();
+        int fallsInARow = gm.GetFallsInARow();
+        switch(fallsInARow) {
+            case 0:
+                SetHappyJump4();
+                break;
+            case 1:
+                SetHappyJump3();
+                break;
+            case 2:
+                SetHappyJump2();
+                break;
+            case 3:
+                SetHappyJump1();
+                break;
+            case 4:
+                SetJump();
+                break;
+            case 5:
+                SetAngryJump1();
+                break;
+            case 6:
+                SetAngryJump2();
+                break;
+            case 7:
+                SetAngryJump3();
+                break;
+            default:
+                SetAngryJump4();
+                break;
+        }
+
+        // SetJump();
     }
 
     public void SetBase() {

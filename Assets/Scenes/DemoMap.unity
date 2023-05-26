@@ -4157,9 +4157,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e1ee646fbf375842b3743f6b6772389, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CloudBase: {fileID: 21300000, guid: 9f5212bc7bb35564784a43f1cde18076, type: 3}
-  CloudSquish: {fileID: 21300000, guid: 6898cbee91028f248b64183aadfdef12, type: 3}
-  CloudJump: {fileID: 21300000, guid: 8ee85cf664edbc4438bc84b2ce5d2d7c, type: 3}
+  Cloud: {fileID: 21300000, guid: 9f5212bc7bb35564784a43f1cde18076, type: 3}
+  Squish: {fileID: 21300000, guid: 6898cbee91028f248b64183aadfdef12, type: 3}
+  Jump: {fileID: 21300000, guid: 8ee85cf664edbc4438bc84b2ce5d2d7c, type: 3}
+  Angry1: {fileID: 21300000, guid: 5a71e9f157aacd045a24d6fb27a239c3, type: 3}
+  Angry2: {fileID: 21300000, guid: 8df8c0130b84809449da7546dcfcf8de, type: 3}
+  Angry3: {fileID: 21300000, guid: 0c52a0c16f4efd542ad74837f4040521, type: 3}
+  Angry4: {fileID: 21300000, guid: 463ab72f402058f4b92bb72eeb9c132d, type: 3}
+  AngryJump1: {fileID: 21300000, guid: ef6a5c2cb77d4ca4680f18740c52b83a, type: 3}
+  AngryJump2: {fileID: 21300000, guid: c292a8566e6eaf34aa1c21976dc44f10, type: 3}
+  AngryJump3: {fileID: 21300000, guid: a335702ceaa223849a940885d01a06bc, type: 3}
+  AngryJump4: {fileID: 21300000, guid: 9767c368c880a9d409e04b7402197b1d, type: 3}
+  Happy1: {fileID: 21300000, guid: 35b3f14c478ad2b41b231e50b72358ee, type: 3}
+  Happy2: {fileID: 21300000, guid: 77e2887ebde6dda4da0740f707fa174b, type: 3}
+  Happy3: {fileID: 21300000, guid: 76a271b12f0c25c44b2e8617572b407e, type: 3}
+  Happy4: {fileID: 21300000, guid: 02c685b3fe92dd048b56e472536dd8d4, type: 3}
+  HappyJump1: {fileID: 21300000, guid: 987ce0d6fc41bde459eb0f1db8262263, type: 3}
+  HappyJump2: {fileID: 21300000, guid: 16bbdabb12f1a4c49ae7592dde20b6e0, type: 3}
+  HappyJump3: {fileID: 21300000, guid: e6c948c79f506f547a5a478f58b99735, type: 3}
+  HappyJump4: {fileID: 21300000, guid: 5e65cf0e8012f3e4ebaf595cd15b1cb1, type: 3}
 --- !u!1 &2082545118
 GameObject:
   m_ObjectHideFlags: 0

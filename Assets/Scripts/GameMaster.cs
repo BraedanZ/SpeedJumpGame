@@ -319,4 +319,7 @@ public class GameMaster : MonoBehaviour
         }
     }
 
+    public int GetFallsInARow() {
+        return fallsInARow;
+    }
 }
