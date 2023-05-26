@@ -4134,7 +4134,7 @@ SpriteRenderer:
   m_SortingLayerID: -1499736929
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 88cfeda08b232184cbb6c18c71fafca7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9f5212bc7bb35564784a43f1cde18076, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4157,7 +4157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e1ee646fbf375842b3743f6b6772389, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CloudBase: {fileID: 21300000, guid: 88cfeda08b232184cbb6c18c71fafca7, type: 3}
+  CloudBase: {fileID: 21300000, guid: 9f5212bc7bb35564784a43f1cde18076, type: 3}
   CloudSquish: {fileID: 21300000, guid: 6898cbee91028f248b64183aadfdef12, type: 3}
   CloudJump: {fileID: 21300000, guid: 8ee85cf664edbc4438bc84b2ce5d2d7c, type: 3}
 --- !u!1 &2082545118
