@@ -13,7 +13,11 @@ public class CameraFollow : MonoBehaviour
     private Color color1 = Color.blue;
     private Color color2 = Color.cyan;
 
+    public Gradient skyGradient;
+
     public Camera cam;
+
+    public float mapLength;
 
     public float colourModifierFromX;
 
@@ -39,12 +43,12 @@ public class CameraFollow : MonoBehaviour
     private void GradientBackground() {
         if (transform.position.x < 0) {
             colourModifierFromX = 0;
-        } else if (0 < transform.position.x && transform.position.x < 200) {
-            colourModifierFromX = transform.position.x / 200;
+        } else if (0 < transform.position.x && transform.position.x < mapLength) {
+            colourModifierFromX = transform.position.x / mapLength;
         } else {
             colourModifierFromX = 1;
         }
-        cam.backgroundColor = Color.Lerp(color1, color2, colourModifierFromX);
+        cam.backgroundColor = skyGradient.Evaluate(colourModifierFromX);
     }
 
     private void SmoothCameraFollow() {
