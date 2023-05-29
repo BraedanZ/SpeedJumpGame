@@ -12,6 +12,7 @@ TagManager:
   - JumpStartSound
   - DieSound
   - AudioController
+  - Land
   layers:
   - Default
   - TransparentFX
