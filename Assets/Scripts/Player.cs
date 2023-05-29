@@ -36,6 +36,8 @@ public class Player : MonoBehaviour
 
     private AudioController audioController;
 
+    private bool hasLanded;
+
     void Start()
     {
         player = this;
@@ -129,6 +131,10 @@ public class Player : MonoBehaviour
 
     private void GroundCheck() {
         if (Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0, -transform.up, 0.1f, whatIsGround)) {
+            if (!isGrounded && !hasLanded) {
+                audioController.PlayLandSound();
+                hasLanded = true;
+            }
             isGrounded = true;
         } else {
             isGrounded = false;
@@ -140,6 +146,7 @@ public class Player : MonoBehaviour
             rb.AddForce(transform.right * horizontalSpeed * pressSpaceTime);
             rb.AddForce(transform.up * verticalSpeed * pressSpaceTime);
             audioController.PlayJumpEndSound();
+            hasLanded = false;
             gm.IncramentJumps();
         }
     }
