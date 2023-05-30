@@ -6100,6 +6100,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   spawnOffset: {x: -1.6, y: 2.5}
+  maxDistance: 0
+  xToMaxXRatio: -1
 --- !u!1 &1745847647
 GameObject:
   m_ObjectHideFlags: 0
