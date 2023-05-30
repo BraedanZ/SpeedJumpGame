@@ -119,7 +119,7 @@ public class GameMaster : MonoBehaviour
             return reachedCheckPoints.Pop();
         }
 
-        double punishment = Math.Pow(2, fallsInARow - 1);
+        double punishment = Math.Pow(2, fallsInARow);
         PopStackUntilRespawnPoint(punishment);
         timeSinceSpawn = timeToSpawn;
         if (reachedCheckPoints.Count == 1) {
@@ -193,7 +193,7 @@ public class GameMaster : MonoBehaviour
     }
 
     private void UpdatePunishmentText() {
-        writtenPunishment = "Punishment for next fall: " + Math.Pow(2, fallsInARow);
+        writtenPunishment = "Punishment for next fall: " + Math.Pow(2, fallsInARow + 1);
         punishmentForNextFallText.text = writtenPunishment;
     }
 
