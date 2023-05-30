@@ -125,3 +125,5 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512
+  maxDistance: 0.025
+  boxSize: {x: 1.95, y: 0.36, z: 0}

@@ -11,6 +11,10 @@ public class CheckPoint : MonoBehaviour
 
     public LayerMask whatIsPlayer;
 
+    public float maxDistance;
+
+    public Vector3 boxSize;
+
     void Start() {
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         checkpointCollider = GetComponent<BoxCollider2D>();
@@ -31,4 +35,9 @@ public class CheckPoint : MonoBehaviour
             gm.AddCheckPoint(transform.position);
         }
     }
+
+    // void OnDrawGizmos() {
+    //     Gizmos.color = Color.red;
+    //     Gizmos.DrawCube(transform.position + transform.up * maxDistance, checkpointCollider.bounds.size);
+    // }
 }

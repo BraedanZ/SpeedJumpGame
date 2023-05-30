@@ -38,6 +38,8 @@ public class Player : MonoBehaviour
 
     private bool hasLanded;
 
+    public Vector3 groundDetectOffset;
+
     void Start()
     {
         player = this;
@@ -140,6 +142,11 @@ public class Player : MonoBehaviour
             isGrounded = false;
         }
     }
+
+    //     void OnDrawGizmos() {
+    //         Gizmos.color = Color.red;
+    //         Gizmos.DrawCube(playerCollider.bounds.center - transform.up * 0.1f, playerCollider.bounds.size - groundDetectOffset);
+    // }
 
     private void CheckGroundedToJump() {
         if (isGrounded) {
