@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
         animatePlayer = GameObject.FindGameObjectWithTag("Skin").GetComponent<AnimatePlayer>();
         camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
         audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
-        transform.position = gm.GetRespawnPoint() + spawnOffset;
+        // transform.position = gm.GetRespawnPoint() + spawnOffset;
         camera.SnapCamera();
     }
 

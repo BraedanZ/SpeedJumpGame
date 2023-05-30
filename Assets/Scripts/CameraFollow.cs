@@ -41,12 +41,27 @@ public class CameraFollow : MonoBehaviour
     }
 
     private void GradientBackground() {
+        if (transform.position.x < mapLength / 2) {
+            FirstHalfGradient();
+        } else {
+            SecondHalfGradient();
+        }
+    }
+
+    private void FirstHalfGradient() {
         if (transform.position.x < 0) {
             colourModifierFromX = 0;
-        } else if (0 < transform.position.x && transform.position.x < mapLength) {
-            colourModifierFromX = transform.position.x / mapLength;
         } else {
-            colourModifierFromX = 1;
+            colourModifierFromX = 2 * transform.position.x / mapLength;
+        }
+        cam.backgroundColor = skyGradient.Evaluate(colourModifierFromX);
+    }
+
+    private void SecondHalfGradient() {
+        if (transform.position.x > mapLength) {
+            colourModifierFromX = 0;
+        } else {
+            colourModifierFromX = 2 * ((mapLength - transform.position.x) / mapLength);
         }
         cam.backgroundColor = skyGradient.Evaluate(colourModifierFromX);
     }
