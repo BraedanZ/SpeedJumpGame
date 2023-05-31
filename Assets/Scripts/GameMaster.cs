@@ -75,9 +75,15 @@ public class GameMaster : MonoBehaviour
         writtenJumpCount = "Jumps: 0";
         writtenDeathCount = "Deaths: 0";
         // StaticClass.SetDifficulty(2);
-        if (StaticClass.GetDifficulty() != 2) {
+        if (StaticClass.GetDifficulty() == 1) {
             gameOverlay.transform.Find("Punishment").GetComponent<Text>().enabled = false;
+        } else if (StaticClass.GetDifficulty() == 0) {
+            gameOverlay.transform.Find("Punishment").GetComponent<Text>().enabled = false;
+            gameOverlay.transform.Find("TimeCounterText").GetComponent<Text>().enabled = false;
+            gameOverlay.transform.Find("DeathCount").GetComponent<Text>().enabled = false;
+            gameOverlay.transform.Find("JumpCount").GetComponent<Text>().enabled = false;
         }
+
     }
 
     void Update() {
@@ -119,7 +125,7 @@ public class GameMaster : MonoBehaviour
             return reachedCheckPoints.Pop();
         }
 
-        double punishment = Math.Pow(2, fallsInARow - 1);
+        double punishment = Math.Pow(2, fallsInARow);
         PopStackUntilRespawnPoint(punishment);
         timeSinceSpawn = timeToSpawn;
         if (reachedCheckPoints.Count == 1) {
@@ -193,7 +199,7 @@ public class GameMaster : MonoBehaviour
     }
 
     private void UpdatePunishmentText() {
-        writtenPunishment = "Punishment for next fall: " + Math.Pow(2, fallsInARow);
+        writtenPunishment = "Punishment for next fall: " + Math.Pow(2, fallsInARow + 1);
         punishmentForNextFallText.text = writtenPunishment;
     }
 

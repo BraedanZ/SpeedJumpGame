@@ -36,35 +36,35 @@ public class AnimatePlayer : MonoBehaviour
     void Start () {
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
     }
-    public void AnimateBase() {
-        int fallsInARow = gm.GetFallsInARow();
-        switch(fallsInARow) {
+    public void AnimateBase(int skinSelector) {
+        // int fallsInARow = gm.GetFallsInARow();
+        switch(skinSelector) {
             case 0:
-                SetHappy4();
+                SetAngry4();
                 break;
             case 1:
-                SetHappy3();
+                SetAngry3();
                 break;
             case 2:
-                SetHappy2();
+                SetAngry2();
                 break;
             case 3:
-                SetHappy1();
+                SetAngry1();
                 break;
             case 4:
                 SetBase();
                 break;
             case 5:
-                SetAngry1();
+                SetHappy1();
                 break;
             case 6:
-                SetAngry2();
+                SetHappy2();
                 break;
             case 7:
-                SetAngry3();
+                SetHappy3();
                 break;
             default:
-                SetAngry4();
+                SetHappy4();
                 break;
         }
 
@@ -75,35 +75,35 @@ public class AnimatePlayer : MonoBehaviour
         SetSquish();
     }
 
-    public void AnimateJump() {
-        int fallsInARow = gm.GetFallsInARow();
-        switch(fallsInARow) {
+    public void AnimateJump(int skinSelector) {
+        // int fallsInARow = gm.GetFallsInARow();
+        switch(skinSelector) {
             case 0:
-                SetHappyJump4();
+                SetAngryJump4();
                 break;
             case 1:
-                SetHappyJump3();
+                SetAngryJump3();
                 break;
             case 2:
-                SetHappyJump2();
+                SetAngryJump2();
                 break;
             case 3:
-                SetHappyJump1();
+                SetAngryJump1();
                 break;
             case 4:
                 SetJump();
                 break;
             case 5:
-                SetAngryJump1();
+                SetHappyJump1();
                 break;
             case 6:
-                SetAngryJump2();
+                SetHappyJump2();
                 break;
             case 7:
-                SetAngryJump3();
+                SetHappyJump3();
                 break;
             default:
-                SetAngryJump4();
+                SetHappyJump4();
                 break;
         }
 

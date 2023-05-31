@@ -38,6 +38,12 @@ public class Player : MonoBehaviour
 
     private bool hasLanded;
 
+    public float maxDistance;
+
+    private int skinSelector;
+
+    public float xToMaxXRatio;
+
     void Start()
     {
         player = this;
@@ -47,7 +53,9 @@ public class Player : MonoBehaviour
         animatePlayer = GameObject.FindGameObjectWithTag("Skin").GetComponent<AnimatePlayer>();
         camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
         audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
-        transform.position = gm.GetRespawnPoint() + spawnOffset;
+        // maxDistance = transform.position.x;
+        SelectSkin();
+        // transform.position = gm.GetRespawnPoint() + spawnOffset;
         camera.SnapCamera();
     }
 
@@ -76,16 +84,24 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void SetMaxDistance() {
+        if (transform.position.x > maxDistance) {
+            maxDistance = transform.position.x;
+        }
+    }
+
     private void DetectSpaceInput() 
     {
-        if (Input.GetKeyDown("space")) {
-            spacePressed = true;
-            audioController.PlayJumpStartSound();
-        }
+        if (!gm.IsPaused()) {
+            if (Input.GetKeyDown("space")) {
+                spacePressed = true;
+                audioController.PlayJumpStartSound();
+            }
 
-        if (Input.GetKeyUp("space")) {
-            spacePressed = false;
-            Jump();
+            if (Input.GetKeyUp("space")) {
+                spacePressed = false;
+                Jump();
+            }
         }
     }
 
@@ -136,8 +152,37 @@ public class Player : MonoBehaviour
                 hasLanded = true;
             }
             isGrounded = true;
+            SelectSkin();
         } else {
             isGrounded = false;
+        }
+    }
+
+    private void SelectSkin() {
+        if (transform.position.x > 0) {
+            xToMaxXRatio = transform.position.x / maxDistance;
+        }
+
+        if (xToMaxXRatio <= 0) {
+            skinSelector = 4;
+        } else if (xToMaxXRatio > 0f && xToMaxXRatio <= 0.15f) {
+            skinSelector = 0;
+        } else if (xToMaxXRatio > 0.15f && xToMaxXRatio <= 0.3f) {
+            skinSelector = 1;
+        } else if (xToMaxXRatio > 0.3f && xToMaxXRatio <= 0.45f) {
+            skinSelector = 2;
+        } else if (xToMaxXRatio > 0.45f && xToMaxXRatio <= 0.6f) {
+            skinSelector = 3;
+        } else if (xToMaxXRatio > 0.6f && xToMaxXRatio <= 0.75f) {
+            skinSelector = 4;
+        } else if (xToMaxXRatio > 0.75f && xToMaxXRatio <= 0.9f) {
+            skinSelector = 5;
+        } else if (xToMaxXRatio > 0.9f && xToMaxXRatio <= 1.05f) {
+            skinSelector = 6;
+        } else if (xToMaxXRatio > 1.05f && xToMaxXRatio <= 1.2f) {
+            skinSelector = 7;
+        } else {
+            skinSelector = 8;
         }
     }
 
@@ -159,17 +204,18 @@ public class Player : MonoBehaviour
 
     private void SetAnimation() {
         if (isGrounded && !spacePressed) {
-            animatePlayer.AnimateBase();
+            animatePlayer.AnimateBase(skinSelector);
         } else if (isGrounded && spacePressed) {
             animatePlayer.AnimateSquish();
         } else {
-            animatePlayer.AnimateJump();
+            animatePlayer.AnimateJump(skinSelector);
         }
     }
 
     public void Die() {
         gm.IncramentDeath();
         audioController.PlayDieSound();
+        SetMaxDistance();
         transform.position = gm.GetRespawnPoint() + spawnOffset;
         rb.velocity = Vector2.zero;
         camera.SnapCamera();
