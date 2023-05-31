@@ -11,7 +11,7 @@ public class CheckPoint : MonoBehaviour
 
     public LayerMask whatIsPlayer;
 
-    public float maxDistance;
+    // public float maxDistance;
 
     public Vector3 boxSize;
 
