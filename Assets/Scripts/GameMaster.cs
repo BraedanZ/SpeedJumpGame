@@ -328,4 +328,8 @@ public class GameMaster : MonoBehaviour
     public int GetFallsInARow() {
         return fallsInARow;
     }
+
+    public void doExitGame() {
+        Application.Quit();
+    }
 }
