@@ -32,7 +32,7 @@ public class CameraFollow : MonoBehaviour
         GradientBackground();
     }
 
-    void LateUpdate () {
+    void FixedUpdate () {
         SmoothCameraFollow();
     }
 

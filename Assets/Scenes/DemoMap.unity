@@ -4276,7 +4276,7 @@ MonoBehaviour:
     m_NumColorKeys: 8
     m_NumAlphaKeys: 2
   cam: {fileID: 0}
-  mapLength: 1000
+  mapLength: 1200
   colourModifierFromX: 0
 --- !u!20 &519420031
 Camera:
