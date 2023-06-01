@@ -44,6 +44,8 @@ public class Player : MonoBehaviour
 
     public float xToMaxXRatio;
 
+    private bool canJump = true;
+
     void Start()
     {
         player = this;
@@ -93,12 +95,13 @@ public class Player : MonoBehaviour
     private void DetectSpaceInput() 
     {
         if (!gm.IsPaused()) {
-            if (Input.GetKeyDown("space")) {
+            if (Input.GetKeyDown("space") || Input.GetKeyDown(KeyCode.Mouse0)) {
                 spacePressed = true;
                 audioController.PlayJumpStartSound();
+                canJump = true;
             }
 
-            if (Input.GetKeyUp("space")) {
+            if (Input.GetKeyUp("space") || Input.GetKeyUp(KeyCode.Mouse0)) {
                 spacePressed = false;
                 Jump();
             }
@@ -123,16 +126,23 @@ public class Player : MonoBehaviour
     }
 
     private void AddJumpTime() {
-        if (spacePressed) {
-            pressSpaceTime += Time.deltaTime;
+        if (canJump) {
+            if (spacePressed) {
+                pressSpaceTime += Time.deltaTime;
+                if (pressSpaceTime > 0.8f) {
+                    Jump();
+                }
+            }
         }
     }
 
     private void Jump()
     {
-        LimitJump();
-        CheckGroundedToJump();
-        pressSpaceTime = 0f;
+        if (canJump) {
+            LimitJump();
+            CheckGroundedToJump();
+            pressSpaceTime = 0f;
+        }
     }
 
     private void LimitJump() {
@@ -190,6 +200,7 @@ public class Player : MonoBehaviour
         if (isGrounded) {
             rb.AddForce(transform.right * horizontalSpeed * pressSpaceTime);
             rb.AddForce(transform.up * verticalSpeed * pressSpaceTime);
+            canJump = false;
             audioController.PlayJumpEndSound();
             hasLanded = false;
             gm.IncramentJumps();
@@ -205,9 +216,11 @@ public class Player : MonoBehaviour
     private void SetAnimation() {
         if (isGrounded && !spacePressed) {
             animatePlayer.AnimateBase(skinSelector);
-        } else if (isGrounded && spacePressed) {
+        } else if (isGrounded && spacePressed && canJump) {
             animatePlayer.AnimateSquish();
-        } else {
+        } else if (isGrounded && spacePressed && !canJump) {
+            animatePlayer.AnimateBase(skinSelector);
+            } else {
             animatePlayer.AnimateJump(skinSelector);
         }
     }
