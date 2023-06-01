@@ -95,13 +95,13 @@ public class Player : MonoBehaviour
     private void DetectSpaceInput() 
     {
         if (!gm.IsPaused()) {
-            if (Input.GetKeyDown("space")) {
+            if (Input.GetKeyDown("space") || Input.GetKeyDown(KeyCode.Mouse0)) {
                 spacePressed = true;
                 audioController.PlayJumpStartSound();
                 canJump = true;
             }
 
-            if (Input.GetKeyUp("space")) {
+            if (Input.GetKeyUp("space") || Input.GetKeyUp(KeyCode.Mouse0)) {
                 spacePressed = false;
                 Jump();
             }
