@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class StaticClass
 {
-    private static int difficulty = 2;
+    private static int difficulty;
 
     public static void SetDifficulty(int difficulty) {
         StaticClass.difficulty = difficulty;
