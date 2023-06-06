@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
     public float mountainStart;
     public float mountainEnd;
 
-    public float windStrength;
+    public float horizontalWindStrength;
 
     private bool leftWindZone = false;
     public float leftWindStart;
@@ -63,6 +63,16 @@ public class Player : MonoBehaviour
     private bool rightWindZone = false;
     public float rightWindStart;
     public float rightWindEnd;
+
+    public float verticalWindStrength;
+
+    private bool downWindZone = false;
+    public float downWindStart;
+    public float downWindEnd;
+
+    private bool upWindZone = false;
+    public float upWindStart;
+    public float upWindEnd;
 
     public float waterStart;
     public float waterEnd;
@@ -105,6 +115,8 @@ public class Player : MonoBehaviour
         MountainZoneCheck();
         LeftWindZoneCheck();
         RightWindZoneCheck();
+        DownWindZoneCheck();
+        UpWindZoneCheck();
         WaterZoneCheck();
         if (rb.velocity.y <= 0) {
             isJumping = false;
@@ -270,9 +282,13 @@ public class Player : MonoBehaviour
 
     private void ApplyWind() {
         if (leftWindZone) {
-            rb.AddForce(-transform.right * windStrength);
+            rb.AddForce(-transform.right * horizontalWindStrength);
         } else if (rightWindZone) {
-            rb.AddForce(transform.right * windStrength);
+            rb.AddForce(transform.right * horizontalWindStrength);
+        } else if (downWindZone) {
+            rb.AddForce(-transform.up * verticalWindStrength);
+        } else if (upWindZone) {
+            rb.AddForce(transform.up * verticalWindStrength);
         }
     }
 
@@ -305,6 +321,22 @@ public class Player : MonoBehaviour
             rightWindZone = true;
         } else {
             rightWindZone = false;
+        }
+    }
+
+    private void DownWindZoneCheck() {
+        if (playerPosition.x > downWindStart && playerPosition.x < downWindEnd) {
+            downWindZone = true;
+        } else {
+            downWindZone = false;
+        }
+    }
+
+    private void UpWindZoneCheck() {
+        if (playerPosition.x > upWindStart && playerPosition.x < upWindEnd) {
+            upWindZone = true;
+        } else {
+            upWindZone = false;
         }
     }
 

@@ -5621,6 +5621,8 @@ MonoBehaviour:
   timeToSpawn: 0.3
   deathCountText: {fileID: 1146983724}
   jumpCountText: {fileID: 1881788898}
+  timeInWater: 0
+  waterTimeDifferential: 0
 --- !u!4 &551659375
 Transform:
   m_ObjectHideFlags: 0
@@ -19389,11 +19391,16 @@ MonoBehaviour:
   iceEnd: 0
   mountainStart: 0
   mountainEnd: 0
-  windStrength: 8
+  horizontalWindStrength: 8
   leftWindStart: 0
   leftWindEnd: 0
   rightWindStart: 0
   rightWindEnd: 0
+  verticalWindStrength: 14
+  downWindStart: 0
+  downWindEnd: 0
+  upWindStart: 0
+  upWindEnd: 0
   waterStart: 0
   waterEnd: 0
 --- !u!4 &1740475079 stripped
