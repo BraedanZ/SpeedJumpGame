@@ -64,6 +64,9 @@ public class Player : MonoBehaviour
     public float rightWindStart;
     public float rightWindEnd;
 
+    public float waterStart;
+    public float waterEnd;
+
     void Start()
     {
         player = this;
@@ -102,6 +105,7 @@ public class Player : MonoBehaviour
         MountainZoneCheck();
         LeftWindZoneCheck();
         RightWindZoneCheck();
+        WaterZoneCheck();
         if (rb.velocity.y <= 0) {
             isJumping = false;
         } else {
@@ -301,6 +305,18 @@ public class Player : MonoBehaviour
             rightWindZone = true;
         } else {
             rightWindZone = false;
+        }
+    }
+
+    private void WaterZoneCheck() {
+        if (playerPosition.x > waterStart && playerPosition.x < waterEnd) {
+            if (!gm.IsWaterZone()) {
+                gm.ActivateWaterZone();
+            }
+        } else {
+            if (gm.IsWaterZone()) {
+                gm.DeactivateWaterZone();
+            }
         }
     }
 }

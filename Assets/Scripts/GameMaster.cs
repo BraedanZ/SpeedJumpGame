@@ -50,6 +50,9 @@ public class GameMaster : MonoBehaviour
     private bool showingPunishment;
     private bool muted;
 
+    private bool waterZone = false;
+    public float timeInWater;
+    public float waterTimeDifferential;
 
     void Awake() {
         instance = this;
@@ -252,8 +255,12 @@ public class GameMaster : MonoBehaviour
     }
 
     private void UpdateTimer() {
+        if (waterZone) {
+            timeInWater += Time.deltaTime;
+            waterTimeDifferential = timeInWater / 3;
+        }
         if (gamePlaying) {
-            elapsedTime = Time.time - startTime;
+            elapsedTime = Time.time - startTime + waterTimeDifferential;
             timePlaying = TimeSpan.FromSeconds(elapsedTime);
 
             timePlayingStr = timePlaying.ToString("mm':'ss'.'ff");
@@ -310,6 +317,20 @@ public class GameMaster : MonoBehaviour
 
     public bool IsPaused() {
         return isPaused;
+    }
+
+    public void ActivateWaterZone() {
+        Time.timeScale = 0.75f;
+        waterZone = true;
+    }
+
+    public void DeactivateWaterZone() {
+        Time.timeScale = 1f;
+        waterZone = false;
+    }
+
+    public bool IsWaterZone() {
+        return waterZone;
     }
 
     public void ShowGameOverScreen() {
