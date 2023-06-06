@@ -19394,6 +19394,8 @@ MonoBehaviour:
   leftWindEnd: 0
   rightWindStart: 0
   rightWindEnd: 0
+  waterStart: 0
+  waterEnd: 0
 --- !u!4 &1740475079 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3361281182978420592, guid: 8ddd0e213c5f970498eedb95b24febde, type: 3}
