@@ -50,6 +50,10 @@ public class Player : MonoBehaviour
     public float iceStart;
     public float iceEnd;
 
+    private bool mountainZone = false;
+    public float mountainStart;
+    public float mountainEnd;
+
     void Start()
     {
         player = this;
@@ -84,6 +88,7 @@ public class Player : MonoBehaviour
         playerPosition = rb.transform.position;
         GroundCheck();
         IceZoneCheck();
+        MountainZoneCheck();
         if (rb.velocity.y <= 0) {
             isJumping = false;
         } else {
@@ -203,8 +208,13 @@ public class Player : MonoBehaviour
 
     private void CheckGroundedToJump() {
         if (isGrounded) {
-            rb.AddForce(transform.right * horizontalSpeed * pressSpaceTime);
-            rb.AddForce(transform.up * verticalSpeed * pressSpaceTime);
+            if (!mountainZone) {
+                rb.AddForce(transform.right * horizontalSpeed * pressSpaceTime);
+                rb.AddForce(transform.up * verticalSpeed * pressSpaceTime);
+            } else if (mountainZone) {
+                rb.AddForce(transform.right * (horizontalSpeed - 400) * pressSpaceTime);
+                rb.AddForce(transform.up * (verticalSpeed + 400) * pressSpaceTime);
+            }
             canJump = false;
             audioController.PlayJumpEndSound();
             hasLanded = false;
@@ -246,6 +256,14 @@ public class Player : MonoBehaviour
             iceZone = true;
         } else {
             iceZone = false;
+        }
+    }
+
+    private void MountainZoneCheck() {
+        if (playerPosition.x > mountainStart && playerPosition.x < mountainEnd) {
+            mountainZone = true;
+        } else {
+            mountainZone = false;
         }
     }
 }
