@@ -19389,6 +19389,11 @@ MonoBehaviour:
   iceEnd: 0
   mountainStart: 0
   mountainEnd: 0
+  windStrength: 8
+  leftWindStart: 0
+  leftWindEnd: 0
+  rightWindStart: 0
+  rightWindEnd: 0
 --- !u!4 &1740475079 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3361281182978420592, guid: 8ddd0e213c5f970498eedb95b24febde, type: 3}
