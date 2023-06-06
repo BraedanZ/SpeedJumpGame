@@ -54,6 +54,16 @@ public class Player : MonoBehaviour
     public float mountainStart;
     public float mountainEnd;
 
+    public float windStrength;
+
+    private bool leftWindZone = false;
+    public float leftWindStart;
+    public float leftWindEnd;
+
+    private bool rightWindZone = false;
+    public float rightWindStart;
+    public float rightWindEnd;
+
     void Start()
     {
         player = this;
@@ -74,6 +84,7 @@ public class Player : MonoBehaviour
         LocatePlayer();
         AddJumpTime();
         StopJump();
+        ApplyWind();
     }
 
     void Update() {
@@ -89,6 +100,8 @@ public class Player : MonoBehaviour
         GroundCheck();
         IceZoneCheck();
         MountainZoneCheck();
+        LeftWindZoneCheck();
+        RightWindZoneCheck();
         if (rb.velocity.y <= 0) {
             isJumping = false;
         } else {
@@ -251,6 +264,14 @@ public class Player : MonoBehaviour
         camera.SnapCamera();
     }
 
+    private void ApplyWind() {
+        if (leftWindZone) {
+            rb.AddForce(-transform.right * windStrength);
+        } else if (rightWindZone) {
+            rb.AddForce(transform.right * windStrength);
+        }
+    }
+
     private void IceZoneCheck() {
         if (playerPosition.x > iceStart && playerPosition.x < iceEnd) {
             iceZone = true;
@@ -264,6 +285,22 @@ public class Player : MonoBehaviour
             mountainZone = true;
         } else {
             mountainZone = false;
+        }
+    }
+
+    private void LeftWindZoneCheck() {
+        if (playerPosition.x > leftWindStart && playerPosition.x < leftWindEnd) {
+            leftWindZone = true;
+        } else {
+            leftWindZone = false;
+        }
+    }
+
+    private void RightWindZoneCheck() {
+        if (playerPosition.x > rightWindStart && playerPosition.x < rightWindEnd) {
+            rightWindZone = true;
+        } else {
+            rightWindZone = false;
         }
     }
 }
