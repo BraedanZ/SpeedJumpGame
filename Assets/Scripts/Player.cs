@@ -46,6 +46,10 @@ public class Player : MonoBehaviour
 
     private bool canJump = true;
 
+    private bool iceZone = false;
+    public float iceStart;
+    public float iceEnd;
+
     void Start()
     {
         player = this;
@@ -79,6 +83,7 @@ public class Player : MonoBehaviour
     {
         playerPosition = rb.transform.position;
         GroundCheck();
+        IceZoneCheck();
         if (rb.velocity.y <= 0) {
             isJumping = false;
         } else {
@@ -208,8 +213,10 @@ public class Player : MonoBehaviour
     }
 
     private void StopJump() {
-        if (isGrounded && !isJumping) {
-            rb.velocity = Vector2.zero;
+        if (!iceZone) {
+            if (isGrounded && !isJumping) {
+                rb.velocity = Vector2.zero;
+            }
         }
     }    
 
@@ -232,5 +239,13 @@ public class Player : MonoBehaviour
         transform.position = gm.GetRespawnPoint() + spawnOffset;
         rb.velocity = Vector2.zero;
         camera.SnapCamera();
+    }
+
+    private void IceZoneCheck() {
+        if (playerPosition.x > iceStart && playerPosition.x < iceEnd) {
+            iceZone = true;
+        } else {
+            iceZone = false;
+        }
     }
 }

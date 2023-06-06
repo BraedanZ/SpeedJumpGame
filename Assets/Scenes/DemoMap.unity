@@ -19314,7 +19314,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 4
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 5725128e518a6a54e98e4d91e4c2dd9f, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -19385,6 +19385,8 @@ MonoBehaviour:
   spawnOffset: {x: -1.6, y: 2.5}
   maxDistance: 0
   xToMaxXRatio: -1
+  iceStart: 0
+  iceEnd: 0
 --- !u!4 &1740475079 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3361281182978420592, guid: 8ddd0e213c5f970498eedb95b24febde, type: 3}
