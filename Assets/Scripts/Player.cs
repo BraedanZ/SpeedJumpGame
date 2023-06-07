@@ -252,11 +252,11 @@ public class Player : MonoBehaviour
     }
 
     private void StopJump() {
-        if (!iceZone) {
-            if (isGrounded && !isJumping) {
-                rb.velocity = Vector2.zero;
-            }
-        }
+        // if (!iceZone) {
+        //     if (isGrounded && !isJumping) {
+        //         rb.velocity = Vector2.zero;
+        //     }
+        // }
     }    
 
     private void SetAnimation() {

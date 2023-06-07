@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1865881579910876380}
   - component: {fileID: 1865881579910876378}
   - component: {fileID: 1608066577}
+  - component: {fileID: 4480427010908761955}
   m_Layer: 8
   m_Name: Platform
   m_TagString: Untagged
@@ -126,3 +127,24 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   boxSize: {x: 1.95, y: 0.36, z: 0}
+--- !u!50 &4480427010908761955
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865881579910876381}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 6200000, guid: a91030b9ba678d34b88d1baa9c110fbc, type: 2}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
