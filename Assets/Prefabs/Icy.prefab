@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1865881579910876378}
   - component: {fileID: 1608066577}
   m_Layer: 8
-  m_Name: Platform
+  m_Name: Icy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,7 +93,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1865881579910876381}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 3685dc64761fb0245aa0c9c1aef6ebaf, type: 2}
+  m_Material: {fileID: 6200000, guid: a91030b9ba678d34b88d1baa9c110fbc, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
