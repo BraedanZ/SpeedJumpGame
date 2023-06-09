@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     bool isGrounded;
     public LayerMask whatIsGround;
 
-    bool isJumping;
+    // bool isJumping;
 
     bool spacePressed;
 
@@ -46,9 +46,9 @@ public class Player : MonoBehaviour
 
     private bool canJump = true;
 
-    private bool iceZone = false;
-    public float iceStart;
-    public float iceEnd;
+    // private bool iceZone = false;
+    // public float iceStart;
+    // public float iceEnd;
 
     private bool mountainZone = false;
     public float mountainStart;
@@ -96,7 +96,7 @@ public class Player : MonoBehaviour
     {
         LocatePlayer();
         AddJumpTime();
-        StopJump();
+        // StopJump();
         ApplyWind();
     }
 
@@ -111,18 +111,18 @@ public class Player : MonoBehaviour
     {
         playerPosition = rb.transform.position;
         GroundCheck();
-        IceZoneCheck();
+        // IceZoneCheck();
         MountainZoneCheck();
         LeftWindZoneCheck();
         RightWindZoneCheck();
         DownWindZoneCheck();
         UpWindZoneCheck();
         WaterZoneCheck();
-        if (rb.velocity.y <= 0) {
-            isJumping = false;
-        } else {
-            isJumping = true;
-        }
+    //     if (rb.velocity.y <= 0) {
+    //         isJumping = false;
+    //     } else {
+    //         isJumping = true;
+    //     }
     }
 
     private void SetMaxDistance() {
@@ -251,13 +251,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void StopJump() {
+    // private void StopJump() {
         // if (!iceZone) {
         //     if (isGrounded && !isJumping) {
         //         rb.velocity = Vector2.zero;
         //     }
         // }
-    }    
+    // }    
 
     private void SetAnimation() {
         if (isGrounded && !spacePressed) {
@@ -292,13 +292,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void IceZoneCheck() {
-        if (playerPosition.x > iceStart && playerPosition.x < iceEnd) {
-            iceZone = true;
-        } else {
-            iceZone = false;
-        }
-    }
+    // private void IceZoneCheck() {
+    //     if (playerPosition.x > iceStart && playerPosition.x < iceEnd) {
+    //         iceZone = true;
+    //     } else {
+    //         iceZone = false;
+    //     }
+    // }
 
     private void MountainZoneCheck() {
         if (playerPosition.x > mountainStart && playerPosition.x < mountainEnd) {
