@@ -13,11 +13,6 @@ public class ElectricPlatform : MonoBehaviour
         InvokeRepeating("DeactivateKillZone", 0.0f, 4.0f);
     }
 
-    void Update()
-    {
-
-    }
-
     private void ActivateKillZone() {
         killZone.SetActive(true);
     }
