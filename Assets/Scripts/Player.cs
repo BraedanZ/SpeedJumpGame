@@ -200,8 +200,8 @@ public class Player : MonoBehaviour
             if (!isGrounded && !hasLanded) {
                 audioController.PlayLandSound();
                 hasLanded = true;
+                StopJump();
             }
-            StopJump();
             isGrounded = true;
             SelectSkin();
         } else if (Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0, -transform.up, 0.1f, whatIsIce)) { 
