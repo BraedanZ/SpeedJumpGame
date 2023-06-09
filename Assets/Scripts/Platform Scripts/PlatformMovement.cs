@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HorizontalMovement : MonoBehaviour
+public class PlatformMovement : MonoBehaviour
 {
     public Transform posA;
     public Transform posB;
