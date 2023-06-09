@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1865881579910876380}
   - component: {fileID: 1865881579910876378}
   - component: {fileID: 1608066577}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Icy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
