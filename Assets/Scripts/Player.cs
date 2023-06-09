@@ -27,8 +27,9 @@ public class Player : MonoBehaviour
 
     bool isGrounded;
     public LayerMask whatIsGround;
+    public LayerMask whatIsIce;
 
-    // bool isJumping;
+    bool isJumping;
 
     bool spacePressed;
 
@@ -118,11 +119,11 @@ public class Player : MonoBehaviour
         DownWindZoneCheck();
         UpWindZoneCheck();
         WaterZoneCheck();
-    //     if (rb.velocity.y <= 0) {
-    //         isJumping = false;
-    //     } else {
-    //         isJumping = true;
-    //     }
+        if (rb.velocity.y <= 0) {
+            isJumping = false;
+        } else {
+            isJumping = true;
+        }
     }
 
     private void SetMaxDistance() {
@@ -200,6 +201,14 @@ public class Player : MonoBehaviour
                 audioController.PlayLandSound();
                 hasLanded = true;
             }
+            StopJump();
+            isGrounded = true;
+            SelectSkin();
+        } else if (Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0, -transform.up, 0.1f, whatIsIce)) { 
+            if (!isGrounded && !hasLanded) {
+                audioController.PlayLandSound();
+                hasLanded = true;
+            }
             isGrounded = true;
             SelectSkin();
         } else {
@@ -251,13 +260,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    // private void StopJump() {
-        // if (!iceZone) {
-        //     if (isGrounded && !isJumping) {
-        //         rb.velocity = Vector2.zero;
-        //     }
-        // }
-    // }    
+    private void StopJump() {
+        if (isGrounded && !isJumping) {
+            rb.velocity = Vector2.zero;
+        }
+    }    
 
     private void SetAnimation() {
         if (isGrounded && !spacePressed) {

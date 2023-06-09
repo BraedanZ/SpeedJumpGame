@@ -19384,6 +19384,9 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
+  whatIsIce:
+    serializedVersion: 2
+    m_Bits: 1024
   spawnOffset: {x: -1.6, y: 2.5}
   maxDistance: 0
   xToMaxXRatio: -1
