@@ -480,14 +480,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPosition: {x: 0, y: 0}
-  punishmentForNextFallText: {fileID: 0}
+  fallsInARow: 0
+  punishmentForNextFallText: {fileID: 512221627}
   timeCounter: {fileID: 1023830806}
+  elapsedTime: 0
+  loadedTime: 0
   winPanel: {fileID: 0}
   gameOverlay: {fileID: 160459288}
   pausePanel: {fileID: 0}
   timeToSpawn: 0
-  deathCountText: {fileID: 0}
-  jumpCountText: {fileID: 0}
+  deathCount: 0
+  deathCountText: {fileID: 1023830806}
+  jumpCount: 0
+  jumpCountText: {fileID: 1023830806}
   timeInWater: 0
   waterTimeDifferential: 0
 --- !u!4 &556465355
