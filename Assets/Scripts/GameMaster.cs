@@ -84,7 +84,7 @@ public class GameMaster : MonoBehaviour
         startTime = Time.time;
         // writtenJumpCount = "Jumps: 0";
         // writtenDeathCount = "Deaths: 0";
-        StaticClass.SetDifficulty(4);
+        // StaticClass.SetDifficulty(4);
         if (StaticClass.GetDifficulty() == 1) {
             gameOverlay.transform.Find("Punishment").GetComponent<Text>().enabled = false;
         } else if (StaticClass.GetDifficulty() == 0) {
