@@ -20,6 +20,7 @@ public class GameMaster : MonoBehaviour
 
     private float startTime;
     public float elapsedTime;
+    public float loadedTime;
     TimeSpan timePlaying;
     private string timePlayingStr;
 
@@ -91,7 +92,7 @@ public class GameMaster : MonoBehaviour
         UpdatePunishmentText();
         UpdateJumpCount();
         UpdateDeathCount();
-        print("test");
+        print(loadedTime);
     }
 
     void Update() {
@@ -266,7 +267,7 @@ public class GameMaster : MonoBehaviour
             waterTimeDifferential = timeInWater / 3;
         }
         if (gamePlaying) {
-            elapsedTime = Time.time - startTime + waterTimeDifferential;
+            elapsedTime = Time.time - startTime + waterTimeDifferential + loadedTime;
             timePlaying = TimeSpan.FromSeconds(elapsedTime);
 
             timePlayingStr = timePlaying.ToString("mm':'ss'.'ff");
@@ -351,11 +352,11 @@ public class GameMaster : MonoBehaviour
     public void IncramentDeath() {
         deathCount++;
         UpdateDeathCount();
-        deathCountText.text = writtenDeathCount;
     }
 
     private void UpdateDeathCount() {
         writtenDeathCount = "Deaths: " + deathCount;
+        deathCountText.text = writtenDeathCount;
     }
 
     public int GetDeathCount() {
@@ -365,11 +366,11 @@ public class GameMaster : MonoBehaviour
     public void IncramentJumps() {
         jumpCount++;
         UpdateJumpCount();
-        jumpCountText.text = writtenJumpCount;
     }
 
     private void UpdateJumpCount() {
         writtenJumpCount = "Jumps: " + jumpCount;
+        jumpCountText.text = writtenJumpCount;
     }
 
     public int GetJumpCount() {
@@ -458,20 +459,14 @@ public class GameMaster : MonoBehaviour
     }
 
     public void SavePlayer() {
-        // print(jumpCount);
         SaveSystem.SavePlayer(this);
     }
 
     public void LoadPlayer() {
         PlayerData data = SaveSystem.LoadPlayer();
-        // print(data.checkpoints.GetUpperBound(0));
-        // for (int i = data.checkpoints.Length - 1; i >= 0; i--) {
-        //     Vector2 temp = new Vector2(data.checkpoints[i, 0], data.checkpoints[i, 1]);
-        //     reachedCheckPoints.Push(temp);
-        // }
 
         fallsInARow = data.fallsInARow;
-        elapsedTime = data.elapsedTime;
+        loadedTime = data.loadedTime;
         deathCount = data.deathCount;
         jumpCount = data.jumpCount;
 

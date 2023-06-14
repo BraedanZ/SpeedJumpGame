@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerData {
 
     public int fallsInARow;
-    public float elapsedTime;
+    public float loadedTime;
     public int deathCount;
     public int jumpCount;
     public float[,] checkpoints;
@@ -14,10 +14,10 @@ public class PlayerData {
     public PlayerData (GameMaster gm) {
 
         fallsInARow = gm.fallsInARow;
-        elapsedTime = gm.elapsedTime;
+        loadedTime = gm.elapsedTime;
         deathCount = gm.deathCount;
         jumpCount = gm.jumpCount;
-         
+
         checkpoints = new float[gm.reachedCheckPoints.Count, 2];
         for (int i = 0; i < gm.reachedCheckPoints.Count; i++) {
             Vector2 temp = gm.reachedCheckPoints.Pop();
