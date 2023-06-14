@@ -10,15 +10,16 @@ public class GameMaster : MonoBehaviour
     public static GameMaster instance;
 
     public Vector2 startPosition;
-    int fallsInARow = 0;
+    public int fallsInARow = 0;
     public Text punishmentForNextFallText;
     private string writtenPunishment;
 
-    private Stack<Vector2> reachedCheckPoints;
+    public Stack<Vector2> reachedCheckPoints;
 
     public Text timeCounter;
 
-    private float startTime, elapsedTime;
+    private float startTime;
+    public float elapsedTime;
     TimeSpan timePlaying;
     private string timePlayingStr;
 
@@ -36,11 +37,11 @@ public class GameMaster : MonoBehaviour
 
     private float timeSinceSpawn;
 
-    private int deathCount;
+    public int deathCount;
     private string writtenDeathCount;
     public Text deathCountText;
 
-    private int jumpCount;
+    public int jumpCount;
     private string writtenJumpCount;
     public Text jumpCountText;
 
@@ -75,9 +76,9 @@ public class GameMaster : MonoBehaviour
         showingPunishment = true;
         muted = false;
         startTime = Time.time;
-        writtenJumpCount = "Jumps: 0";
-        writtenDeathCount = "Deaths: 0";
-        // StaticClass.SetDifficulty(4);
+        // writtenJumpCount = "Jumps: 0";
+        // writtenDeathCount = "Deaths: 0";
+        StaticClass.SetDifficulty(4);
         if (StaticClass.GetDifficulty() == 1) {
             gameOverlay.transform.Find("Punishment").GetComponent<Text>().enabled = false;
         } else if (StaticClass.GetDifficulty() == 0) {
@@ -86,7 +87,11 @@ public class GameMaster : MonoBehaviour
             gameOverlay.transform.Find("DeathCount").GetComponent<Text>().enabled = false;
             gameOverlay.transform.Find("JumpCount").GetComponent<Text>().enabled = false;
         }
-
+        LoadPlayer();
+        UpdatePunishmentText();
+        UpdateJumpCount();
+        UpdateDeathCount();
+        print("test");
     }
 
     void Update() {
@@ -228,6 +233,7 @@ public class GameMaster : MonoBehaviour
         }
         DecrementFallsInARow();
         reachedCheckPoints.Push(checkPointPosition);
+        SavePlayer();
     }
 
     private bool CheckIfAddingRepeatedCheckpoint(Vector2 checkPointPosition) {
@@ -344,8 +350,12 @@ public class GameMaster : MonoBehaviour
 
     public void IncramentDeath() {
         deathCount++;
-        writtenDeathCount = "Deaths: " + deathCount;
+        UpdateDeathCount();
         deathCountText.text = writtenDeathCount;
+    }
+
+    private void UpdateDeathCount() {
+        writtenDeathCount = "Deaths: " + deathCount;
     }
 
     public int GetDeathCount() {
@@ -354,8 +364,12 @@ public class GameMaster : MonoBehaviour
 
     public void IncramentJumps() {
         jumpCount++;
-        writtenJumpCount = "Jumps: " + jumpCount;
+        UpdateJumpCount();
         jumpCountText.text = writtenJumpCount;
+    }
+
+    private void UpdateJumpCount() {
+        writtenJumpCount = "Jumps: " + jumpCount;
     }
 
     public int GetJumpCount() {
@@ -441,5 +455,29 @@ public class GameMaster : MonoBehaviour
 
     public void doExitGame() {
         Application.Quit();
+    }
+
+    public void SavePlayer() {
+        // print(jumpCount);
+        SaveSystem.SavePlayer(this);
+    }
+
+    public void LoadPlayer() {
+        PlayerData data = SaveSystem.LoadPlayer();
+        // print(data.checkpoints.GetUpperBound(0));
+        // for (int i = data.checkpoints.Length - 1; i >= 0; i--) {
+        //     Vector2 temp = new Vector2(data.checkpoints[i, 0], data.checkpoints[i, 1]);
+        //     reachedCheckPoints.Push(temp);
+        // }
+
+        fallsInARow = data.fallsInARow;
+        elapsedTime = data.elapsedTime;
+        deathCount = data.deathCount;
+        jumpCount = data.jumpCount;
+
+        for (int i = data.checkpoints.GetUpperBound(0) - 1; i >= 0; i--) {
+            Vector2 temp = new Vector2(data.checkpoints[i, 0], data.checkpoints[i, 1]);
+            reachedCheckPoints.Push(temp);
+        }
     }
 }

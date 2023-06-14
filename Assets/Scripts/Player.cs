@@ -89,7 +89,7 @@ public class Player : MonoBehaviour
         audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
         // maxDistance = transform.position.x;
         SelectSkin();
-        transform.position = gm.GetRespawnPoint() + spawnOffset;
+        // transform.position = gm.GetRespawnPoint() + spawnOffset;
         camera.SnapCamera();
     }
 
@@ -285,6 +285,7 @@ public class Player : MonoBehaviour
         transform.position = gm.GetRespawnPoint() + spawnOffset;
         rb.velocity = Vector2.zero;
         camera.SnapCamera();
+        gm.SavePlayer();
     }
 
     private void ApplyWind() {
