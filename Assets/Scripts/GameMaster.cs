@@ -256,6 +256,7 @@ public class GameMaster : MonoBehaviour
     }
 
     public void Restart() {
+        WipeSave();
         Start();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         // LoadDemoScene();
@@ -470,9 +471,19 @@ public class GameMaster : MonoBehaviour
         deathCount = data.deathCount;
         jumpCount = data.jumpCount;
 
-        for (int i = data.checkpoints.GetUpperBound(0) - 1; i >= 0; i--) {
+        print("Upper bound thing " + data.checkpoints.GetUpperBound(0));
+        for (int i = data.checkpoints.GetUpperBound(1) - 1; i >= 0; i--) {
             Vector2 temp = new Vector2(data.checkpoints[i, 0], data.checkpoints[i, 1]);
+            print("vector " + temp);
             reachedCheckPoints.Push(temp);
         }
+    }
+
+    public void WipeSave() {
+        fallsInARow = 0;
+        elapsedTime = 0f;
+        deathCount = 0;
+        jumpCount = 0;
+        SaveSystem.SavePlayer(this);
     }
 }
