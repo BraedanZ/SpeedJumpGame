@@ -9,6 +9,10 @@ public class GameMaster : MonoBehaviour
 {
     public static GameMaster instance;
 
+    public Player player;
+
+    public Vector2 spawnOffset;
+
     public Vector2 startPosition;
     public int fallsInARow = 0;
     public Text punishmentForNextFallText;
@@ -67,8 +71,9 @@ public class GameMaster : MonoBehaviour
     }
 
     void Start() {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         reachedCheckPoints = new Stack<Vector2>();
-        reachedCheckPoints.Push(startPosition);
+        // reachedCheckPoints.Push(startPosition);
         gamePlaying = true;
         isPaused = false;
         showingTimer = true;
@@ -471,8 +476,17 @@ public class GameMaster : MonoBehaviour
         deathCount = data.deathCount;
         jumpCount = data.jumpCount;
 
+        Vector3 playerPosition;
+        playerPosition.x = data.position[0];
+        playerPosition.y = data.position[1];
+        playerPosition.z = data.position[2];
+
+        player.SetPosition(playerPosition);
+
         print("Upper bound thing " + data.checkpoints.GetUpperBound(0));
-        for (int i = data.checkpoints.GetUpperBound(1) - 1; i >= 0; i--) {
+        for (int i = data.checkpoints.GetUpperBound(0) - 1; i >= 0; i--) {
+            print(i);
+
             Vector2 temp = new Vector2(data.checkpoints[i, 0], data.checkpoints[i, 1]);
             print("vector " + temp);
             reachedCheckPoints.Push(temp);
@@ -484,6 +498,7 @@ public class GameMaster : MonoBehaviour
         elapsedTime = 0f;
         deathCount = 0;
         jumpCount = 0;
+        player.SetPosition(GetRespawnPoint() + spawnOffset);
         SaveSystem.SavePlayer(this);
     }
 }

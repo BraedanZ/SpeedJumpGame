@@ -5612,11 +5612,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9708bf7dcc8b0a45bff5782f4482a1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  spawnOffset: {x: -1.6, y: 2.5}
   startPosition: {x: 0, y: 0}
   fallsInARow: 0
   punishmentForNextFallText: {fileID: 710965294}
   timeCounter: {fileID: 1106075086}
   elapsedTime: 0
+  loadedTime: 0
   winPanel: {fileID: 2082545118}
   gameOverlay: {fileID: 207418801}
   pausePanel: {fileID: 1343059338}

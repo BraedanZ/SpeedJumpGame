@@ -11,6 +11,8 @@ public class PlayerData {
     public int jumpCount;
     public float[,] checkpoints;
 
+    public float[] position;
+
     public PlayerData (GameMaster gm) {
 
         fallsInARow = gm.fallsInARow;
@@ -18,11 +20,20 @@ public class PlayerData {
         deathCount = gm.deathCount;
         jumpCount = gm.jumpCount;
 
-        checkpoints = new float[gm.reachedCheckPoints.Count, 2];
-        for (int i = 0; i < gm.reachedCheckPoints.Count; i++) {
-            Vector2 temp = gm.reachedCheckPoints.Pop();
+
+        Stack<Vector2> test = new Stack<Vector2>(gm.reachedCheckPoints);
+
+        checkpoints = new float[test.Count, 2];
+        for (int i = 0; i < test.Count; i++) {
+            Vector2 temp = test.Pop();
             checkpoints[i, 0] = temp.x;
             checkpoints[i, 1] = temp.y;
         }
+
+        position = new float[3];
+        Vector3 playerPosition = gm.player.GetPosition();
+        position[0] = playerPosition.x;
+        position[1] = playerPosition.y;
+        position[2] = playerPosition.z;
     }
 }
