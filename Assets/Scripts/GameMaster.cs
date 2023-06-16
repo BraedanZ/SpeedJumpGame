@@ -97,7 +97,6 @@ public class GameMaster : MonoBehaviour
         UpdatePunishmentText();
         UpdateJumpCount();
         UpdateDeathCount();
-        print(loadedTime);
     }
 
     void Update() {
@@ -508,7 +507,7 @@ public class GameMaster : MonoBehaviour
         playerVelocity.y = data.velocity[1];
         playerVelocity.z = data.velocity[2];
         
-        // player.SetVelocity(playerVelocity);
+        player.SetVelocity(playerVelocity);
 
         print("Upper bound thing " + data.checkpoints.GetUpperBound(0));
         for (int i = data.checkpoints.GetUpperBound(0) - 1; i >= 0; i--) {
