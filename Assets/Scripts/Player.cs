@@ -368,7 +368,7 @@ public class Player : MonoBehaviour
         return transform.position;
     }
 
-    public void SetVelocity(Vector3 velocity) {
+    public void SetVelocity(Vector2 velocity) {
         rb.velocity = velocity;
     }
 

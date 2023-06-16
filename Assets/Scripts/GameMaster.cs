@@ -502,10 +502,10 @@ public class GameMaster : MonoBehaviour
 
         player.SetPosition(playerPosition);
 
-        Vector3 playerVelocity;
+        Vector2 playerVelocity;
         playerVelocity.x = data.velocity[0];
         playerVelocity.y = data.velocity[1];
-        playerVelocity.z = data.velocity[2];
+        // playerVelocity.z = data.velocity[2];
         
         player.SetVelocity(playerVelocity);
 

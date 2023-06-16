@@ -37,10 +37,10 @@ public class PlayerData {
         position[1] = playerPosition.y;
         position[2] = playerPosition.z;
 
-        velocity = new float[3];
-        Vector3 playerVelocity = gm.player.GetVelocity();
+        velocity = new float[2];
+        Vector2 playerVelocity = gm.player.GetVelocity();
         velocity[0] = playerVelocity.x;
         velocity[1] = playerVelocity.y;
-        velocity[2] = playerVelocity.z;
+        // velocity[2] = playerVelocity.z;
     }
 }
