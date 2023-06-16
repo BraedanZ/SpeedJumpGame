@@ -12,6 +12,7 @@ public class PlayerData {
     public float[,] checkpoints;
 
     public float[] position;
+    public float[] velocity;
 
     public PlayerData (GameMaster gm) {
 
@@ -35,5 +36,11 @@ public class PlayerData {
         position[0] = playerPosition.x;
         position[1] = playerPosition.y;
         position[2] = playerPosition.z;
+
+        velocity = new float[3];
+        Vector3 playerVelocity = gm.player.GetVelocity();
+        velocity[0] = playerVelocity.x;
+        velocity[1] = playerVelocity.y;
+        velocity[2] = playerVelocity.z;
     }
 }

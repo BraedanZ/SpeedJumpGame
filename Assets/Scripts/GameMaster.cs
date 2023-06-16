@@ -84,7 +84,7 @@ public class GameMaster : MonoBehaviour
         startTime = Time.time;
         // writtenJumpCount = "Jumps: 0";
         // writtenDeathCount = "Deaths: 0";
-        // StaticClass.SetDifficulty(4);
+        StaticClass.SetDifficulty(4);
         if (StaticClass.GetDifficulty() == 1) {
             gameOverlay.transform.Find("Punishment").GetComponent<Text>().enabled = false;
         } else if (StaticClass.GetDifficulty() == 0) {
@@ -105,6 +105,16 @@ public class GameMaster : MonoBehaviour
         if (timeToSpawn > 0) {
             timeSinceSpawn -= Time.deltaTime;
         }
+    }
+
+    void OnApplicationFocus(bool hasFocus) {
+        if (!hasFocus) {
+            PauseGame();
+        }
+    }
+
+    void OnApplicationQuit() {
+        SavePlayer();
     }
 
     public void LoadDemoScene() {
@@ -129,7 +139,7 @@ public class GameMaster : MonoBehaviour
         }
 
         else {
-            return reachedCheckPoints.Peek();
+            return CasualRespawnPoint();
         }
     }
 
@@ -225,6 +235,15 @@ public class GameMaster : MonoBehaviour
         }
     }
 
+    private Vector2 CasualRespawnPoint() {
+        if (reachedCheckPoints.Count == 0 ) {
+            return startPosition;
+        } else if (reachedCheckPoints.Count == 1) {
+            return reachedCheckPoints.Pop();
+        }
+        return reachedCheckPoints.Peek();
+    }
+
     private void PopStackUntilRespawnPoint(double punishment) {
         for (int i = 0; i < punishment; i++) {
             if (reachedCheckPoints.Count > 1) {
@@ -261,9 +280,9 @@ public class GameMaster : MonoBehaviour
     }
 
     public void Restart() {
-        WipeSave();
         Start();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        WipeSave();
         // LoadDemoScene();
     }
 
@@ -318,6 +337,7 @@ public class GameMaster : MonoBehaviour
 
     public void PauseGame() {
         Time.timeScale = 0;
+        SavePlayer();
         pausePanel.SetActive(true);
         isPaused = true;
     }
@@ -483,6 +503,13 @@ public class GameMaster : MonoBehaviour
 
         player.SetPosition(playerPosition);
 
+        Vector3 playerVelocity;
+        playerVelocity.x = data.velocity[0];
+        playerVelocity.y = data.velocity[1];
+        playerVelocity.z = data.velocity[2];
+        
+        // player.SetVelocity(playerVelocity);
+
         print("Upper bound thing " + data.checkpoints.GetUpperBound(0));
         for (int i = data.checkpoints.GetUpperBound(0) - 1; i >= 0; i--) {
             print(i);
@@ -499,6 +526,7 @@ public class GameMaster : MonoBehaviour
         deathCount = 0;
         jumpCount = 0;
         player.SetPosition(GetRespawnPoint() + spawnOffset);
+        player.SetVelocity(Vector3.zero);
         SaveSystem.SavePlayer(this);
     }
 }
