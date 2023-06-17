@@ -60,6 +60,9 @@ public class GameMaster : MonoBehaviour
     public float timeInWater;
     public float waterTimeDifferential;
 
+    Vector3 loadedPlayerPosition;
+    Vector2 loadedPlayerVelocity;
+
     void Awake() {
         instance = this;
         // if (instance == null) {
@@ -97,6 +100,21 @@ public class GameMaster : MonoBehaviour
         UpdatePunishmentText();
         UpdateJumpCount();
         UpdateDeathCount();
+    }
+
+    public void Restart() {
+        // Start();
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        // LoadDemoScene();
+        reachedCheckPoints = new Stack<Vector2>();
+        gamePlaying = true;
+        startTime = Time.time;
+
+        WipeSave();
+        UpdatePunishmentText();
+        UpdateJumpCount();
+        UpdateDeathCount();
+        player.Restart();
     }
 
     void Update() {
@@ -276,13 +294,6 @@ public class GameMaster : MonoBehaviour
                 UpdatePunishmentText();
             }
         }
-    }
-
-    public void Restart() {
-        Start();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        WipeSave();
-        // LoadDemoScene();
     }
 
     private void UpdateTimer() {
@@ -495,26 +506,22 @@ public class GameMaster : MonoBehaviour
         deathCount = data.deathCount;
         jumpCount = data.jumpCount;
 
-        Vector3 playerPosition;
-        playerPosition.x = data.position[0];
-        playerPosition.y = data.position[1];
-        playerPosition.z = data.position[2];
+        loadedPlayerPosition.x = data.position[0];
+        loadedPlayerPosition.y = data.position[1];
+        loadedPlayerPosition.z = data.position[2];
 
-        player.SetPosition(playerPosition);
+        // player.SetPosition(loadedPlayerPosition);
 
-        Vector2 playerVelocity;
-        playerVelocity.x = data.velocity[0];
-        playerVelocity.y = data.velocity[1];
-        // playerVelocity.z = data.velocity[2];
-        
-        player.SetVelocity(playerVelocity);
+        loadedPlayerVelocity.x = data.velocity[0];
+        loadedPlayerVelocity.y = data.velocity[1];
 
-        print("Upper bound thing " + data.checkpoints.GetUpperBound(0));
+        // player.SetVelocity(loadedPlayerVelocity);
+
+        print("Number of checkpoints: " + data.checkpoints.GetUpperBound(0));
+
         for (int i = data.checkpoints.GetUpperBound(0) - 1; i >= 0; i--) {
-            print(i);
-
             Vector2 temp = new Vector2(data.checkpoints[i, 0], data.checkpoints[i, 1]);
-            print("vector " + temp);
+            print("CheckPoint " + (i + 1) + " location: " + temp);
             reachedCheckPoints.Push(temp);
         }
     }
@@ -524,8 +531,18 @@ public class GameMaster : MonoBehaviour
         elapsedTime = 0f;
         deathCount = 0;
         jumpCount = 0;
-        player.SetPosition(GetRespawnPoint() + spawnOffset);
-        player.SetVelocity(Vector3.zero);
+        loadedPlayerPosition = new Vector3(0f, 0f, 0f);
+        loadedPlayerVelocity = new Vector2(0f, 0f);
+
         SaveSystem.SavePlayer(this);
+    }
+
+    public Vector3 GetLoadedPosition() {
+        // print(loadedPlayerPosition);
+        return loadedPlayerPosition;
+    }
+
+    public Vector2 GetLoadedVelocity() {
+        return loadedPlayerVelocity;
     }
 }

@@ -91,6 +91,13 @@ public class Player : MonoBehaviour
         SelectSkin();
         // transform.position = gm.GetRespawnPoint() + spawnOffset;
         camera.SnapCamera();
+        SetLoadedPosition();
+        SetLoadedVelocity();
+    }
+
+    public void Restart() {
+        transform.position = gm.GetRespawnPoint() + spawnOffset;
+        rb.velocity = Vector2.zero;
     }
 
     void FixedUpdate() 
@@ -360,19 +367,27 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void SetPosition(Vector3 position) {
-        transform.position = position;
-    }
+    // public void SetPosition(Vector3 position) {
+    //     transform.position = position;
+    // }
 
     public Vector3 GetPosition() {
         return transform.position;
     }
 
-    public void SetVelocity(Vector2 velocity) {
-        rb.velocity = velocity;
-    }
+    // public void SetVelocity(Vector2 velocity) {
+    //     rb.velocity = velocity;
+    // }
 
     public Vector3 GetVelocity() {
         return rb.velocity;
+    }
+
+    private void SetLoadedPosition() {
+        transform.position = gm.GetLoadedPosition();
+    }
+
+    private void SetLoadedVelocity() {
+        rb.velocity = gm.GetLoadedVelocity();
     }
 }
