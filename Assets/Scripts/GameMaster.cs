@@ -63,6 +63,8 @@ public class GameMaster : MonoBehaviour
     Vector3 loadedPlayerPosition;
     Vector2 loadedPlayerVelocity;
 
+    public GameObject mobileOverlay;
+
     void Awake() {
         instance = this;
         // if (instance == null) {
@@ -349,12 +351,14 @@ public class GameMaster : MonoBehaviour
         Time.timeScale = 0;
         SavePlayer();
         pausePanel.SetActive(true);
+        mobileOverlay.SetActive(false);
         isPaused = true;
     }
 
     public void UnpauseGame() {
         Time.timeScale = 1;
         pausePanel.SetActive(false);
+        mobileOverlay.SetActive(true);
         isPaused = false;
     }
 
