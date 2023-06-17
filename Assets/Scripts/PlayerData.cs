@@ -22,13 +22,13 @@ public class PlayerData {
         jumpCount = gm.jumpCount;
 
 
-        Stack<Vector2> test = new Stack<Vector2>(gm.reachedCheckPoints);
+        Stack<Vector2> copyOfReachedCheckPoints = new Stack<Vector2>(gm.reachedCheckPoints);
 
-        checkpoints = new float[test.Count, 2];
-        for (int i = 0; i < test.Count; i++) {
-            Vector2 temp = test.Pop();
-            checkpoints[i, 0] = temp.x;
-            checkpoints[i, 1] = temp.y;
+        checkpoints = new float[copyOfReachedCheckPoints.Count, 2];
+        for (int i = 0; i < copyOfReachedCheckPoints.Count; i++) {
+            Vector2 checkpoint = copyOfReachedCheckPoints.Pop();
+            checkpoints[i, 0] = checkpoint.x;
+            checkpoints[i, 1] = checkpoint.y;
         }
 
         position = new float[3];
@@ -41,6 +41,5 @@ public class PlayerData {
         Vector2 playerVelocity = gm.player.GetVelocity();
         velocity[0] = playerVelocity.x;
         velocity[1] = playerVelocity.y;
-        // velocity[2] = playerVelocity.z;
     }
 }

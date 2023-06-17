@@ -275,7 +275,6 @@ public class GameMaster : MonoBehaviour
         }
         DecrementFallsInARow();
         reachedCheckPoints.Push(checkPointPosition);
-        SavePlayer();
     }
 
     private bool CheckIfAddingRepeatedCheckpoint(Vector2 checkPointPosition) {
@@ -510,19 +509,16 @@ public class GameMaster : MonoBehaviour
         loadedPlayerPosition.y = data.position[1];
         loadedPlayerPosition.z = data.position[2];
 
-        // player.SetPosition(loadedPlayerPosition);
-
         loadedPlayerVelocity.x = data.velocity[0];
         loadedPlayerVelocity.y = data.velocity[1];
 
-        // player.SetVelocity(loadedPlayerVelocity);
 
-        print("Number of checkpoints: " + data.checkpoints.GetUpperBound(0));
+        print("Number of checkpoints: " + (data.checkpoints.GetUpperBound(0) + 1));
 
-        for (int i = data.checkpoints.GetUpperBound(0) - 1; i >= 0; i--) {
-            Vector2 temp = new Vector2(data.checkpoints[i, 0], data.checkpoints[i, 1]);
-            print("CheckPoint " + (i + 1) + " location: " + temp);
-            reachedCheckPoints.Push(temp);
+        for (int i = data.checkpoints.GetUpperBound(0); i >= 0; i--) {
+            Vector2 checkpoint = new Vector2(data.checkpoints[i, 0], data.checkpoints[i, 1]);
+            print("CheckPoint " + (i + 1) + " location: " + checkpoint);
+            reachedCheckPoints.Push(checkpoint);
         }
     }
 
@@ -534,11 +530,10 @@ public class GameMaster : MonoBehaviour
         loadedPlayerPosition = new Vector3(0f, 0f, 0f);
         loadedPlayerVelocity = new Vector2(0f, 0f);
 
-        SaveSystem.SavePlayer(this);
+        SavePlayer();
     }
 
     public Vector3 GetLoadedPosition() {
-        // print(loadedPlayerPosition);
         return loadedPlayerPosition;
     }
 
