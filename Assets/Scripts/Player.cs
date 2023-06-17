@@ -78,7 +78,6 @@ public class Player : MonoBehaviour
     public float waterStart;
     public float waterEnd;
 
-    // private Vector3 mousePosition;
     private bool hoveringPause;
 
     void Start()
@@ -118,7 +117,6 @@ public class Player : MonoBehaviour
         Pause();
         DetectRInput();
         SetAnimation();
-        // MousePosition();
     }
 
     private void LocatePlayer() 
@@ -138,10 +136,6 @@ public class Player : MonoBehaviour
             isJumping = true;
         }
     }
-
-    // private void MousePosition() {
-    //     mousePosition = Input.mousePosition;
-    // }
 
     private void SetMaxDistance() {
         if (transform.position.x > maxDistance) {
