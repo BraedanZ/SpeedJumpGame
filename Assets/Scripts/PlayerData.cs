@@ -22,10 +22,10 @@ public class PlayerData {
         jumpCount = gm.jumpCount;
 
 
-        Stack<Vector2> copyOfReachedCheckPoints = new Stack<Vector2>(gm.reachedCheckPoints);
+        Stack<Vector2> copyOfReachedCheckPoints = new Stack<Vector2>(new Stack<Vector2>(gm.reachedCheckPoints));
 
         checkpoints = new float[copyOfReachedCheckPoints.Count, 2];
-        for (int i = 0; i < copyOfReachedCheckPoints.Count; i++) {
+        for (int i = copyOfReachedCheckPoints.Count - 1; i >= 0; i--) {
             Vector2 checkpoint = copyOfReachedCheckPoints.Pop();
             checkpoints[i, 0] = checkpoint.x;
             checkpoints[i, 1] = checkpoint.y;

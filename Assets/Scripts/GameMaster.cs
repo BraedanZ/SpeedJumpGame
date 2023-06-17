@@ -515,7 +515,7 @@ public class GameMaster : MonoBehaviour
 
         print("Number of checkpoints: " + (data.checkpoints.GetUpperBound(0) + 1));
 
-        for (int i = data.checkpoints.GetUpperBound(0); i >= 0; i--) {
+        for (int i = 0; i <= data.checkpoints.GetUpperBound(0); i++) {
             Vector2 checkpoint = new Vector2(data.checkpoints[i, 0], data.checkpoints[i, 1]);
             print("CheckPoint " + (i + 1) + " location: " + checkpoint);
             reachedCheckPoints.Push(checkpoint);
