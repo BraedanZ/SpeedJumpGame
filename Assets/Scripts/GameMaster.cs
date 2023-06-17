@@ -321,7 +321,7 @@ public class GameMaster : MonoBehaviour
     }
 
     private void UpdatePunishmentTextTwo() {
-        writtenPunishment = "Punishment for next fall: " + 2 * (fallsInARow + 1);
+        writtenPunishment = "x" + 2 * (fallsInARow + 1);
         punishmentForNextFallText.text = writtenPunishment;
     }
 
@@ -332,12 +332,12 @@ public class GameMaster : MonoBehaviour
         } else {
             punishment = 4 * (fallsInARow);
         }
-        writtenPunishment = "Punishment for next fall: " + punishment;
+        writtenPunishment = "x" + punishment;
         punishmentForNextFallText.text = writtenPunishment;
     }
 
     private void UpdatePunishmentTextIntended() {
-        writtenPunishment = "Punishment for next fall: " + Math.Pow(2, fallsInARow + 1);
+        writtenPunishment = "x" + Math.Pow(2, fallsInARow + 1);
         punishmentForNextFallText.text = writtenPunishment;
     }
 
@@ -513,12 +513,8 @@ public class GameMaster : MonoBehaviour
         loadedPlayerVelocity.x = data.velocity[0];
         loadedPlayerVelocity.y = data.velocity[1];
 
-
-        print("Number of checkpoints: " + (data.checkpoints.GetUpperBound(0) + 1));
-
         for (int i = 0; i <= data.checkpoints.GetUpperBound(0); i++) {
             Vector2 checkpoint = new Vector2(data.checkpoints[i, 0], data.checkpoints[i, 1]);
-            print("CheckPoint " + (i + 1) + " location: " + checkpoint);
             reachedCheckPoints.Push(checkpoint);
         }
     }

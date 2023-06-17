@@ -78,6 +78,8 @@ public class Player : MonoBehaviour
     public float waterStart;
     public float waterEnd;
 
+    private bool hoveringPause;
+
     void Start()
     {
         player = this;
@@ -144,10 +146,16 @@ public class Player : MonoBehaviour
     private void DetectSpaceInput() 
     {
         if (!gm.IsPaused()) {
-            if (Input.GetKeyDown("space") || Input.GetKeyDown(KeyCode.Mouse0)) {
+            if (Input.GetKeyDown("space")) {
                 spacePressed = true;
                 audioController.PlayJumpStartSound();
                 canJump = true;
+            } else if (!hoveringPause) {
+                if (Input.GetKeyDown(KeyCode.Mouse0)) {
+                    spacePressed = true;
+                    audioController.PlayJumpStartSound();
+                    canJump = true; 
+                }
             }
 
             if (Input.GetKeyUp("space") || Input.GetKeyUp(KeyCode.Mouse0)) {
@@ -183,6 +191,14 @@ public class Player : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void SelectingPauseButton() {
+        hoveringPause = true;
+    }
+
+    public void UnSelectingPauseButton() {
+        hoveringPause = false;
     }
 
     private void Jump()
