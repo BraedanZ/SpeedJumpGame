@@ -90,9 +90,9 @@ public class Player : MonoBehaviour
         // maxDistance = transform.position.x;
         SelectSkin();
         // transform.position = gm.GetRespawnPoint() + spawnOffset;
-        camera.SnapCamera();
         SetLoadedPosition();
         SetLoadedVelocity();
+        camera.SnapCamera();
     }
 
     public void Restart() {
