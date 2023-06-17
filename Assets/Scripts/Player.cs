@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
     public float waterStart;
     public float waterEnd;
 
-    private bool hoveringPause;
+    public bool hoveringPause;
 
     void Start()
     {
