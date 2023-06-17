@@ -98,6 +98,7 @@ public class Player : MonoBehaviour
     public void Restart() {
         transform.position = gm.GetRespawnPoint() + spawnOffset;
         rb.velocity = Vector2.zero;
+        camera.SnapCamera();
     }
 
     void FixedUpdate() 

@@ -109,6 +109,7 @@ public class GameMaster : MonoBehaviour
         reachedCheckPoints = new Stack<Vector2>();
         gamePlaying = true;
         startTime = Time.time;
+        loadedTime = 0f;
 
         WipeSave();
         UpdatePunishmentText();
