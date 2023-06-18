@@ -149,10 +149,6 @@ public class GameMaster : MonoBehaviour
         SavePlayer();
     }
 
-    public void LoadDemoScene() {
-        SceneManager.LoadScene("DemoMap");
-    }
-
     public Vector2 GetRespawnPoint() {
         if (StaticClass.GetDifficulty() == 4) {
             return twoRespawnPoint();
@@ -426,29 +422,6 @@ public class GameMaster : MonoBehaviour
     public int GetJumpCount() {
         return jumpCount;
     }
-
-    public void DifficultySettings(int difficulty) {
-        // if (difficulty == 2) {
-        //     SetupIntendedDifficulty();
-        // } else if (difficulty == 1) {
-        //     SetupEasyDifficulty();
-        // } else {
-        //     SetupCasualDifficulty();
-        // }
-        StaticClass.SetDifficulty(difficulty);
-    }
-
-    // private void SetupIntendedDifficulty() {
-    //     StaticClass.SetDifficulty(2);
-    // }
-
-    // private void SetupEasyDifficulty() {
-    //     StaticClass.SetDifficulty(1);
-    // }
-
-    // private void SetupCasualDifficulty() {
-    //     StaticClass.SetDifficulty(0);
-    // }
 
     public void ShowTimer() {
         if (showingTimer == true) {
