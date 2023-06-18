@@ -76,6 +76,12 @@ public class GameMaster : MonoBehaviour
     }
 
     void Start() {
+        if (SceneManager.GetActiveScene().name == "DemoMap") {
+            StartDemoScene();
+        }
+    }
+
+    private void StartDemoScene() {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         reachedCheckPoints = new Stack<Vector2>();
         // reachedCheckPoints.Push(startPosition);
@@ -89,7 +95,7 @@ public class GameMaster : MonoBehaviour
         startTime = Time.time;
         // writtenJumpCount = "Jumps: 0";
         // writtenDeathCount = "Deaths: 0";
-        StaticClass.SetDifficulty(4);
+        // StaticClass.SetDifficulty(4);
         if (StaticClass.GetDifficulty() == 1) {
             gameOverlay.transform.Find("Punishment").GetComponent<Text>().enabled = false;
         } else if (StaticClass.GetDifficulty() == 0) {
@@ -121,6 +127,12 @@ public class GameMaster : MonoBehaviour
     }
 
     void Update() {
+        if (SceneManager.GetActiveScene().name == "DemoMap") {
+            UpdateDemoScene();
+        }
+    }
+
+    private void UpdateDemoScene() {
         UpdateTimer();
         if (timeToSpawn > 0) {
             timeSinceSpawn -= Time.deltaTime;
