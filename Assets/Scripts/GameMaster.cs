@@ -76,12 +76,6 @@ public class GameMaster : MonoBehaviour
     }
 
     void Start() {
-        if (SceneManager.GetActiveScene().name == "DemoMap") {
-            StartDemoScene();
-        }
-    }
-
-    private void StartDemoScene() {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         reachedCheckPoints = new Stack<Vector2>();
         // reachedCheckPoints.Push(startPosition);
@@ -127,12 +121,6 @@ public class GameMaster : MonoBehaviour
     }
 
     void Update() {
-        if (SceneManager.GetActiveScene().name == "DemoMap") {
-            UpdateDemoScene();
-        }
-    }
-
-    private void UpdateDemoScene() {
         UpdateTimer();
         if (timeToSpawn > 0) {
             timeSinceSpawn -= Time.deltaTime;
