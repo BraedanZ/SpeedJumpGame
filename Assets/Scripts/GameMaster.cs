@@ -89,7 +89,7 @@ public class GameMaster : MonoBehaviour
         startTime = Time.time;
         // writtenJumpCount = "Jumps: 0";
         // writtenDeathCount = "Deaths: 0";
-        StaticClass.SetDifficulty(4);
+        // StaticClass.SetDifficulty(4);
         if (StaticClass.GetDifficulty() == 1) {
             gameOverlay.transform.Find("Punishment").GetComponent<Text>().enabled = false;
         } else if (StaticClass.GetDifficulty() == 0) {
@@ -135,10 +135,6 @@ public class GameMaster : MonoBehaviour
 
     void OnApplicationQuit() {
         SavePlayer();
-    }
-
-    public void LoadDemoScene() {
-        SceneManager.LoadScene("DemoMap");
     }
 
     public Vector2 GetRespawnPoint() {
@@ -414,29 +410,6 @@ public class GameMaster : MonoBehaviour
     public int GetJumpCount() {
         return jumpCount;
     }
-
-    public void DifficultySettings(int difficulty) {
-        // if (difficulty == 2) {
-        //     SetupIntendedDifficulty();
-        // } else if (difficulty == 1) {
-        //     SetupEasyDifficulty();
-        // } else {
-        //     SetupCasualDifficulty();
-        // }
-        StaticClass.SetDifficulty(difficulty);
-    }
-
-    // private void SetupIntendedDifficulty() {
-    //     StaticClass.SetDifficulty(2);
-    // }
-
-    // private void SetupEasyDifficulty() {
-    //     StaticClass.SetDifficulty(1);
-    // }
-
-    // private void SetupCasualDifficulty() {
-    //     StaticClass.SetDifficulty(0);
-    // }
 
     public void ShowTimer() {
         if (showingTimer == true) {
