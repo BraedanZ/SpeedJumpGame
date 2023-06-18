@@ -29,8 +29,6 @@ public class Player : MonoBehaviour
     public LayerMask whatIsGround;
     public LayerMask whatIsIce;
 
-    bool isJumping;
-
     bool spacePressed;
 
     public Vector2 spawnOffset;
@@ -80,6 +78,9 @@ public class Player : MonoBehaviour
 
     public bool hoveringPause;
 
+    private bool justJumped;
+    private float timeInAir;
+
     void Start()
     {
         player = this;
@@ -123,6 +124,7 @@ public class Player : MonoBehaviour
     {
         playerPosition = rb.transform.position;
         GroundCheck();
+        CalculateTimeInAir();
         // IceZoneCheck();
         MountainZoneCheck();
         LeftWindZoneCheck();
@@ -130,11 +132,7 @@ public class Player : MonoBehaviour
         DownWindZoneCheck();
         UpWindZoneCheck();
         WaterZoneCheck();
-        if (rb.velocity.y <= 0) {
-            isJumping = false;
-        } else {
-            isJumping = true;
-        }
+        
     }
 
     private void SetMaxDistance() {
@@ -225,9 +223,9 @@ public class Player : MonoBehaviour
             if (!isGrounded && !hasLanded) {
                 audioController.PlayLandSound();
                 hasLanded = true;
-                StopJump();
             }
             isGrounded = true;
+            StopJump();
             SelectSkin();
         } else if (Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0, -transform.up, 0.1f, whatIsIce)) { 
             if (!isGrounded && !hasLanded) {
@@ -238,6 +236,16 @@ public class Player : MonoBehaviour
             SelectSkin();
         } else {
             isGrounded = false;
+        }
+    }
+
+    private void CalculateTimeInAir() {
+        if (justJumped) {
+            timeInAir += Time.deltaTime;
+        }
+        if (timeInAir > 0.1f) {
+            justJumped = false;
+            timeInAir = 0f;
         }
     }
 
@@ -272,9 +280,11 @@ public class Player : MonoBehaviour
     private void CheckGroundedToJump() {
         if (isGrounded) {
             if (!mountainZone) {
+                justJumped = true;
                 rb.AddForce(transform.right * horizontalSpeed * pressSpaceTime);
                 rb.AddForce(transform.up * verticalSpeed * pressSpaceTime);
             } else if (mountainZone) {
+                justJumped = true;
                 rb.AddForce(transform.right * (horizontalSpeed - 400) * pressSpaceTime);
                 rb.AddForce(transform.up * (verticalSpeed + 400) * pressSpaceTime);
             }
@@ -286,7 +296,7 @@ public class Player : MonoBehaviour
     }
 
     private void StopJump() {
-        if (isGrounded && !isJumping) {
+        if (isGrounded && !justJumped) {
             rb.velocity = Vector2.zero;
         }
     }    
