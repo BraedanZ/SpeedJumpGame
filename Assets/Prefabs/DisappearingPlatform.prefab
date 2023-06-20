@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4793578568462867027}
   - component: {fileID: 4793578568462867028}
   - component: {fileID: 4793578568462867026}
-  - component: {fileID: 6585044575024771225}
   - component: {fileID: 6585044574999003937}
   m_Layer: 8
   m_Name: DisappearingPlatform
@@ -111,22 +110,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.43, y: 0.57}
   m_EdgeRadius: 0
---- !u!114 &6585044575024771225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4793578568462867029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53d100375e589c24fb2f8213b61150ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 512
-  boxSize: {x: 1.95, y: 0.36, z: 0}
 --- !u!114 &6585044574999003937
 MonoBehaviour:
   m_ObjectHideFlags: 0

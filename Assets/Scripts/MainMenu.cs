@@ -9,6 +9,10 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("DemoMap");
     }
 
+    public void LoadSecretMap() {
+        SceneManager.LoadScene("SecretMap");
+    }
+
     public void DifficultySettings(int difficulty) {
         StaticClass.SetDifficulty(difficulty);
     }

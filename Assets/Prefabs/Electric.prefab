@@ -93,7 +93,6 @@ GameObject:
   - component: {fileID: 1865881579910876379}
   - component: {fileID: 1865881579910876380}
   - component: {fileID: 1865881579910876378}
-  - component: {fileID: 1608066577}
   - component: {fileID: 5137549156031691955}
   m_Layer: 8
   m_Name: Electric
@@ -194,22 +193,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.43, y: 0.57}
   m_EdgeRadius: 0
---- !u!114 &1608066577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1865881579910876381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53d100375e589c24fb2f8213b61150ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 512
-  boxSize: {x: 1.95, y: 0.36, z: 0}
 --- !u!114 &5137549156031691955
 MonoBehaviour:
   m_ObjectHideFlags: 0
