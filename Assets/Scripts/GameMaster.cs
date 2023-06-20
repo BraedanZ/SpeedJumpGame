@@ -65,6 +65,8 @@ public class GameMaster : MonoBehaviour
 
     public GameObject pauseButton;
 
+    private Scene scene;
+
     void Awake() {
         instance = this;
         // if (instance == null) {
@@ -77,6 +79,7 @@ public class GameMaster : MonoBehaviour
 
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        scene = SceneManager.GetActiveScene();
         reachedCheckPoints = new Stack<Vector2>();
         // reachedCheckPoints.Push(startPosition);
         gamePlaying = true;
@@ -470,11 +473,20 @@ public class GameMaster : MonoBehaviour
     }
 
     public void SavePlayer() {
-        SaveSystem.SavePlayer(this);
+        if (scene.name == "DemoMap") {
+            SaveSystem.SaveDemo(this);
+        } else if (scene.name == "SecretMap") {
+            SaveSystem.SaveSecret(this);
+        }
     }
 
     public void LoadPlayer() {
-        PlayerData data = SaveSystem.LoadPlayer();
+        PlayerData data;
+        if (scene.name == "DemoMap") {
+            data = SaveSystem.LoadDemo();
+        } else {
+            data = SaveSystem.LoadSecret();
+        }
 
         fallsInARow = data.fallsInARow;
         loadedTime = data.loadedTime;
