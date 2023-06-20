@@ -65,6 +65,8 @@ public class GameMaster : MonoBehaviour
 
     public GameObject pauseButton;
 
+    public Scene scene;
+
     void Awake() {
         instance = this;
         // if (instance == null) {
@@ -77,6 +79,7 @@ public class GameMaster : MonoBehaviour
 
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        scene = SceneManager.GetActiveScene();
         reachedCheckPoints = new Stack<Vector2>();
         // reachedCheckPoints.Push(startPosition);
         gamePlaying = true;
@@ -474,7 +477,7 @@ public class GameMaster : MonoBehaviour
     }
 
     public void LoadPlayer() {
-        PlayerData data = SaveSystem.LoadPlayer();
+        PlayerData data = SaveSystem.LoadPlayer(scene.name);
 
         fallsInARow = data.fallsInARow;
         loadedTime = data.loadedTime;
