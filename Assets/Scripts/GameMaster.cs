@@ -65,7 +65,7 @@ public class GameMaster : MonoBehaviour
 
     public GameObject pauseButton;
 
-    private Scene scene;
+    public Scene scene;
 
     void Awake() {
         instance = this;
@@ -473,20 +473,11 @@ public class GameMaster : MonoBehaviour
     }
 
     public void SavePlayer() {
-        if (scene.name == "DemoMap") {
-            SaveSystem.SaveDemo(this);
-        } else if (scene.name == "SecretMap") {
-            SaveSystem.SaveSecret(this);
-        }
+        SaveSystem.SavePlayer(this);
     }
 
     public void LoadPlayer() {
-        PlayerData data;
-        if (scene.name == "DemoMap") {
-            data = SaveSystem.LoadDemo();
-        } else {
-            data = SaveSystem.LoadSecret();
-        }
+        PlayerData data = SaveSystem.LoadPlayer(scene.name);
 
         fallsInARow = data.fallsInARow;
         loadedTime = data.loadedTime;
