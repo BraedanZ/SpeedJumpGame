@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
 
     private GameMaster gm;
 
+    private PauseMenu pauseMenu;
+
     private AnimatePlayer animatePlayer;
 
     private new CameraFollow camera;
@@ -87,6 +89,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<BoxCollider2D>();
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+        pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>();
         animatePlayer = GameObject.FindGameObjectWithTag("Skin").GetComponent<AnimatePlayer>();
         camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
         audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
@@ -143,7 +146,7 @@ public class Player : MonoBehaviour
 
     private void DetectSpaceInput() 
     {
-        if (!gm.IsPaused()) {
+        if (!pauseMenu.isPaused) {
             if (Input.GetKeyDown("space")) {
                 spacePressed = true;
                 audioController.PlayJumpStartSound();
@@ -165,10 +168,10 @@ public class Player : MonoBehaviour
 
     private void Pause() {
         if (Input.GetKeyDown("p") || Input.GetKeyDown("escape")) {
-            if (gm.IsPaused()) {
-                gm.UnpauseGame();
+            if (pauseMenu.isPaused) {
+                pauseMenu.UnpauseGame();
             } else {
-                gm.PauseGame();
+                pauseMenu.PauseGame();
             }
         }
     }
