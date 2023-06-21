@@ -462,9 +462,9 @@ public class GameMaster : MonoBehaviour
         return fallsInARow;
     }
 
-    // public void doExitGame() {
-    //     Application.Quit();
-    // }
+    public void doExitGame() {
+        Application.Quit();
+    }
 
     public void SavePlayer() {
         SaveSystem.SavePlayer(this);
