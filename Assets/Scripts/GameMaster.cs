@@ -34,8 +34,6 @@ public class GameMaster : MonoBehaviour
 
     public GameObject pausePanel;
 
-    // private bool isPaused;
-
     public bool gamePlaying { get; private set; }
 
     public float timeToSpawn;
