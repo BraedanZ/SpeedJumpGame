@@ -13,6 +13,7 @@ TagManager:
   - DieSound
   - AudioController
   - Land
+  - PauseMenu
   layers:
   - Default
   - TransparentFX

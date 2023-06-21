@@ -34,7 +34,7 @@ public class GameMaster : MonoBehaviour
 
     public GameObject pausePanel;
 
-    private bool isPaused;
+    // private bool isPaused;
 
     public bool gamePlaying { get; private set; }
 
@@ -50,11 +50,11 @@ public class GameMaster : MonoBehaviour
     private string writtenJumpCount;
     public Text jumpCountText;
 
-    private bool showingTimer;
-    private bool showingDeaths;
-    private bool showingJumps;
-    private bool showingPunishment;
-    private bool muted;
+    // private bool showingTimer;
+    // private bool showingDeaths;
+    // private bool showingJumps;
+    // private bool showingPunishment;
+    // private bool muted;
 
     private bool waterZone = false;
     public float timeInWater;
@@ -83,12 +83,12 @@ public class GameMaster : MonoBehaviour
         reachedCheckPoints = new Stack<Vector2>();
         // reachedCheckPoints.Push(startPosition);
         gamePlaying = true;
-        isPaused = false;
-        showingTimer = true;
-        showingDeaths = true;
-        showingJumps = true;
-        showingPunishment = true;
-        muted = false;
+        // isPaused = false;
+        // showingTimer = true;
+        // showingDeaths = true;
+        // showingJumps = true;
+        // showingPunishment = true;
+        // muted = false;
         startTime = Time.time;
         // writtenJumpCount = "Jumps: 0";
         // writtenDeathCount = "Deaths: 0";
@@ -127,12 +127,6 @@ public class GameMaster : MonoBehaviour
         UpdateTimer();
         if (timeToSpawn > 0) {
             timeSinceSpawn -= Time.deltaTime;
-        }
-    }
-
-    void OnApplicationFocus(bool hasFocus) {
-        if (!hasFocus) {
-            PauseGame();
         }
     }
 
@@ -346,22 +340,22 @@ public class GameMaster : MonoBehaviour
         gamePlaying = false;
     }
 
-    public void PauseGame() {
-        Time.timeScale = 0;
-        SavePlayer();
-        pausePanel.SetActive(true);
-        isPaused = true;
-    }
+    // public void PauseGame() {
+    //     Time.timeScale = 0;
+    //     SavePlayer();
+    //     pausePanel.SetActive(true);
+    //     isPaused = true;
+    // }
 
-    public void UnpauseGame() {
-        Time.timeScale = 1;
-        pausePanel.SetActive(false);
-        isPaused = false;
-    }
+    // public void UnpauseGame() {
+    //     Time.timeScale = 1;
+    //     pausePanel.SetActive(false);
+    //     isPaused = false;
+    // }
 
-    public bool IsPaused() {
-        return isPaused;
-    }
+    // public bool IsPaused() {
+    //     return isPaused;
+    // }
 
     public void ActivateWaterZone() {
         Time.timeScale = 0.75f;
@@ -414,63 +408,63 @@ public class GameMaster : MonoBehaviour
         return jumpCount;
     }
 
-    public void ShowTimer() {
-        if (showingTimer == true) {
-            timeCounter.gameObject.SetActive(false);
-            showingTimer = false;
-        } else {
-            timeCounter.gameObject.SetActive(true);
-            showingTimer = true;
-        }
-    }
+    // public void ShowTimer() {
+    //     if (showingTimer == true) {
+    //         timeCounter.gameObject.SetActive(false);
+    //         showingTimer = false;
+    //     } else {
+    //         timeCounter.gameObject.SetActive(true);
+    //         showingTimer = true;
+    //     }
+    // }
 
-    public void ShowDeaths() {
-        if (showingDeaths == true) {
-            deathCountText.gameObject.SetActive(false);
-            showingDeaths = false;
-        } else {
-            deathCountText.gameObject.SetActive(true);
-            showingDeaths = true;
-        }
-    }
+    // public void ShowDeaths() {
+    //     if (showingDeaths == true) {
+    //         deathCountText.gameObject.SetActive(false);
+    //         showingDeaths = false;
+    //     } else {
+    //         deathCountText.gameObject.SetActive(true);
+    //         showingDeaths = true;
+    //     }
+    // }
 
-    public void ShowJumps() {
-        if (showingJumps == true) {
-            jumpCountText.gameObject.SetActive(false);
-            showingJumps = false;
-        } else {
-            jumpCountText.gameObject.SetActive(true);
-            showingJumps = true;
-        }
-    }
+    // public void ShowJumps() {
+    //     if (showingJumps == true) {
+    //         jumpCountText.gameObject.SetActive(false);
+    //         showingJumps = false;
+    //     } else {
+    //         jumpCountText.gameObject.SetActive(true);
+    //         showingJumps = true;
+    //     }
+    // }
 
-    public void ShowPunishment() {
-        if (showingPunishment == true) {
-            punishmentForNextFallText.gameObject.SetActive(false);
-            showingPunishment = false;
-        } else {
-            punishmentForNextFallText.gameObject.SetActive(true);
-            showingPunishment = true;
-        }
-    }
+    // public void ShowPunishment() {
+    //     if (showingPunishment == true) {
+    //         punishmentForNextFallText.gameObject.SetActive(false);
+    //         showingPunishment = false;
+    //     } else {
+    //         punishmentForNextFallText.gameObject.SetActive(true);
+    //         showingPunishment = true;
+    //     }
+    // }
 
-    public void Mute() {
-        if (muted == true) {
-            AudioListener.pause = false;
-            muted = false;
-        } else {
-            AudioListener.pause = true;
-            muted = true;
-        }
-    }
+    // public void Mute() {
+    //     if (muted == true) {
+    //         AudioListener.pause = false;
+    //         muted = false;
+    //     } else {
+    //         AudioListener.pause = true;
+    //         muted = true;
+    //     }
+    // }
 
     public int GetFallsInARow() {
         return fallsInARow;
     }
 
-    public void doExitGame() {
-        Application.Quit();
-    }
+    // public void doExitGame() {
+    //     Application.Quit();
+    // }
 
     public void SavePlayer() {
         SaveSystem.SavePlayer(this);
