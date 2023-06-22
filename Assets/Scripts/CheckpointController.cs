@@ -38,6 +38,7 @@ public class CheckpointController : MonoBehaviour
     }
 
     public void Restart() {
+        fallsInARow = 0;
         reachedCheckPoints = new Stack<Vector2>();
         UpdatePunishmentText();
     }
