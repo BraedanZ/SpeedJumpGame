@@ -25,7 +25,6 @@ public class CheckpointController : MonoBehaviour
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         reachedCheckPoints = new Stack<Vector2>();
         UpdatePunishmentText();
-        
     }
 
     void Update() {
@@ -200,7 +199,7 @@ public class CheckpointController : MonoBehaviour
         }
     }
 
-    private void UpdatePunishmentText() {
+    public void UpdatePunishmentText() {
         if (StaticClass.GetDifficulty() == 4) {
             UpdatePunishmentTextTwo();
         } else if (StaticClass.GetDifficulty() == 3) {

@@ -170,8 +170,6 @@ public class GameMaster : MonoBehaviour
         return jumpCount;
     }
 
-    
-
     public void doExitGame() {
         Application.Quit();
     }
@@ -184,6 +182,7 @@ public class GameMaster : MonoBehaviour
         PlayerData data = SaveSystem.LoadPlayer(scene.name);
 
         checkpointController.fallsInARow = data.fallsInARow;
+        checkpointController.UpdatePunishmentText();
         loadedTime = data.loadedTime;
         deathCount = data.deathCount;
         jumpCount = data.jumpCount;
