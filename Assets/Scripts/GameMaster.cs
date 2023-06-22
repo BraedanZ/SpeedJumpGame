@@ -61,23 +61,14 @@ public class GameMaster : MonoBehaviour
 
     void Awake() {
         instance = this;
-        // if (instance == null) {
-        //     instance = this;
-        //     DontDestroyOnLoad(instance);
-        // } else {
-        //     Destroy(gameObject);
-        // }
     }
 
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         scene = SceneManager.GetActiveScene();
         reachedCheckPoints = new Stack<Vector2>();
-        // reachedCheckPoints.Push(startPosition);
         gamePlaying = true;
         startTime = Time.time;
-        // writtenJumpCount = "Jumps: 0";
-        // writtenDeathCount = "Deaths: 0";
         // StaticClass.SetDifficulty(4);
         if (StaticClass.GetDifficulty() == 1) {
             gameOverlay.transform.Find("Punishment").GetComponent<Text>().enabled = false;
@@ -94,9 +85,6 @@ public class GameMaster : MonoBehaviour
     }
 
     public void Restart() {
-        // Start();
-        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        // LoadDemoScene();
         reachedCheckPoints = new Stack<Vector2>();
         gamePlaying = true;
         startTime = Time.time;
