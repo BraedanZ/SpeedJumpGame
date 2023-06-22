@@ -13,8 +13,6 @@ public class GameMaster : MonoBehaviour
 
     public CheckpointController checkpointController;
 
-    // public int fallsInARow;
-
     public Text timeCounter;
 
     private float startTime;
@@ -185,7 +183,6 @@ public class GameMaster : MonoBehaviour
     public void LoadPlayer() {
         PlayerData data = SaveSystem.LoadPlayer(scene.name);
 
-        // fallsInARow = data.fallsInARow;
         checkpointController.fallsInARow = data.fallsInARow;
         loadedTime = data.loadedTime;
         deathCount = data.deathCount;
@@ -205,7 +202,6 @@ public class GameMaster : MonoBehaviour
     }
 
     public void WipeSave() {
-        // fallsInARow = 0;
         checkpointController.fallsInARow = 0;
         elapsedTime = 0f;
         deathCount = 0;
@@ -223,8 +219,4 @@ public class GameMaster : MonoBehaviour
     public Vector2 GetLoadedVelocity() {
         return loadedPlayerVelocity;
     }
-
-    // public int GetLoadedFallsInARow() {
-
-    // }
 }
