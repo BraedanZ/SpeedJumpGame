@@ -5,7 +5,7 @@ using UnityEngine;
 public class CheckPoint : MonoBehaviour
 {
 
-    private GameMaster gm;
+    private CheckpointController checkpointController;
 
     private BoxCollider2D checkpointCollider;
 
@@ -16,7 +16,7 @@ public class CheckPoint : MonoBehaviour
     public Vector3 boxSize;
 
     void Start() {
-        gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+        checkpointController = GameObject.FindGameObjectWithTag("CheckpointController").GetComponent<CheckpointController>();
         checkpointCollider = GetComponent<BoxCollider2D>();
     }
 
@@ -32,7 +32,7 @@ public class CheckPoint : MonoBehaviour
 
     public void CheckForPlayer() {
         if (Physics2D.BoxCast(checkpointCollider.bounds.center, checkpointCollider.bounds.size, 0, transform.up, 0.1f, whatIsPlayer)) {
-            gm.AddCheckPoint(transform.position);
+            checkpointController.AddCheckPoint(transform.position);
         }
     }
 

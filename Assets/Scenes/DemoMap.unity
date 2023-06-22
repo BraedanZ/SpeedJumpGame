@@ -2895,7 +2895,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 329074855}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -4803,17 +4803,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  spawnOffset: {x: -1.6, y: 2.5}
-  startPosition: {x: 0, y: 0}
-  fallsInARow: 0
-  punishmentForNextFallText: {fileID: 710965294}
+  checkpointController: {fileID: 0}
   timeCounter: {fileID: 1106075086}
   elapsedTime: 0
   loadedTime: 0
   winPanel: {fileID: 2082545118}
   gameOverlay: {fileID: 207418801}
   pausePanel: {fileID: 0}
-  timeToSpawn: 0.3
   deathCount: 0
   deathCountText: {fileID: 1146983724}
   jumpCount: 0
@@ -18301,6 +18297,67 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc4a15657156ef4419b76969b63e348c, type: 3}
+--- !u!1001 &1972407693
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6388552314550228616, guid: 23f7535acf7544c48b94e3b7578a5f37, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6388552314550228616, guid: 23f7535acf7544c48b94e3b7578a5f37, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 686.6335
+      objectReference: {fileID: 0}
+    - target: {fileID: 6388552314550228616, guid: 23f7535acf7544c48b94e3b7578a5f37, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 570.47504
+      objectReference: {fileID: 0}
+    - target: {fileID: 6388552314550228616, guid: 23f7535acf7544c48b94e3b7578a5f37, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4067.4983
+      objectReference: {fileID: 0}
+    - target: {fileID: 6388552314550228616, guid: 23f7535acf7544c48b94e3b7578a5f37, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6388552314550228616, guid: 23f7535acf7544c48b94e3b7578a5f37, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6388552314550228616, guid: 23f7535acf7544c48b94e3b7578a5f37, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6388552314550228616, guid: 23f7535acf7544c48b94e3b7578a5f37, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6388552314550228616, guid: 23f7535acf7544c48b94e3b7578a5f37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6388552314550228616, guid: 23f7535acf7544c48b94e3b7578a5f37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6388552314550228616, guid: 23f7535acf7544c48b94e3b7578a5f37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6388552314550228618, guid: 23f7535acf7544c48b94e3b7578a5f37, type: 3}
+      propertyPath: m_Name
+      value: CheckpointController
+      objectReference: {fileID: 0}
+    - target: {fileID: 6388552314550228619, guid: 23f7535acf7544c48b94e3b7578a5f37, type: 3}
+      propertyPath: punishmentForNextFallText
+      value: 
+      objectReference: {fileID: 710965294}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 23f7535acf7544c48b94e3b7578a5f37, type: 3}
 --- !u!1001 &1972700485
 PrefabInstance:
   m_ObjectHideFlags: 0

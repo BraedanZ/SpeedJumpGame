@@ -11,14 +11,7 @@ public class GameMaster : MonoBehaviour
 
     public Player player;
 
-    public Vector2 spawnOffset;
-
-    public Vector2 startPosition;
-    public int fallsInARow = 0;
-    public Text punishmentForNextFallText;
-    private string writtenPunishment;
-
-    public Stack<Vector2> reachedCheckPoints;
+    public CheckpointController checkpointController;
 
     public Text timeCounter;
 
@@ -35,10 +28,6 @@ public class GameMaster : MonoBehaviour
     public GameObject pausePanel;
 
     public bool gamePlaying { get; private set; }
-
-    public float timeToSpawn;
-
-    private float timeSinceSpawn;
 
     public int deathCount;
     private string writtenDeathCount;
@@ -61,23 +50,21 @@ public class GameMaster : MonoBehaviour
 
     void Awake() {
         instance = this;
-        // if (instance == null) {
-        //     instance = this;
-        //     DontDestroyOnLoad(instance);
-        // } else {
-        //     Destroy(gameObject);
-        // }
     }
 
     void Start() {
+        SetStartVariables();
+        LoadPlayer();
+        UpdateJumpCount();
+        UpdateDeathCount();
+    }
+
+    private void SetStartVariables() {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        checkpointController = GameObject.FindGameObjectWithTag("CheckpointController").GetComponent<CheckpointController>();
         scene = SceneManager.GetActiveScene();
-        reachedCheckPoints = new Stack<Vector2>();
-        // reachedCheckPoints.Push(startPosition);
         gamePlaying = true;
         startTime = Time.time;
-        // writtenJumpCount = "Jumps: 0";
-        // writtenDeathCount = "Deaths: 0";
         // StaticClass.SetDifficulty(4);
         if (StaticClass.GetDifficulty() == 1) {
             gameOverlay.transform.Find("Punishment").GetComponent<Text>().enabled = false;
@@ -87,194 +74,29 @@ public class GameMaster : MonoBehaviour
             gameOverlay.transform.Find("DeathCount").GetComponent<Text>().enabled = false;
             gameOverlay.transform.Find("JumpCount").GetComponent<Text>().enabled = false;
         }
-        LoadPlayer();
-        UpdatePunishmentText();
-        UpdateJumpCount();
-        UpdateDeathCount();
     }
 
     public void Restart() {
-        // Start();
-        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        // LoadDemoScene();
-        reachedCheckPoints = new Stack<Vector2>();
-        gamePlaying = true;
-        startTime = Time.time;
-        loadedTime = 0f;
-
+        ResetStartVariables();
         WipeSave();
-        UpdatePunishmentText();
         UpdateJumpCount();
         UpdateDeathCount();
         player.Restart();
+        checkpointController.Restart();
+    }
+
+    private void ResetStartVariables() {
+        gamePlaying = true;
+        startTime = Time.time;
+        loadedTime = 0f;
     }
 
     void Update() {
         UpdateTimer();
-        if (timeToSpawn > 0) {
-            timeSinceSpawn -= Time.deltaTime;
-        }
     }
 
     void OnApplicationQuit() {
         SavePlayer();
-    }
-
-    public Vector2 GetRespawnPoint() {
-        if (StaticClass.GetDifficulty() == 4) {
-            return twoRespawnPoint();
-        } 
-        
-        else if (StaticClass.GetDifficulty() == 3) {
-            return fourRespawnPoint();
-        } 
-
-        else if (StaticClass.GetDifficulty() == 2) {
-            return IntendedRespawnPoint();
-        } 
-        
-        else if (StaticClass.GetDifficulty() == 1) {
-            return EasyRespawnPoint();
-        }
-
-        else {
-            return CasualRespawnPoint();
-        }
-    }
-
-    private Vector2 twoRespawnPoint() {
-        fallsInARow++;
-
-        if (reachedCheckPoints.Count == 0 ) {
-            fallsInARow = 0;
-            UpdatePunishmentText();
-            return startPosition;
-        }
-        if (reachedCheckPoints.Count == 1 ) {
-            fallsInARow = 0;
-            UpdatePunishmentText();
-            return reachedCheckPoints.Pop();
-        }
-
-        double punishment = 2 * fallsInARow;
-
-        PopStackUntilRespawnPoint(punishment);
-        timeSinceSpawn = timeToSpawn;
-        if (reachedCheckPoints.Count == 1) {
-            fallsInARow = 0;
-        }
-        UpdatePunishmentText();
-        return reachedCheckPoints.Pop();
-    }
-
-    private Vector2 fourRespawnPoint() {
-        fallsInARow++;
-
-        if (reachedCheckPoints.Count == 0 ) {
-            fallsInARow = 0;
-            UpdatePunishmentText();
-            return startPosition;
-        }
-        if (reachedCheckPoints.Count == 1 ) {
-            fallsInARow = 0;
-            UpdatePunishmentText();
-            return reachedCheckPoints.Pop();
-        }
-
-        double punishment;
-        if (fallsInARow == 1) {
-            punishment = 2;
-        } else {
-            punishment = 4 * (fallsInARow - 1);
-        }
-
-        PopStackUntilRespawnPoint(punishment);
-        timeSinceSpawn = timeToSpawn;
-        if (reachedCheckPoints.Count == 1) {
-            fallsInARow = 0;
-        }
-        UpdatePunishmentText();
-        return reachedCheckPoints.Pop();
-    }
-
-    private Vector2 IntendedRespawnPoint() {
-        fallsInARow++;
-
-        if (reachedCheckPoints.Count == 0 ) {
-            fallsInARow = 0;
-            UpdatePunishmentText();
-            return startPosition;
-        }
-        if (reachedCheckPoints.Count == 1 ) {
-            fallsInARow = 0;
-            UpdatePunishmentText();
-            return reachedCheckPoints.Pop();
-        }
-
-        double punishment = Math.Pow(2, fallsInARow);
-        PopStackUntilRespawnPoint(punishment);
-        timeSinceSpawn = timeToSpawn;
-        if (reachedCheckPoints.Count == 1) {
-            fallsInARow = 0;
-        }
-        UpdatePunishmentText();
-        return reachedCheckPoints.Pop();
-    }
-
-    private Vector2 EasyRespawnPoint() {
-        if (reachedCheckPoints.Count == 0 ) {
-            return startPosition;
-        }
-        else if (reachedCheckPoints.Count == 1 ) {
-            return reachedCheckPoints.Pop();
-        }
-        else {
-            reachedCheckPoints.Pop();
-            return reachedCheckPoints.Pop();
-        }
-    }
-
-    private Vector2 CasualRespawnPoint() {
-        if (reachedCheckPoints.Count == 0 ) {
-            return startPosition;
-        } else if (reachedCheckPoints.Count == 1) {
-            return reachedCheckPoints.Pop();
-        }
-        return reachedCheckPoints.Peek();
-    }
-
-    private void PopStackUntilRespawnPoint(double punishment) {
-        for (int i = 0; i < punishment; i++) {
-            if (reachedCheckPoints.Count > 1) {
-                reachedCheckPoints.Pop();
-            }
-        }
-    }
-
-    public void AddCheckPoint(Vector2 checkPointPosition) {
-        if (CheckIfAddingRepeatedCheckpoint(checkPointPosition)) {
-            return;
-        }
-        DecrementFallsInARow();
-        reachedCheckPoints.Push(checkPointPosition);
-    }
-
-    private bool CheckIfAddingRepeatedCheckpoint(Vector2 checkPointPosition) {
-        if (reachedCheckPoints.Count != 0) {
-            if (reachedCheckPoints.Peek() == checkPointPosition) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private void DecrementFallsInARow() {
-        if (timeSinceSpawn < 0) {
-            if (fallsInARow > 0) {
-                fallsInARow--;
-                UpdatePunishmentText();
-            }
-        }
     }
 
     private void UpdateTimer() {
@@ -289,37 +111,6 @@ public class GameMaster : MonoBehaviour
             timePlayingStr = timePlaying.ToString("mm':'ss'.'ff");
             timeCounter.text = timePlayingStr;
         }
-    }
-
-    private void UpdatePunishmentText() {
-        if (StaticClass.GetDifficulty() == 4) {
-            UpdatePunishmentTextTwo();
-        } else if (StaticClass.GetDifficulty() == 3) {
-            UpdatePunishmentTextFour();
-        } else if (StaticClass.GetDifficulty() == 2) {
-            UpdatePunishmentTextIntended();
-        }
-    }
-
-    private void UpdatePunishmentTextTwo() {
-        writtenPunishment = "x" + 2 * (fallsInARow + 1);
-        punishmentForNextFallText.text = writtenPunishment;
-    }
-
-    private void UpdatePunishmentTextFour() {
-        double punishment;
-        if (fallsInARow == 0) {
-            punishment = 2;
-        } else {
-            punishment = 4 * (fallsInARow);
-        }
-        writtenPunishment = "x" + punishment;
-        punishmentForNextFallText.text = writtenPunishment;
-    }
-
-    private void UpdatePunishmentTextIntended() {
-        writtenPunishment = "x" + Math.Pow(2, fallsInARow + 1);
-        punishmentForNextFallText.text = writtenPunishment;
     }
 
     public void StopTimer() {
@@ -377,10 +168,6 @@ public class GameMaster : MonoBehaviour
         return jumpCount;
     }
 
-    public int GetFallsInARow() {
-        return fallsInARow;
-    }
-
     public void doExitGame() {
         Application.Quit();
     }
@@ -392,7 +179,8 @@ public class GameMaster : MonoBehaviour
     public void LoadPlayer() {
         PlayerData data = SaveSystem.LoadPlayer(scene.name);
 
-        fallsInARow = data.fallsInARow;
+        checkpointController.fallsInARow = data.fallsInARow;
+        checkpointController.UpdatePunishmentText();
         loadedTime = data.loadedTime;
         deathCount = data.deathCount;
         jumpCount = data.jumpCount;
@@ -406,12 +194,12 @@ public class GameMaster : MonoBehaviour
 
         for (int i = 0; i <= data.checkpoints.GetUpperBound(0); i++) {
             Vector2 checkpoint = new Vector2(data.checkpoints[i, 0], data.checkpoints[i, 1]);
-            reachedCheckPoints.Push(checkpoint);
+            checkpointController.reachedCheckPoints.Push(checkpoint);
         }
     }
 
     public void WipeSave() {
-        fallsInARow = 0;
+        checkpointController.fallsInARow = 0;
         elapsedTime = 0f;
         deathCount = 0;
         jumpCount = 0;
