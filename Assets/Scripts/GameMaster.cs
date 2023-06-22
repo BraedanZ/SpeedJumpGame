@@ -113,8 +113,6 @@ public class GameMaster : MonoBehaviour
         }
     }
 
-    
-
     public void StopTimer() {
         gamePlaying = false;
     }
