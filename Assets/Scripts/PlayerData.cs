@@ -16,13 +16,13 @@ public class PlayerData {
 
     public PlayerData (GameMaster gm) {
 
-        fallsInARow = gm.fallsInARow;
+        fallsInARow = gm.checkpointController.fallsInARow;
         loadedTime = gm.elapsedTime;
         deathCount = gm.deathCount;
         jumpCount = gm.jumpCount;
 
 
-        Stack<Vector2> copyOfReachedCheckPoints = new Stack<Vector2>(new Stack<Vector2>(gm.reachedCheckPoints));
+        Stack<Vector2> copyOfReachedCheckPoints = new Stack<Vector2>(new Stack<Vector2>(gm.checkpointController.reachedCheckPoints));
 
         checkpoints = new float[copyOfReachedCheckPoints.Count, 2];
         for (int i = copyOfReachedCheckPoints.Count - 1; i >= 0; i--) {

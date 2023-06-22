@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
 
     private GameMaster gm;
 
+    private CheckpointController checkpointController;
+
     private PauseMenu pauseMenu;
 
     private AnimatePlayer animatePlayer;
@@ -89,20 +91,21 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<BoxCollider2D>();
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+        checkpointController = GameObject.FindGameObjectWithTag("CheckpointController").GetComponent<CheckpointController>();
         pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>();
         animatePlayer = GameObject.FindGameObjectWithTag("Skin").GetComponent<AnimatePlayer>();
         camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
         audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
         // maxDistance = transform.position.x;
         SelectSkin();
-        // transform.position = gm.GetRespawnPoint() + spawnOffset;
+        // transform.position = checkpointController.GetRespawnPoint() + spawnOffset;
         SetLoadedPosition();
         SetLoadedVelocity();
         camera.SnapCamera();
     }
 
     public void Restart() {
-        transform.position = gm.GetRespawnPoint() + spawnOffset;
+        transform.position = checkpointController.GetRespawnPoint() + spawnOffset;
         rb.velocity = Vector2.zero;
         camera.SnapCamera();
         maxDistance = 0;
@@ -320,7 +323,7 @@ public class Player : MonoBehaviour
         gm.IncramentDeath();
         audioController.PlayDieSound();
         SetMaxDistance();
-        transform.position = gm.GetRespawnPoint() + spawnOffset;
+        transform.position = checkpointController.GetRespawnPoint() + spawnOffset;
         rb.velocity = Vector2.zero;
         camera.SnapCamera();
         gm.SavePlayer();
