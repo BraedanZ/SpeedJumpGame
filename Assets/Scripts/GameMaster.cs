@@ -77,12 +77,12 @@ public class GameMaster : MonoBehaviour
     }
 
     public void Restart() {
+        checkpointController.Restart();
         ResetStartVariables();
         WipeSave();
         UpdateJumpCount();
         UpdateDeathCount();
         player.Restart();
-        checkpointController.Restart();
     }
 
     private void ResetStartVariables() {
