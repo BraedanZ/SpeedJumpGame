@@ -64,6 +64,14 @@ public class GameMaster : MonoBehaviour
     }
 
     void Start() {
+        SetStartVariables();
+        LoadPlayer();
+        UpdatePunishmentText();
+        UpdateJumpCount();
+        UpdateDeathCount();
+    }
+
+    private void SetStartVariables() {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         scene = SceneManager.GetActiveScene();
         reachedCheckPoints = new Stack<Vector2>();
@@ -78,17 +86,10 @@ public class GameMaster : MonoBehaviour
             gameOverlay.transform.Find("DeathCount").GetComponent<Text>().enabled = false;
             gameOverlay.transform.Find("JumpCount").GetComponent<Text>().enabled = false;
         }
-        LoadPlayer();
-        UpdatePunishmentText();
-        UpdateJumpCount();
-        UpdateDeathCount();
     }
 
     public void Restart() {
-        reachedCheckPoints = new Stack<Vector2>();
-        gamePlaying = true;
-        startTime = Time.time;
-        loadedTime = 0f;
+        ResetStartVariables();
 
         WipeSave();
         UpdatePunishmentText();
@@ -97,8 +98,19 @@ public class GameMaster : MonoBehaviour
         player.Restart();
     }
 
+    private void ResetStartVariables() {
+        reachedCheckPoints = new Stack<Vector2>();
+        gamePlaying = true;
+        startTime = Time.time;
+        loadedTime = 0f;
+    }
+
     void Update() {
         UpdateTimer();
+        UpdateTimeSinceSpawn();
+    }
+
+    private void UpdateTimeSinceSpawn() {
         if (timeToSpawn > 0) {
             timeSinceSpawn -= Time.deltaTime;
         }
