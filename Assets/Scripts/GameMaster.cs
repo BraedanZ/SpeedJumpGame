@@ -11,7 +11,7 @@ public class GameMaster : MonoBehaviour
 
     public Player player;
 
-    public Vector2 spawnOffset;
+    // public Vector2 spawnOffset;
 
     public Vector2 startPosition;
     public int fallsInARow = 0;
