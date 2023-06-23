@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
 
     private GameMaster gm;
 
+    private SunQuotes sunQuotes;
+
     private CheckpointController checkpointController;
 
     private PauseMenu pauseMenu;
@@ -91,6 +93,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<BoxCollider2D>();
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+        sunQuotes = GameObject.FindGameObjectWithTag("Sun").GetComponent<SunQuotes>();
         checkpointController = GameObject.FindGameObjectWithTag("CheckpointController").GetComponent<CheckpointController>();
         pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>();
         animatePlayer = GameObject.FindGameObjectWithTag("Skin").GetComponent<AnimatePlayer>();
@@ -326,6 +329,7 @@ public class Player : MonoBehaviour
         transform.position = checkpointController.GetRespawnPoint() + spawnOffset;
         rb.velocity = Vector2.zero;
         camera.SnapCamera();
+        sunQuotes.Died();
         gm.SavePlayer();
     }
 

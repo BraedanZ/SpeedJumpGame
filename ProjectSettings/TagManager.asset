@@ -15,6 +15,7 @@ TagManager:
   - Land
   - PauseMenu
   - CheckpointController
+  - Sun
   layers:
   - Default
   - TransparentFX
