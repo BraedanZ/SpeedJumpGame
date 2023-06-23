@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class DisappearingPlatform : MonoBehaviour
 {
-    private bool isActive;
+    // private bool isActive;
 
-    private Renderer renderer;
+    // private Renderer renderer;
 
     // private Color fadedColour;
     // private Color unFadedColour;
@@ -15,7 +15,7 @@ public class DisappearingPlatform : MonoBehaviour
 
     void Start()
     {
-        renderer = this.gameObject.GetComponent<Renderer>();
+        // renderer = this.gameObject.GetComponent<Renderer>();
         InvokeRepeating("ActivatePlatform", 2.0f, 4.0f);
         InvokeRepeating("DeactivatePlatform", 0.0f, 4.0f);
     }
@@ -26,12 +26,12 @@ public class DisappearingPlatform : MonoBehaviour
     }
 
     private void ActivatePlatform() {
-        isActive = true;
+        // isActive = true;
         this.gameObject.SetActive(true);
     }
 
     private void DeactivatePlatform() {
-        isActive = false;
+        // isActive = false;
         this.gameObject.SetActive(false);
     }
 }
