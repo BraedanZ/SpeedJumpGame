@@ -12,6 +12,8 @@ public class SunMovement : MonoBehaviour
     private float lerpedX;
     private float lerpedY;
 
+    public float mapLength;
+
     void Start()
     {
         startPosition = new Vector3(-11.6f, 2.2f, 0f);
@@ -21,10 +23,10 @@ public class SunMovement : MonoBehaviour
     {
         lerpedX = cam.transform.position.x;
         lerpedY = (-0.00002f) * Mathf.Pow((lerpedX - 1000), 2f);
-        lerpedPosition.x = lerpedX - 25.6f + (51 * (cam.transform.position.x / 2000f));
-        lerpedPosition.y = lerpedY + 15f /*+ cam.transform.position.y*/;
+        lerpedPosition.x = lerpedX - 25.6f + (51 * (cam.transform.position.x / mapLength));
+        lerpedPosition.y = lerpedY + 12f + cam.transform.position.y;
         lerpedPosition.z = 0f;
-        transform.position = lerpedPosition;
+        transform.position = Vector3.MoveTowards(transform.position, lerpedPosition, 2f * Time.deltaTime);
     }
 }
 
