@@ -4673,7 +4673,6 @@ MonoBehaviour:
     m_NumColorKeys: 7
     m_NumAlphaKeys: 2
   cam: {fileID: 0}
-  mapLength: 1200
   colourModifierFromX: 0
 --- !u!20 &519420031
 Camera:
@@ -14523,6 +14522,14 @@ PrefabInstance:
       propertyPath: quote
       value: 
       objectReference: {fileID: 195965580}
+    - target: {fileID: 4613373275174870567, guid: 797618be3e12c854e8561b5d75ea7d17, type: 3}
+      propertyPath: m_SortingLayer
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4613373275174870567, guid: 797618be3e12c854e8561b5d75ea7d17, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1955944725
+      objectReference: {fileID: 0}
     - target: {fileID: 4613373275204896932, guid: 797618be3e12c854e8561b5d75ea7d17, type: 3}
       propertyPath: m_Name
       value: Sun

@@ -77,10 +77,10 @@ public class SunQuotes : MonoBehaviour
     public void Died() {
         if(StaticClass.GetDifficulty() != 0) {
             deathCount++;
-            if (deathCount == 2) {
+            if (deathCount == 1) {
                 speechBubble.SetActive(false);
             }
-            if (deathCount >= 10) {
+            if (deathCount >= 5) {
                 deathCount = 0;
                 quote.text = happinessQuotes[happiness, quoteIndex];
                 speechBubble.SetActive(true);
@@ -111,6 +111,9 @@ public class SunQuotes : MonoBehaviour
     }
 
     public void SetHappiness(int happiness) {
-        this.happiness = happiness;
+        if (this.happiness != happiness) {
+            this.happiness = happiness;
+            quoteIndex = 0;
+        }
     }
 }
