@@ -1,7 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class SunQuotes : MonoBehaviour
 {
@@ -20,12 +21,16 @@ public class SunQuotes : MonoBehaviour
 
     private GameObject speechBubble;
 
-    public TextMeshProUGUI quote;
+    public TMP_Text quote;
 
     void Start() {
 
         speechBubble = this.gameObject.transform.GetChild(1).gameObject;
         // quote = speechBubble.transform.GetChild(0).gameObject;
+
+        if (StaticClass.GetDifficulty() != 0) {
+            happiness = 1;
+        }
 
         deathCount = 0;
         madeJumps = 0;
@@ -70,17 +75,19 @@ public class SunQuotes : MonoBehaviour
         happinessQuotes[3, 3] = "Feels like I've been here forever";
     }
     public void Died() {
-        deathCount++;
-        if (deathCount == 2) {
-            speechBubble.SetActive(false);
-        }
-        if (deathCount >= 10) {
-            deathCount = 0;
-            quote.text = happinessQuotes[happiness, quoteIndex];
-            speechBubble.SetActive(true);
-            quoteIndex++;
-            if (quoteIndex > quotesPerHappiness) {
-                quoteIndex = 0;
+        if(StaticClass.GetDifficulty() != 0) {
+            deathCount++;
+            if (deathCount == 2) {
+                speechBubble.SetActive(false);
+            }
+            if (deathCount >= 10) {
+                deathCount = 0;
+                quote.text = happinessQuotes[happiness, quoteIndex];
+                speechBubble.SetActive(true);
+                quoteIndex++;
+                if (quoteIndex > quotesPerHappiness) {
+                    quoteIndex = 0;
+                }
             }
         }
     }
@@ -103,8 +110,7 @@ public class SunQuotes : MonoBehaviour
         }
     }
 
-    public void IncramentHappiness() {
-        happiness++;
-        quoteIndex = 0;
+    public void SetHappiness(int happiness) {
+        this.happiness = happiness;
     }
 }

@@ -147,7 +147,15 @@ public class Player : MonoBehaviour
     private void SetMaxDistance() {
         if (transform.position.x > maxDistance) {
             maxDistance = transform.position.x;
+            if (maxDistance < gm.mapLength / 3) {
+                sunQuotes.SetHappiness(1);
+            } else if (maxDistance >= gm.mapLength * 0.33f && maxDistance < gm.mapLength * 0.66f) {
+                sunQuotes.SetHappiness(2);
+            } else if (maxDistance >= gm.mapLength * 0.66f) {
+                sunQuotes.SetHappiness(3);
+            }
         }
+        
     }
 
     private void DetectSpaceInput() 
