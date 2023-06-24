@@ -48,6 +48,8 @@ public class GameMaster : MonoBehaviour
 
     public Scene scene;
 
+    public float mapLength;
+
     void Awake() {
         instance = this;
     }

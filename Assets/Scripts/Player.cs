@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
 
     private GameMaster gm;
 
+    private SunQuotes sunQuotes;
+
     private CheckpointController checkpointController;
 
     private PauseMenu pauseMenu;
@@ -91,6 +93,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<BoxCollider2D>();
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+        sunQuotes = GameObject.FindGameObjectWithTag("Sun").GetComponent<SunQuotes>();
         checkpointController = GameObject.FindGameObjectWithTag("CheckpointController").GetComponent<CheckpointController>();
         pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>();
         animatePlayer = GameObject.FindGameObjectWithTag("Skin").GetComponent<AnimatePlayer>();
@@ -144,7 +147,15 @@ public class Player : MonoBehaviour
     private void SetMaxDistance() {
         if (transform.position.x > maxDistance) {
             maxDistance = transform.position.x;
+            if (maxDistance < gm.mapLength / 3) {
+                sunQuotes.SetHappiness(1);
+            } else if (maxDistance >= gm.mapLength * 0.33f && maxDistance < gm.mapLength * 0.66f) {
+                sunQuotes.SetHappiness(2);
+            } else if (maxDistance >= gm.mapLength * 0.66f) {
+                sunQuotes.SetHappiness(3);
+            }
         }
+        
     }
 
     private void DetectSpaceInput() 
@@ -326,6 +337,7 @@ public class Player : MonoBehaviour
         transform.position = checkpointController.GetRespawnPoint() + spawnOffset;
         rb.velocity = Vector2.zero;
         camera.SnapCamera();
+        sunQuotes.Died();
         gm.SavePlayer();
     }
 
