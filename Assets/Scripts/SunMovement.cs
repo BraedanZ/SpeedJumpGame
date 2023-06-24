@@ -7,6 +7,7 @@ public class SunMovement : MonoBehaviour
     public GameObject cam;
 
     private GameMaster gm;
+    private Player player;
 
     private Vector3 startPosition;
 
@@ -17,15 +18,16 @@ public class SunMovement : MonoBehaviour
     void Start()
     {
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         startPosition = new Vector3(-11.6f, 2.2f, 0f);
     }
 
     void Update()
     {
-        lerpedX = cam.transform.position.x;
-        lerpedY = ((-0.00002f) * Mathf.Pow((lerpedX - 1000), 2f)) * (2000f / gm.mapLength);
-        lerpedPosition.x = lerpedX - 25.6f + (51 * (cam.transform.position.x / gm.mapLength));
-        lerpedPosition.y = lerpedY + 12f + cam.transform.position.y;
+        lerpedX = cam.transform.position.x - 25.6f + (51 * (player.playerPosition.x / gm.mapLength));
+        lerpedY = ((-0.000035991f) * Mathf.Pow((lerpedX - (gm.mapLength / 2f)), 2f)) + 13f;
+        lerpedPosition.x = lerpedX;
+        lerpedPosition.y = lerpedY + cam.transform.position.y;
         lerpedPosition.z = 0f;
         transform.position = Vector3.MoveTowards(transform.position, lerpedPosition, 2f * Time.deltaTime);
     }
