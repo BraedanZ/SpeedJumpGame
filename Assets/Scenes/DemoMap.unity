@@ -4819,7 +4819,7 @@ MonoBehaviour:
   pauseButton: {fileID: 329074852}
   scene:
     m_Handle: 0
-  mapLength: 1200
+  mapLength: 1177
 --- !u!4 &551659375
 Transform:
   m_ObjectHideFlags: 0
