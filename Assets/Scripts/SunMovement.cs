@@ -23,7 +23,7 @@ public class SunMovement : MonoBehaviour
     void Update()
     {
         lerpedX = cam.transform.position.x;
-        lerpedY = (-0.00002f) * Mathf.Pow((lerpedX - 1000), 2f);
+        lerpedY = ((-0.00002f) * Mathf.Pow((lerpedX - 1000), 2f)) * (2000f / gm.mapLength);
         lerpedPosition.x = lerpedX - 25.6f + (51 * (cam.transform.position.x / gm.mapLength));
         lerpedPosition.y = lerpedY + 12f + cam.transform.position.y;
         lerpedPosition.z = 0f;

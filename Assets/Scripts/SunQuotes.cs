@@ -85,7 +85,7 @@ public class SunQuotes : MonoBehaviour
                 quote.text = happinessQuotes[happiness, quoteIndex];
                 speechBubble.SetActive(true);
                 quoteIndex++;
-                if (quoteIndex > quotesPerHappiness) {
+                if (quoteIndex == quotesPerHappiness) {
                     quoteIndex = 0;
                 }
             }
