@@ -15,6 +15,8 @@ public class SunMovement : MonoBehaviour
     private float lerpedX;
     private float lerpedY;
 
+    public float parabolaAmplifier;
+
     void Start()
     {
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
@@ -25,7 +27,7 @@ public class SunMovement : MonoBehaviour
     void Update()
     {
         lerpedX = cam.transform.position.x - 25.6f + (51 * (player.playerPosition.x / gm.mapLength));
-        lerpedY = ((-0.000035991f) * Mathf.Pow((lerpedX - (gm.mapLength / 2f)), 2f)) + 13f;
+        lerpedY = ((parabolaAmplifier) * Mathf.Pow((lerpedX - (gm.mapLength / 2f)), 2f)) + 13f;
         lerpedPosition.x = lerpedX;
         lerpedPosition.y = lerpedY + cam.transform.position.y;
         lerpedPosition.z = 0f;

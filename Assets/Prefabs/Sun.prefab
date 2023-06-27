@@ -447,6 +447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
+  parabolaAmplifier: -0.000058044
 --- !u!114 &2883191380579887734
 MonoBehaviour:
   m_ObjectHideFlags: 0
