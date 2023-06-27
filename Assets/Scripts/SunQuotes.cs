@@ -10,7 +10,7 @@ public class SunQuotes : MonoBehaviour
     private int madeJumps;
     private int happiness;
 
-    private int numberOfStagedQuotes = 8;
+    private int numberOfStagedQuotes = 11;
     private string[] stagedQuotes;
 
     private int maxHappiness = 4;
@@ -47,6 +47,9 @@ public class SunQuotes : MonoBehaviour
         stagedQuotes[5] = "Good thing it also seems like that number decreases after each successful jump";
         stagedQuotes[6] = "Here's another hard jump";
         stagedQuotes[7] = "Yikes, looks like all the hard jumps were lined up perfectly...";
+        stagedQuotes[8] = "Far jumps here, maybe you should jump as far as you can a few times";
+        stagedQuotes[9] = "Oh, well not every jump can be a full one";
+        stagedQuotes[10] = "Uh oh, those platforms look icy.  Dont worry, I'm sure that I can melt them";
 
         happinessQuotes = new string[maxHappiness, quotesPerHappiness];
 
