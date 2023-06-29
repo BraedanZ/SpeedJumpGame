@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-
     Player player;
 
     Rigidbody2D rb;
@@ -25,6 +24,8 @@ public class Player : MonoBehaviour
     private AnimatePlayer animatePlayer;
 
     private new CameraFollow camera;
+
+    [SerializeField] FlashImage flashImage = null;
 
     public float verticalSpeed;
     public float horizontalSpeed;
@@ -331,6 +332,7 @@ public class Player : MonoBehaviour
     }
 
     public void Die() {
+        flashImage.StartFlash((0.2f + 0.15f * checkpointController.fallsInARow), 0.1f + 0.15f * checkpointController.fallsInARow, Color.white);
         gm.IncramentDeath();
         audioController.PlayDieSound();
         SetMaxDistance();
