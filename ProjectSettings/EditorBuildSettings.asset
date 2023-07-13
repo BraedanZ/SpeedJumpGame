@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SecretMap.unity
     guid: 3c336b608493a114e859ce2b318ae5d0
+  - enabled: 1
+    path: Assets/Scenes/Map1.unity
+    guid: a45e44146d964f643b40d714b2e5bc02
   m_configObjects: {}

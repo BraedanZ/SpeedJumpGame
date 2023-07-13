@@ -94,6 +94,11 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    public void LoadMainMenu() {
+        
+        SceneManager.LoadScene("MainMenu");
+    }
+
     public void doExitGame() {
         Application.Quit();
     }
