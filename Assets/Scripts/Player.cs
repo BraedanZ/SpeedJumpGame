@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
     }
 
     public void Restart() {
-        transform.position = checkpointController.GetRespawnPoint() + spawnOffset;
+        transform.position = checkpointController.startPosition;
         rb.velocity = Vector2.zero;
         camera.SnapCamera();
         maxDistance = 0;
