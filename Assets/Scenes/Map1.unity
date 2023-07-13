@@ -5925,8 +5925,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 551659374}
-        m_TargetAssemblyTypeName: GameMaster, Assembly-CSharp
+      - m_Target: {fileID: 730657551}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: PauseGame
         m_Mode: 1
         m_Arguments:
@@ -20629,7 +20629,7 @@ RectTransform:
   - {fileID: 2082545119}
   - {fileID: 935931036}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -23995,7 +23995,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6388552314550228616, guid: 23f7535acf7544c48b94e3b7578a5f37, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6388552314550228616, guid: 23f7535acf7544c48b94e3b7578a5f37, type: 3}
       propertyPath: m_LocalPosition.x
