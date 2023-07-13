@@ -10,7 +10,7 @@ public class CheckpointController : MonoBehaviour
 
     private SunQuotes sunQuotes;
 
-    private Vector2 startPosition = Vector2.zero;
+    public Vector2 startPosition = Vector2.zero;
 
     public Stack<Vector2> reachedCheckPoints;
 
@@ -78,15 +78,18 @@ public class CheckpointController : MonoBehaviour
         if (reachedCheckPoints.Count == 1 ) {
             fallsInARow = 0;
             UpdatePunishmentText();
-            return reachedCheckPoints.Pop();
+            return startPosition;
         }
 
         double punishment = 2 * fallsInARow;
 
         PopStackUntilRespawnPoint(punishment);
         timeSinceSpawn = timeToSpawn;
-        if (reachedCheckPoints.Count == 1) {
+        if (reachedCheckPoints.Count == 1 || reachedCheckPoints.Count == 0) {
             fallsInARow = 0;
+            reachedCheckPoints = new Stack<Vector2>();
+            UpdatePunishmentText();
+            return startPosition;
         }
         UpdatePunishmentText();
         return reachedCheckPoints.Pop();
