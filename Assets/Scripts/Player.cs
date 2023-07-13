@@ -106,6 +106,7 @@ public class Player : MonoBehaviour
         SetLoadedPosition();
         SetLoadedVelocity();
         camera.SnapCamera();
+        pauseMenu.UnpauseGame();
     }
 
     public void Restart() {
