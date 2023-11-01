@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,7 +31,7 @@ public class Player : MonoBehaviour
     public float verticalSpeed;
     public float horizontalSpeed;
 
-    float pressSpaceTime = 0f;
+    double pressSpaceTime = 0f;
 
     bool isGrounded;
     public LayerMask whatIsGround;
@@ -232,9 +233,15 @@ public class Player : MonoBehaviour
             pressSpaceTime = 0.8f;
         }
 
-        if (pressSpaceTime < 0.15f) {
-            pressSpaceTime = 0.15f;
+        if (pressSpaceTime < 0.16f) {
+            pressSpaceTime = 0.16f;
         }
+
+        double temp = Math.Floor(pressSpaceTime * 100);
+        if (temp % 2 == 1) {
+            temp -= 1;
+        }
+        pressSpaceTime = temp / 100;
     }
 
     private void GroundCheck() {
@@ -300,12 +307,12 @@ public class Player : MonoBehaviour
         if (isGrounded) {
             if (!mountainZone) {
                 justJumped = true;
-                rb.AddForce(transform.right * horizontalSpeed * pressSpaceTime);
-                rb.AddForce(transform.up * verticalSpeed * pressSpaceTime);
+                rb.AddForce(transform.right * horizontalSpeed * (float)pressSpaceTime);
+                rb.AddForce(transform.up * verticalSpeed * (float)pressSpaceTime);
             } else if (mountainZone) {
                 justJumped = true;
-                rb.AddForce(transform.right * (horizontalSpeed - 400) * pressSpaceTime);
-                rb.AddForce(transform.up * (verticalSpeed + 400) * pressSpaceTime);
+                rb.AddForce(transform.right * (horizontalSpeed - 400) * (float)pressSpaceTime);
+                rb.AddForce(transform.up * (verticalSpeed + 400) * (float)pressSpaceTime);
             }
             canJump = false;
             audioController.PlayJumpEndSound();
