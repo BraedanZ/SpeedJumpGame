@@ -1,15 +1,19 @@
-
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelGenerator : MonoBehaviour
 {
+    public Texture2D[] maps;
 
     public Texture2D map;
 
     public ColorToPrefab[] colorMappings;
 
+    int level = LevelSelector.selectedLevel;
+
     void Start()
     {
+        map = maps[level - 1];
         GenerateLevel();
     }
 
