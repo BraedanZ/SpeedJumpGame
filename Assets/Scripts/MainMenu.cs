@@ -17,6 +17,10 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Map1");
     }
 
+    public void LoadLevelSelect() {
+        SceneManager.LoadScene("Level Select");
+    }
+
     public void DifficultySettings(int difficulty) {
         StaticClass.SetDifficulty(difficulty);
     }
