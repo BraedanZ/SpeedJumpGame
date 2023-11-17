@@ -95,7 +95,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<BoxCollider2D>();
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
-        sunQuotes = GameObject.FindGameObjectWithTag("Sun").GetComponent<SunQuotes>();
+        // sunQuotes = GameObject.FindGameObjectWithTag("Sun").GetComponent<SunQuotes>();
         checkpointController = GameObject.FindGameObjectWithTag("CheckpointController").GetComponent<CheckpointController>();
         pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>();
         animatePlayer = GameObject.FindGameObjectWithTag("Skin").GetComponent<AnimatePlayer>();

@@ -25,7 +25,7 @@ public class CheckpointController : MonoBehaviour
     void Start()
     {
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
-        sunQuotes = GameObject.FindGameObjectWithTag("Sun").GetComponent<SunQuotes>();
+        // sunQuotes = GameObject.FindGameObjectWithTag("Sun").GetComponent<SunQuotes>();
         reachedCheckPoints = new Stack<Vector2>();
         UpdatePunishmentText();
     }
@@ -185,7 +185,7 @@ public class CheckpointController : MonoBehaviour
         }
         DecrementFallsInARow();
         reachedCheckPoints.Push(checkPointPosition);
-        sunQuotes.MadeJump();
+        // sunQuotes.MadeJump();
     }
 
     private bool CheckIfAddingRepeatedCheckpoint(Vector2 checkPointPosition) {
