@@ -33,7 +33,7 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseGame() {
         Time.timeScale = 0f;
-        gm.SavePlayer();
+        // gm.SavePlayer();
         this.gameObject.transform.GetChild(0).gameObject.SetActive(true);
         isPaused = true;
     }

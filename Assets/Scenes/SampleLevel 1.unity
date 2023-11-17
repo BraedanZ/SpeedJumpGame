@@ -8859,6 +8859,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1865881579910876379, guid: bc4a15657156ef4419b76969b63e348c, type: 3}
   m_PrefabInstance: {fileID: 415900096}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &579639785 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8435789725033003504, guid: ee2d13adb4589f24cbc37346937ac42e, type: 3}
+  m_PrefabInstance: {fileID: 8435789724420377343}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cee3db0d24173c149a64422626c37a78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &583357743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18894,6 +18905,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CheckpointController
       objectReference: {fileID: 0}
+    - target: {fileID: 6388552314550228618, guid: 23f7535acf7544c48b94e3b7578a5f37, type: 3}
+      propertyPath: m_TagString
+      value: CheckpointController
+      objectReference: {fileID: 0}
     - target: {fileID: 6388552314550228619, guid: 23f7535acf7544c48b94e3b7578a5f37, type: 3}
       propertyPath: punishmentForNextFallText
       value: 
@@ -20284,6 +20299,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc4a15657156ef4419b76969b63e348c, type: 3}
+--- !u!114 &1292726703 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8399473438530273066, guid: 3fb63ad1e6c0c8d4f83889457eba051c, type: 3}
+  m_PrefabInstance: {fileID: 8399473440341806951}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e1ee646fbf375842b3743f6b6772389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1296389747
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24065,7 +24091,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1538061305
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -26873,6 +26899,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1865881579910876379, guid: bc4a15657156ef4419b76969b63e348c, type: 3}
   m_PrefabInstance: {fileID: 240024326}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1677670154 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6388552314550228619, guid: 23f7535acf7544c48b94e3b7578a5f37, type: 3}
+  m_PrefabInstance: {fileID: 1191700537}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27b7deb6ebe3a4e4993952e57bfdb47a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1678408882
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34528,13 +34565,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8399473438607426787, guid: 3fb63ad1e6c0c8d4f83889457eba051c, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 579639785}
+    - target: {fileID: 8399473438607426787, guid: 3fb63ad1e6c0c8d4f83889457eba051c, type: 3}
       propertyPath: flashImage
       value: 
       objectReference: {fileID: 935931037}
     - target: {fileID: 8399473438607426787, guid: 3fb63ad1e6c0c8d4f83889457eba051c, type: 3}
+      propertyPath: animatePlayer
+      value: 
+      objectReference: {fileID: 1292726703}
+    - target: {fileID: 8399473438607426787, guid: 3fb63ad1e6c0c8d4f83889457eba051c, type: 3}
       propertyPath: spawnOffset.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8399473438607426787, guid: 3fb63ad1e6c0c8d4f83889457eba051c, type: 3}
+      propertyPath: checkpointController
+      value: 
+      objectReference: {fileID: 1677670154}
     - target: {fileID: 8399473438607426788, guid: 3fb63ad1e6c0c8d4f83889457eba051c, type: 3}
       propertyPath: m_RootOrder
       value: 1

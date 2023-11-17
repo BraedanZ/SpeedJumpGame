@@ -18,11 +18,11 @@ public class Player : MonoBehaviour
 
     private SunQuotes sunQuotes;
 
-    private CheckpointController checkpointController;
+    public CheckpointController checkpointController;
 
-    private PauseMenu pauseMenu;
+    public PauseMenu pauseMenu;
 
-    private AnimatePlayer animatePlayer;
+    public AnimatePlayer animatePlayer;
 
     private new CameraFollow camera;
 
@@ -104,8 +104,8 @@ public class Player : MonoBehaviour
         // maxDistance = transform.position.x;
         SelectSkin();
         // transform.position = checkpointController.GetRespawnPoint() + spawnOffset;
-        SetLoadedPosition();
-        SetLoadedVelocity();
+        // SetLoadedPosition();
+        // SetLoadedVelocity();
         camera.SnapCamera();
         pauseMenu.UnpauseGame();
     }
@@ -348,7 +348,7 @@ public class Player : MonoBehaviour
         rb.velocity = Vector2.zero;
         camera.SnapCamera();
         sunQuotes.Died();
-        gm.SavePlayer();
+        // gm.SavePlayer();
     }
 
     private void ApplyWind() {
@@ -439,11 +439,11 @@ public class Player : MonoBehaviour
         return rb.velocity;
     }
 
-    private void SetLoadedPosition() {
-        transform.position = gm.GetLoadedPosition();
-    }
+    // private void SetLoadedPosition() {
+    //     transform.position = gm.GetLoadedPosition();
+    // }
 
-    private void SetLoadedVelocity() {
-        rb.velocity = gm.GetLoadedVelocity();
-    }
+    // private void SetLoadedVelocity() {
+    //     rb.velocity = gm.GetLoadedVelocity();
+    // }
 }

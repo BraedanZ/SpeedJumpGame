@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelSelector : MonoBehaviour
 {
-    public static int selectedLevel;
+    public static int selectedLevel = 1;
     public int level;
     public Text levelText;
 
