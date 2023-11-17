@@ -11,7 +11,7 @@ public class LevelGenerator : MonoBehaviour
 
     int level = LevelSelector.selectedLevel;
 
-    void Start()
+    void Awake()
     {
         map = maps[level - 1];
         GenerateLevel();

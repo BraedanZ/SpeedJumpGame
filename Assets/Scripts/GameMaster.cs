@@ -41,8 +41,8 @@ public class GameMaster : MonoBehaviour
     public float timeInWater;
     public float waterTimeDifferential;
 
-    Vector3 loadedPlayerPosition;
-    Vector2 loadedPlayerVelocity;
+    // Vector3 loadedPlayerPosition;
+    // Vector2 loadedPlayerVelocity;
 
     public GameObject pauseButton;
 
@@ -56,7 +56,7 @@ public class GameMaster : MonoBehaviour
 
     void Start() {
         SetStartVariables();
-        LoadPlayer();
+        // LoadPlayer();
         UpdateJumpCount();
         UpdateDeathCount();
     }
@@ -80,26 +80,26 @@ public class GameMaster : MonoBehaviour
 
     public void Restart() {
         checkpointController.Restart();
-        ResetStartVariables();
-        WipeSave();
+        // ResetStartVariables();
+        // WipeSave();
         UpdateJumpCount();
         UpdateDeathCount();
         player.Restart();
     }
 
-    private void ResetStartVariables() {
-        gamePlaying = true;
-        startTime = Time.time;
-        loadedTime = 0f;
-    }
+    // private void ResetStartVariables() {
+    //     gamePlaying = true;
+    //     startTime = Time.time;
+    //     loadedTime = 0f;
+    // }
 
     void Update() {
         UpdateTimer();
     }
 
-    void OnApplicationQuit() {
-        SavePlayer();
-    }
+    // void OnApplicationQuit() {
+    //     SavePlayer();
+    // }
 
     private void UpdateTimer() {
         if (waterZone) {
@@ -174,48 +174,61 @@ public class GameMaster : MonoBehaviour
         Application.Quit();
     }
 
-    public void SavePlayer() {
-        SaveSystem.SavePlayer(this);
+    // public void SavePlayer() {
+    //     SaveSystem.SavePlayer(this);
+    // }
+
+    // public void LoadPlayer() {
+    //     PlayerData data = SaveSystem.LoadPlayer(scene.name);
+
+    //     checkpointController.fallsInARow = data.fallsInARow;
+    //     checkpointController.UpdatePunishmentText();
+    //     loadedTime = data.loadedTime;
+    //     deathCount = data.deathCount;
+    //     jumpCount = data.jumpCount;
+
+    //     loadedPlayerPosition.x = data.position[0];
+    //     loadedPlayerPosition.y = data.position[1];
+    //     loadedPlayerPosition.z = data.position[2];
+
+    //     loadedPlayerVelocity.x = data.velocity[0];
+    //     loadedPlayerVelocity.y = data.velocity[1];
+
+    //     for (int i = 0; i <= data.checkpoints.GetUpperBound(0); i++) {
+    //         Vector2 checkpoint = new Vector2(data.checkpoints[i, 0], data.checkpoints[i, 1]);
+    //         checkpointController.reachedCheckPoints.Push(checkpoint);
+    //     }
+    // }
+
+    // public void WipeSave() {
+    //     checkpointController.fallsInARow = 0;
+    //     elapsedTime = 0f;
+    //     deathCount = 0;
+    //     jumpCount = 0;
+    //     loadedPlayerPosition = new Vector3(0f, 0f, 0f);
+    //     loadedPlayerVelocity = new Vector2(0f, 0f);
+
+    //     SavePlayer();
+    // }
+
+    // public Vector3 GetLoadedPosition() {
+    //     return loadedPlayerPosition;
+    // }
+
+    // public Vector2 GetLoadedVelocity() {
+    //     return loadedPlayerVelocity;
+    // }
+
+    public void PlayAgain() {
+        SceneManager.LoadScene("SampleLevel 1");
     }
 
-    public void LoadPlayer() {
-        PlayerData data = SaveSystem.LoadPlayer(scene.name);
-
-        checkpointController.fallsInARow = data.fallsInARow;
-        checkpointController.UpdatePunishmentText();
-        loadedTime = data.loadedTime;
-        deathCount = data.deathCount;
-        jumpCount = data.jumpCount;
-
-        loadedPlayerPosition.x = data.position[0];
-        loadedPlayerPosition.y = data.position[1];
-        loadedPlayerPosition.z = data.position[2];
-
-        loadedPlayerVelocity.x = data.velocity[0];
-        loadedPlayerVelocity.y = data.velocity[1];
-
-        for (int i = 0; i <= data.checkpoints.GetUpperBound(0); i++) {
-            Vector2 checkpoint = new Vector2(data.checkpoints[i, 0], data.checkpoints[i, 1]);
-            checkpointController.reachedCheckPoints.Push(checkpoint);
-        }
+    public void PlayNextLevel() {
+        LevelSelector. selectedLevel++;
+        SceneManager.LoadScene("SampleLevel 1");
     }
 
-    public void WipeSave() {
-        checkpointController.fallsInARow = 0;
-        elapsedTime = 0f;
-        deathCount = 0;
-        jumpCount = 0;
-        loadedPlayerPosition = new Vector3(0f, 0f, 0f);
-        loadedPlayerVelocity = new Vector2(0f, 0f);
-
-        SavePlayer();
-    }
-
-    public Vector3 GetLoadedPosition() {
-        return loadedPlayerPosition;
-    }
-
-    public Vector2 GetLoadedVelocity() {
-        return loadedPlayerVelocity;
+    public void MainMenu() {
+        SceneManager.LoadScene("MainMenu");
     }
 }

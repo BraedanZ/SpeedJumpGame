@@ -5,7 +5,7 @@ using UnityEngine;
 public class CheckPoint : MonoBehaviour
 {
 
-    private CheckpointController checkpointController;
+    public CheckpointController checkpointController;
 
     private BoxCollider2D checkpointCollider;
 

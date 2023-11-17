@@ -16,13 +16,13 @@ public class Player : MonoBehaviour
 
     private GameMaster gm;
 
-    private SunQuotes sunQuotes;
+    // private SunQuotes sunQuotes;
 
-    private CheckpointController checkpointController;
+    public CheckpointController checkpointController;
 
-    private PauseMenu pauseMenu;
+    public PauseMenu pauseMenu;
 
-    private AnimatePlayer animatePlayer;
+    public AnimatePlayer animatePlayer;
 
     private new CameraFollow camera;
 
@@ -95,7 +95,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<BoxCollider2D>();
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
-        sunQuotes = GameObject.FindGameObjectWithTag("Sun").GetComponent<SunQuotes>();
+        // sunQuotes = GameObject.FindGameObjectWithTag("Sun").GetComponent<SunQuotes>();
         checkpointController = GameObject.FindGameObjectWithTag("CheckpointController").GetComponent<CheckpointController>();
         pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>();
         animatePlayer = GameObject.FindGameObjectWithTag("Skin").GetComponent<AnimatePlayer>();
@@ -104,8 +104,8 @@ public class Player : MonoBehaviour
         // maxDistance = transform.position.x;
         SelectSkin();
         // transform.position = checkpointController.GetRespawnPoint() + spawnOffset;
-        SetLoadedPosition();
-        SetLoadedVelocity();
+        // SetLoadedPosition();
+        // SetLoadedVelocity();
         camera.SnapCamera();
         pauseMenu.UnpauseGame();
     }
@@ -151,11 +151,11 @@ public class Player : MonoBehaviour
         if (transform.position.x > maxDistance) {
             maxDistance = transform.position.x;
             if (maxDistance < gm.mapLength / 3) {
-                sunQuotes.SetHappiness(1);
+                // sunQuotes.SetHappiness(1);
             } else if (maxDistance >= gm.mapLength * 0.33f && maxDistance < gm.mapLength * 0.66f) {
-                sunQuotes.SetHappiness(2);
+                // sunQuotes.SetHappiness(2);
             } else if (maxDistance >= gm.mapLength * 0.66f) {
-                sunQuotes.SetHappiness(3);
+                // sunQuotes.SetHappiness(3);
             }
         }
         
@@ -347,8 +347,8 @@ public class Player : MonoBehaviour
         transform.position = checkpointController.GetRespawnPoint() + spawnOffset;
         rb.velocity = Vector2.zero;
         camera.SnapCamera();
-        sunQuotes.Died();
-        gm.SavePlayer();
+        // sunQuotes.Died();
+        // gm.SavePlayer();
     }
 
     private void ApplyWind() {
@@ -439,11 +439,11 @@ public class Player : MonoBehaviour
         return rb.velocity;
     }
 
-    private void SetLoadedPosition() {
-        transform.position = gm.GetLoadedPosition();
-    }
+    // private void SetLoadedPosition() {
+    //     transform.position = gm.GetLoadedPosition();
+    // }
 
-    private void SetLoadedVelocity() {
-        rb.velocity = gm.GetLoadedVelocity();
-    }
+    // private void SetLoadedVelocity() {
+    //     rb.velocity = gm.GetLoadedVelocity();
+    // }
 }
