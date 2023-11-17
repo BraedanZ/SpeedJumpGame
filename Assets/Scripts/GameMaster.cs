@@ -218,4 +218,17 @@ public class GameMaster : MonoBehaviour
     // public Vector2 GetLoadedVelocity() {
     //     return loadedPlayerVelocity;
     // }
+
+    public void PlayAgain() {
+        SceneManager.LoadScene("SampleLevel 1");
+    }
+
+    public void PlayNextLevel() {
+        LevelSelector. selectedLevel++;
+        SceneManager.LoadScene("SampleLevel 1");
+    }
+
+    public void MainMenu() {
+        SceneManager.LoadScene("MainMenu");
+    }
 }

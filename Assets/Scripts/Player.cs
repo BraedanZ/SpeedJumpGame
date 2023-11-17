@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
 
     private GameMaster gm;
 
-    private SunQuotes sunQuotes;
+    // private SunQuotes sunQuotes;
 
     public CheckpointController checkpointController;
 
@@ -151,11 +151,11 @@ public class Player : MonoBehaviour
         if (transform.position.x > maxDistance) {
             maxDistance = transform.position.x;
             if (maxDistance < gm.mapLength / 3) {
-                sunQuotes.SetHappiness(1);
+                // sunQuotes.SetHappiness(1);
             } else if (maxDistance >= gm.mapLength * 0.33f && maxDistance < gm.mapLength * 0.66f) {
-                sunQuotes.SetHappiness(2);
+                // sunQuotes.SetHappiness(2);
             } else if (maxDistance >= gm.mapLength * 0.66f) {
-                sunQuotes.SetHappiness(3);
+                // sunQuotes.SetHappiness(3);
             }
         }
         
@@ -347,7 +347,7 @@ public class Player : MonoBehaviour
         transform.position = checkpointController.GetRespawnPoint() + spawnOffset;
         rb.velocity = Vector2.zero;
         camera.SnapCamera();
-        sunQuotes.Died();
+        // sunQuotes.Died();
         // gm.SavePlayer();
     }
 
