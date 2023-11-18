@@ -19,8 +19,10 @@ public class CheckpointController : MonoBehaviour
     // public Text punishmentForNextFallText;
     // private string writtenPunishment;
 
-    private float timeToSpawn = 0.3f;
+    private float timeToSpawn = 1f;
     private float timeSinceSpawn;
+
+    private Vector2 previousRespawn;
 
     void Start() {
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
@@ -32,7 +34,7 @@ public class CheckpointController : MonoBehaviour
     }
 
     private void UpdateTimeSinceSpawn() {
-        if (timeToSpawn > 0) {
+        if (timeSinceSpawn > 0) {
             timeSinceSpawn -= Time.deltaTime;
         }
     }
@@ -42,24 +44,29 @@ public class CheckpointController : MonoBehaviour
     }
 
     public Vector2 GetRespawnPoint() {
+        timeSinceSpawn = timeToSpawn;
+        print(timeSinceSpawn);
         if (reachedCheckPoints.Count == 0 ) {
+            previousRespawn = startPosition;
             return startPosition;
         }
         else if (reachedCheckPoints.Count == 1 ) {
-            reachedCheckPoints.Pop();
-            return startPosition;
+            previousRespawn = reachedCheckPoints.Pop();
+            return previousRespawn;
         }
         else {
             reachedCheckPoints.Pop();
-            return reachedCheckPoints.Pop();
+            previousRespawn = reachedCheckPoints.Pop();
+            return previousRespawn;
         }
     }
 
     public void AddCheckPoint(Vector2 checkPointPosition) {
-        if (CheckIfAddingRepeatedCheckpoint(checkPointPosition)) {
+        if (timeSinceSpawn > 0 || CheckIfAddingRepeatedCheckpoint(checkPointPosition) || previousRespawn == checkPointPosition) {
             return;
         }
         reachedCheckPoints.Push(checkPointPosition);
+        previousRespawn = checkPointPosition;
         // sunQuotes.MadeJump();
     }
 
