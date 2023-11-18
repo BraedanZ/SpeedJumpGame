@@ -46,6 +46,8 @@ public class GameMaster : MonoBehaviour
 
     public GameObject pauseButton;
 
+    public GameObject nextLevelButton;
+
     public Scene scene;
 
     public float mapLength;
@@ -138,7 +140,13 @@ public class GameMaster : MonoBehaviour
         winPanel.transform.Find("FinalTime").GetComponent<Text>().text = timePlayingStr;
         winPanel.transform.Find("FinalJumps").GetComponent<Text>().text = writtenJumpCount;
         winPanel.transform.Find("FinalDeaths").GetComponent<Text>().text = writtenDeathCount;
+        
         winPanel.SetActive(true);
+        if (LevelSelector.selectedLevel == 8) {
+            nextLevelButton.SetActive(false);
+        } else {
+            nextLevelButton.SetActive(true);
+        }
         gameOverlay.SetActive(false);
     }
 
@@ -224,7 +232,7 @@ public class GameMaster : MonoBehaviour
     }
 
     public void PlayNextLevel() {
-        LevelSelector. selectedLevel++;
+        LevelSelector.selectedLevel++;
         SceneManager.LoadScene("SampleLevel 1");
     }
 
