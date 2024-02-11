@@ -16,6 +16,7 @@ TagManager:
   - PauseMenu
   - CheckpointController
   - Sun
+  - DingSound
   layers:
   - Default
   - TransparentFX
