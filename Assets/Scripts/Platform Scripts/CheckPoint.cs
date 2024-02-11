@@ -11,13 +11,18 @@ public class CheckPoint : MonoBehaviour
 
     public LayerMask whatIsPlayer;
 
+    private AudioController audioController;
+
     // public float maxDistance;
 
     public Vector3 boxSize;
 
+    private bool isActive = false;
+
     void Start() {
         checkpointController = GameObject.FindGameObjectWithTag("CheckpointController").GetComponent<CheckpointController>();
         checkpointCollider = GetComponent<BoxCollider2D>();
+        audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
     }
 
     void Update() {
@@ -33,6 +38,10 @@ public class CheckPoint : MonoBehaviour
     public void CheckForPlayer() {
         if (Physics2D.BoxCast(checkpointCollider.bounds.center, checkpointCollider.bounds.size, 0, transform.up, 0.1f, whatIsPlayer)) {
             checkpointController.AddCheckPoint(transform.position);
+            if(!isActive) {
+                audioController.PlayDingSound();
+                isActive = true;
+            }
         }
     }
 
