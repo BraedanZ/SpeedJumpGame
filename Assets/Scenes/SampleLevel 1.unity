@@ -2141,15 +2141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maps:
-  - {fileID: 2800000, guid: 3d92af677235d8d4a8398cc43f92d305, type: 3}
-  - {fileID: 2800000, guid: e13cf0ac67f205346afcb172936f2620, type: 3}
-  - {fileID: 2800000, guid: cc1bc24dc7db3bf46824de9190e29868, type: 3}
-  - {fileID: 2800000, guid: d36a3a123b53a6c46bf5822a938c0f6c, type: 3}
-  - {fileID: 2800000, guid: a35618db1ee9f7c41ba434d12df0b696, type: 3}
-  - {fileID: 2800000, guid: fcc37b3339026b94cb09ecb23c797df3, type: 3}
-  - {fileID: 2800000, guid: effd42bb219562c4d8e0dbe4dff327be, type: 3}
-  - {fileID: 2800000, guid: 0fb382366ec106c4a92c12449dfab7f7, type: 3}
-  map: {fileID: 2800000, guid: 8fdeebc04fe52474f93192389c07e6ff, type: 3}
+  - {fileID: 2800000, guid: a1a7f7f8a6e0f3c4d93086b3286c04c7, type: 3}
+  map: {fileID: 2800000, guid: a1a7f7f8a6e0f3c4d93086b3286c04c7, type: 3}
   colorMappings:
   - color: {r: 0, g: 0, b: 0, a: 1}
     prefab: {fileID: 1673710202148408909, guid: c3c3f9683a28aca4ba0cffbd4ca15b5d, type: 3}
