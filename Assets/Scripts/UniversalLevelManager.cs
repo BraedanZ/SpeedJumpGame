@@ -6,8 +6,8 @@ public class UniversalLevelManager : MonoBehaviour
 {
     void Start()
     {
-        int level = LevelSelector.selectedLevel;
-        Debug.Log(level);
+        // int level = LevelSelector.selectedLevel;
+        // Debug.Log(level);
     }
 
     void Update()

@@ -142,11 +142,7 @@ public class GameMaster : MonoBehaviour
         winPanel.transform.Find("FinalDeaths").GetComponent<Text>().text = writtenDeathCount;
         
         winPanel.SetActive(true);
-        if (LevelSelector.selectedLevel == 8) {
-            nextLevelButton.SetActive(false);
-        } else {
-            nextLevelButton.SetActive(true);
-        }
+        nextLevelButton.SetActive(true);
         gameOverlay.SetActive(false);
     }
 
@@ -232,8 +228,8 @@ public class GameMaster : MonoBehaviour
     }
 
     public void PlayNextLevel() {
-        LevelSelector.selectedLevel++;
-        SceneManager.LoadScene("SampleLevel 1");
+        StaticClass.IncrementLevel();
+        SceneManager.LoadScene("Assets/Scenes/Worlds/" + StaticClass.GetWorld() + "/" + StaticClass.GetWorld() + "-" + StaticClass.GetLevel() + ".unity");
     }
 
     public void MainMenu() {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public static class StaticClass
 {
@@ -29,13 +30,32 @@ public static class StaticClass
     {
         return StaticClass.world;
     }
-    
+
     public static void SetLevel(int level)
     {
         StaticClass.level = level;
     }
 
-    public static int GetLevel() {
+    public static int GetLevel()
+    {
         return StaticClass.level;
+    }
+
+    public static void IncrementLevel()
+    {
+        if (level != 8)
+        {
+            level++;
+        }
+        else if (level == 8 && world != 8)
+        {
+            world++;
+            level = 1;
+        }
+        else if (level == 8 && world == 8)
+        {
+            world = 1;
+            level = 1;
+        }
     }
 }
