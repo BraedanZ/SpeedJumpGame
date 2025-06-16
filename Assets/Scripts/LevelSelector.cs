@@ -17,6 +17,8 @@ public class LevelSelector : MonoBehaviour
     public void OpenScene()
     {
         selectedLevel = level;
-        SceneManager.LoadScene("SampleLevel 1");
+        // SceneManager.LoadScene("SampleLevel 1");
+        SceneManager.LoadScene("Assets/Scenes/Worlds/1/1-" + level + ".unity");
+
     }
 }
