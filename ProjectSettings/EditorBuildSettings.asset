@@ -167,4 +167,28 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Worlds/6/6-8.unity
     guid: a71da6ec4d6e860499660f35f420ed72
+  - enabled: 1
+    path: Assets/Scenes/Worlds/7/7-1.unity
+    guid: 95ec5c1e5aad81e428a9e32c35ad07bf
+  - enabled: 1
+    path: Assets/Scenes/Worlds/7/7-2.unity
+    guid: ca0093d551241204facda0302fe6f2cd
+  - enabled: 1
+    path: Assets/Scenes/Worlds/7/7-3.unity
+    guid: f56fd2fb52340c948a53ac2e23eae100
+  - enabled: 1
+    path: Assets/Scenes/Worlds/7/7-4.unity
+    guid: 94da0a471061a0247bf8229af4b2cd93
+  - enabled: 1
+    path: Assets/Scenes/Worlds/7/7-5.unity
+    guid: 0149818bf8c84404b9f5972a42a6482f
+  - enabled: 1
+    path: Assets/Scenes/Worlds/7/7-6.unity
+    guid: 08862c20b4dd3da46afbfebd55da5236
+  - enabled: 1
+    path: Assets/Scenes/Worlds/7/7-7.unity
+    guid: c8c0e27c7a2eec443943c729b1551725
+  - enabled: 1
+    path: Assets/Scenes/Worlds/7/7-8.unity
+    guid: 23cc044247154684cba919606c9e535e
   m_configObjects: {}
