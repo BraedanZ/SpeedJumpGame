@@ -16,15 +16,15 @@ public class LevelSelector : MonoBehaviour
     //     levelText.text = level.ToString();
     // }
 
-    // public void SetWorld(int world)
-    // {
-    //     this.world = world; 
-    // }
+    public void SetWorld(int world)
+    {
+        StaticClass.SetWorld(world); 
+    }
 
-    // public void SetLevel(int level)
-    // {
-    //     this.level = level; 
-    // }
+    public void SetLevel(int level)
+    {
+        StaticClass.SetLevel(level); 
+    }
 
     public void OpenScene()
     {

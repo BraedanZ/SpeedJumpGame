@@ -23,6 +23,7 @@ public static class StaticClass
 
     public static void SetWorld(int world)
     {
+        Debug.Log(world);
         StaticClass.world = world;
     }
 
