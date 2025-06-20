@@ -28,6 +28,7 @@ public static class StaticClass
 
     public static int GetWorld()
     {
+        Debug.Log(world);
         return StaticClass.world;
     }
 
