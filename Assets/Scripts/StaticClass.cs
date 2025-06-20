@@ -7,9 +7,9 @@ public static class StaticClass
 {
     private static int difficulty = 4;
 
-    private static int world = 1;
+    private static int world = 0;
 
-    private static int level = 1;
+    private static int level = 0;
 
     public static void SetDifficulty(int difficulty)
     {
