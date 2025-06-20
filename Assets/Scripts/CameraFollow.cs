@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    
+
     public Transform target;
 
     private GameMaster gm;
@@ -21,39 +21,51 @@ public class CameraFollow : MonoBehaviour
 
     public float colourModifierFromX;
 
-    void Start () {
+    void Start()
+    {
         cam = GetComponent<Camera>();
         cam.clearFlags = CameraClearFlags.SolidColor;
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
-        
+
         SnapCamera();
     }
 
-    void Update () {
+    void Update()
+    {
         GradientBackground();
     }
 
-    void FixedUpdate () {
+    void FixedUpdate()
+    {
         SmoothCameraFollow();
     }
 
-    public void SnapCamera () {
+    public void SnapCamera()
+    {
         transform.position = target.position + offset;
     }
 
-    private void GradientBackground() {
-        if (transform.position.x < gm.mapLength / 2) {
+    private void GradientBackground()
+    {
+        if (transform.position.x < gm.mapLength / 2)
+        {
             FirstHalfGradient();
-        } else {
+        }
+        else
+        {
             SecondHalfGradient();
         }
     }
 
-    private void FirstHalfGradient() {
-        if (transform.position.x < 0) {
+    private void FirstHalfGradient()
+    {
+        if (transform.position.x < 0)
+        {
             Debug.Log("from cam < 0");
             colourModifierFromX = 0 + 250 * (StaticClass.GetWorld() - 1);
-        } else {
+        }
+        else
+        {
             Debug.Log("from cam");
             colourModifierFromX = (2 * transform.position.x + 250 * (StaticClass.GetWorld() - 1)) / gm.mapLength;
         }
@@ -61,16 +73,21 @@ public class CameraFollow : MonoBehaviour
         cam.backgroundColor = skyGradient.Evaluate(colourModifierFromX);
     }
 
-    private void SecondHalfGradient() {
-        if (transform.position.x > gm.mapLength) {
+    private void SecondHalfGradient()
+    {
+        if (transform.position.x > gm.mapLength)
+        {
             colourModifierFromX = 0;
-        } else {
+        }
+        else
+        {
             colourModifierFromX = 2 * ((gm.mapLength - transform.position.x) / gm.mapLength);
         }
         cam.backgroundColor = skyGradient.Evaluate(colourModifierFromX);
     }
 
-    private void SmoothCameraFollow() {
+    private void SmoothCameraFollow()
+    {
         Vector3 desiredPosition = target.position + offset;
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
         transform.position = smoothedPosition;
