@@ -89,6 +89,8 @@ public class Player : MonoBehaviour
     private bool justJumped;
     private float timeInAir;
 
+    private ParticleSystem particleSystem;
+
     void Start()
     {
         player = this;
@@ -101,6 +103,8 @@ public class Player : MonoBehaviour
         animatePlayer = GameObject.FindGameObjectWithTag("Skin").GetComponent<AnimatePlayer>();
         camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
         audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
+        particleSystem = GetComponent<ParticleSystem>();
+        particleSystem.GetComponent<Renderer>().sortingLayerName = "Player";
         // maxDistance = transform.position.x;
         SelectSkin();
         // transform.position = checkpointController.GetRespawnPoint() + spawnOffset;
@@ -316,6 +320,7 @@ public class Player : MonoBehaviour
             }
             canJump = false;
             audioController.PlayJumpEndSound();
+            particleSystem.Play();
             hasLanded = false;
             gm.IncramentJumps();
         }
