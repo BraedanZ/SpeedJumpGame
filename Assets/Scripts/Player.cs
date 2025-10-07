@@ -252,6 +252,7 @@ public class Player : MonoBehaviour
         if (Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0, -transform.up, 0.1f, whatIsGround)) {
             if (!isGrounded && !hasLanded) {
                 audioController.PlayLandSound();
+                particleSystem.Play();
                 hasLanded = true;
             }
             isGrounded = true;
@@ -260,6 +261,7 @@ public class Player : MonoBehaviour
         } else if (Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0, -transform.up, 0.1f, whatIsIce)) { 
             if (!isGrounded && !hasLanded) {
                 audioController.PlayLandSound();
+                particleSystem.Play();
                 hasLanded = true;
             }
             isGrounded = true;
@@ -320,7 +322,6 @@ public class Player : MonoBehaviour
             }
             canJump = false;
             audioController.PlayJumpEndSound();
-            particleSystem.Play();
             hasLanded = false;
             gm.IncramentJumps();
         }
