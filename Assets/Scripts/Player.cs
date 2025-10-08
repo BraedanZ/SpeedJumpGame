@@ -89,6 +89,8 @@ public class Player : MonoBehaviour
     private bool justJumped;
     private float timeInAir;
 
+    private ParticleSystem particleSystem;
+
     void Start()
     {
         player = this;
@@ -101,6 +103,8 @@ public class Player : MonoBehaviour
         animatePlayer = GameObject.FindGameObjectWithTag("Skin").GetComponent<AnimatePlayer>();
         camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
         audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
+        particleSystem = GetComponent<ParticleSystem>();
+        particleSystem.GetComponent<Renderer>().sortingLayerName = "Player";
         // maxDistance = transform.position.x;
         SelectSkin();
         // transform.position = checkpointController.GetRespawnPoint() + spawnOffset;
@@ -248,6 +252,7 @@ public class Player : MonoBehaviour
         if (Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0, -transform.up, 0.1f, whatIsGround)) {
             if (!isGrounded && !hasLanded) {
                 audioController.PlayLandSound();
+                particleSystem.Play();
                 hasLanded = true;
             }
             isGrounded = true;
@@ -256,6 +261,7 @@ public class Player : MonoBehaviour
         } else if (Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0, -transform.up, 0.1f, whatIsIce)) { 
             if (!isGrounded && !hasLanded) {
                 audioController.PlayLandSound();
+                particleSystem.Play();
                 hasLanded = true;
             }
             isGrounded = true;
