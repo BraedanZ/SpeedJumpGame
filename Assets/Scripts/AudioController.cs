@@ -16,7 +16,7 @@ public class AudioController : MonoBehaviour
         jumpEndSound = GameObject.FindGameObjectWithTag("JumpEndSound").GetComponent<AudioSource>();
         dieSound = GameObject.FindGameObjectWithTag("DieSound").GetComponent<AudioSource>();
         land = GameObject.FindGameObjectWithTag("Land").GetComponent<AudioSource>();
-        ding = GameObject.FindGameObjectWithTag("DingSound").GetComponent<AudioSource>();
+        // ding = GameObject.FindGameObjectWithTag("DingSound").GetComponent<AudioSource>();
     }
 
     public void PlayJumpStartSound() {
@@ -36,6 +36,6 @@ public class AudioController : MonoBehaviour
     }
 
     public void PlayDingSound() {
-        ding.Play();
+        // ding.Play();
     }
 }
