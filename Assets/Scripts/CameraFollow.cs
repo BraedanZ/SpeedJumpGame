@@ -61,15 +61,12 @@ public class CameraFollow : MonoBehaviour
     {
         if (transform.position.x < 0)
         {
-            Debug.Log("from cam < 0");
             colourModifierFromX = 0 + 250 * (StaticClass.GetWorld() - 1);
         }
         else
         {
-            Debug.Log("from cam");
             colourModifierFromX = (2 * transform.position.x + 250 * (StaticClass.GetWorld() - 1)) / gm.mapLength;
         }
-        Debug.Log(colourModifierFromX);
         cam.backgroundColor = skyGradient.Evaluate(colourModifierFromX);
     }
 
