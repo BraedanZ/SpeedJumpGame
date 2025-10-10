@@ -16,8 +16,8 @@ public class CheckpointController : MonoBehaviour
 
     public int fallsInARow = 1;
 
-    // public Text punishmentForNextFallText;
-    // private string writtenPunishment;
+    public Text punishmentForNextFallText;
+    private string writtenPunishment;
 
     private float timeToSpawn = 1f;
     private float timeSinceSpawn;
@@ -275,8 +275,8 @@ public class CheckpointController : MonoBehaviour
     }
 
     private void UpdatePunishmentTextTwo() {
-        // writtenPunishment = "x" + 2 * (fallsInARow + 1);
-        // punishmentForNextFallText.text = writtenPunishment;
+        writtenPunishment = "x" + 2 * (fallsInARow + 1);
+        punishmentForNextFallText.text = writtenPunishment;
     }
 
     private void UpdatePunishmentTextFour() {
