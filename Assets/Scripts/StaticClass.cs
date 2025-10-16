@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public static class StaticClass
 {
-    private static int difficulty = 4;
+    private static int difficulty = 0;
 
     private static int world = 0;
 
