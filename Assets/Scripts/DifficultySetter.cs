@@ -6,6 +6,7 @@ public class DifficultySetter : MonoBehaviour
 {
     private Player player;
     private GameMaster gm;
+    public int difficulty;
 
     void Start () {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -14,8 +15,11 @@ public class DifficultySetter : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player")) {
-            StaticClass.SetDifficulty(4);
-            gm.ActivateOverlay();
+            StaticClass.SetDifficulty(difficulty);
+            if (difficulty == 4)
+            {
+                gm.ActivateOverlay();
+            }
         }
     }
 }
