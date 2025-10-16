@@ -14,7 +14,6 @@ public static class StaticClass
 
     public static void SetDifficulty(int difficulty)
     {
-        UnityEngine.Debug.Log(difficulty);
         StaticClass.difficulty = difficulty;
     }
 
