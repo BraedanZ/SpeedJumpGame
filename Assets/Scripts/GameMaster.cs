@@ -232,7 +232,16 @@ public class GameMaster : MonoBehaviour
         SceneManager.LoadScene("Assets/Scenes/Worlds/" + StaticClass.GetWorld() + "/" + StaticClass.GetWorld() + "-" + StaticClass.GetLevel() + ".unity");
     }
 
-    public void MainMenu() {
+    public void MainMenu()
+    {
         SceneManager.LoadScene("MainMenu");
+    }
+    
+    public void ActivateOverlay()
+    {
+        gameOverlay.transform.Find("Punishment").GetComponent<Text>().enabled = true;;
+        gameOverlay.transform.Find("TimeCounterText").GetComponent<Text>().enabled = true;
+        gameOverlay.transform.Find("DeathCount").GetComponent<Text>().enabled = true;
+        gameOverlay.transform.Find("JumpCount").GetComponent<Text>().enabled = true;
     }
 }
